@@ -3,5 +3,5 @@ jdk:
   - oraclejdk8
 dist: trusty
 sudo: false
-install:
-- mvn test -B
+before_install :
+- chmod +x mvnw
