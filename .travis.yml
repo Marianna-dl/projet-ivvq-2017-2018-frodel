@@ -5,3 +5,4 @@ dist: trusty
 sudo: false
 before_install :
 - chmod +x mvnw
+script: mvn sonar:sonar -Dsonar.organization=travex -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=a0fbd8de5ac28eb4164491dcb69cd4ebca538c93
