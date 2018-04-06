@@ -36,4 +36,20 @@ class TravelTest extends Specification {
         "étape" | _
     }
 
+    @Unroll
+    void "test if a travel is incorrect"(String aName) {
+
+        given: "an incorrectly initialized travel"
+        Travel travel = new Travel(name: aName)
+
+        expect: "The travel is invalid"
+        !validator.validate(travel).empty
+
+        where:
+        aName | _
+        "" | _
+        "tr" | _
+        null | _
+    }
+
 }
