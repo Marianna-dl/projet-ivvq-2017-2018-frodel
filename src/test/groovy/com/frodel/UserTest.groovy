@@ -1,4 +1,5 @@
 package com.frodel
+
 import org.springframework.boot.test.context.SpringBootTest
 
 
@@ -8,15 +9,12 @@ import org.springframework.boot.test.context.SpringBootTest
 
 import spock.lang.Specification
 import spock.lang.Unroll
-
-
 import javax.validation.Validation
 import javax.validation.Validator
 import javax.validation.ValidatorFactory
 
 @SpringBootTest
 class UserTest extends Specification {
-
 
     Validator validator
 
@@ -43,6 +41,7 @@ class UserTest extends Specification {
 
     @Unroll
     void "test la validite d'un utilisateur non valide"(String pseudo, String mdp, String email) {
+
 
         given: "un utilisateur initialise correctement"
         User utilisateur = new User(pseudo,mdp,email)
