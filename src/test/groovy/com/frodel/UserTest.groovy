@@ -1,5 +1,4 @@
 package com.frodel
-
 import org.springframework.boot.test.context.SpringBootTest
 
 
@@ -10,12 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 import spock.lang.Unroll
 
+
 import javax.validation.Validation
 import javax.validation.Validator
 import javax.validation.ValidatorFactory
 
 @SpringBootTest
 class UserTest extends Specification {
+
 
     Validator validator
 
@@ -60,5 +61,4 @@ class UserTest extends Specification {
         "Durand3" | "123" | "jd@jd.com"
         "Durant3" | "JacquesJacques" | "emailnonvalide"
     }
-
 }
