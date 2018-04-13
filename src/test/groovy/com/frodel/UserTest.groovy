@@ -35,18 +35,30 @@ class UserTest extends Specification {
 
         where:
         pseudo   | mdp       | email
-        "Dupont" | "Jeanne"  | "jd@jd.com"
-        "Durand" | "Jacques" | "jd@jd.com"
-        "Durand" | "Jacques" | "jd@jd.com"
+        "Dupont" | "azertyuiop"  | "jd@jd.com"
+        "Durand" | "12zfov86§ju" | "jd@jd.com"
+        "Durant" | "JacquesJacques" | "jd@jd.com"
     }
-   /* def "save user"(){
-        given: "a valid utilisateur"
-        User bob = new User("frodel", "frodelmdp", "frodel@frodel.fr")
 
-        when: "the utilisateur is saved"
-        userService.saveUtilisateur(bob);
+    @Unroll
+    void "test la validite d'un utilisateur non valide"(String pseudo, String mdp, String email) {
 
-        then: "the utilisateur has an id"
-        bob.id != null
-    }*/
+        given: "un utilisateur initialise correctement"
+        User utilisateur = new User(pseudo,mdp,email)
+
+        expect: "l'utilisateur est valide"
+        !validator.validate(utilisateur).empty
+
+        where:
+        pseudo   | mdp       | email
+        "" | "azertyuiop"  | "jd@jd.com"
+        "Durand1" | "" | "jd@jd.com"
+        "Durant1" | "JacquesJacques" | ""
+        null | "azertyuiop"  | "jd@jd.com"
+        "Durand2" | null | "jd@jd.com"
+        "Durant2" | "JacquesJacques" | null
+        "Durand3" | "123" | "jd@jd.com"
+        "Durant3" | "JacquesJacques" | "emailnonvalide"
+    }
+
 }
