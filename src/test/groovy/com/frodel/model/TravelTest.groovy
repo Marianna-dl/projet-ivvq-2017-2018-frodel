@@ -1,4 +1,4 @@
-package com.frodel
+package com.frodel.model
 
 import com.frodel.model.Travel
 import spock.lang.Specification
