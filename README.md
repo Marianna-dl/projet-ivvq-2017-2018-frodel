@@ -12,5 +12,14 @@ Les circuits de voyages présenteront le budget, la durée, endroits visités pa
 ## Aspect social
 Les membres pourront donner leurs avis concernant les voyages d’autres membres, les noter et poser des questions.
 
+## Intégration continue
+https://travis-ci.org/Master-DL/projet-ivvq-2017-2018-frodel
+
+## Qualité de code
+https://codecov.io/gh/Master-DL/projet-ivvq-2017-2018-frodel
+
+https://sonarcloud.io/dashboard?id=com.frodel%3Atravex
+
 ## Déploiement
 https://travex.herokuapp.com/
+
