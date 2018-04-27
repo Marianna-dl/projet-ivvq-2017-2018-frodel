@@ -5,20 +5,22 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
+import javax.validation.ConstraintViolationException
+
 /**
  * Created by hichem on 13/04/2018.
  */
 @ContextConfiguration
-@SpringBootTest
+@SpringBootTest(classes = TravexApplication.class,webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserServiceITest extends Specification{
     @Autowired UserService utilisateurService
 
     def "test sauvegarder un utilisateur valide"() {
         given: "valide utilisateur"
-        User bob = new User(nom: "Deniro", prenom: "bob", email: "bob@deniro.com",sexe: "M")
+        User bob = new User("frodel","frodelMdp","frodel@frodel.fr")
 
         when: "l'utilisateur est enregistré"
-        utilisateurService.saveUtilisateur(bob);
+        utilisateurService.saveUser(bob);
 
         then: "l'utilisateur à un id"
         bob.id != null
@@ -27,10 +29,10 @@ class UserServiceITest extends Specification{
 
     def "test sauvegarder un utilisateur non valide"() {
         given: "non valide utilisateur"
-        User bob = new User(prenom: "bob", email: "bob@deniro.com",sexe: "M")
+        User bob = new User(null,"frodelMdp","frodel@frodel.fr")
 
         when: "l'utilisateur est anregistré"
-        utilisateurService.saveUtilisateur(bob);
+        utilisateurService.saveUser(bob);
 
         then: "une exception est levée"
         thrown ConstraintViolationException
