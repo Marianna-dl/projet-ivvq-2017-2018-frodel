@@ -13,3 +13,12 @@ after_success:
 sonarqube:
     branches :
     - feature/*
+notifications:
+  email:
+    recipients:
+      - marianna.de.lima@master-developpement-logiciel.fr
+      - lea.foissac@master-developpement-logiciel.fr
+      - franck.picardat@master-developpement-logiciel.fr
+      - hichem.rouis@master-developpement-logiciel.fr
+    on_success: never
+    on_failure: always
