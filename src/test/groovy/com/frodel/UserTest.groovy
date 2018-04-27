@@ -42,7 +42,6 @@ class UserTest extends Specification {
     @Unroll
     void "test la validite d'un utilisateur non valide"(String pseudo, String mdp, String email) {
 
-
         given: "un utilisateur initialise correctement"
         User utilisateur = new User(pseudo,mdp,email)
 
