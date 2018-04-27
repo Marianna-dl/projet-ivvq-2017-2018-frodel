@@ -26,4 +26,15 @@ class TravelServiceTest extends Specification{
         travelRepository instanceof PagingAndSortingRepository
     }
 
+    def "test delegation of save of an Travel to the repository"() {
+        given: "a travel"
+        def travel = Mock(Travel)
+
+        when: "the travel is saved"
+        travelService.saveTravel(travel);
+
+        then: "the save is delegated to the travelRepository"
+        1 * travelRepository.save(travel)
+    }
+
 }
