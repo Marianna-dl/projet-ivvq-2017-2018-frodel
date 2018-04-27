@@ -30,5 +30,13 @@ public class Travel {
         this.name = name;
     }
 
+    /**
+     * Get the name of travel
+     * @return the name of travel
+     */
+    public String getName()
+    {
+        return this.name;
+    }
 
 }
