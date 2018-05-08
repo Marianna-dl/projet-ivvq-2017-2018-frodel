@@ -5,9 +5,22 @@ dist: trusty
 sudo: false
 before_install :
 - chmod +x mvnw
-script:
-  - mvn sonar:sonar -Dsonar.organization=travex -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=a0fbd8de5ac28eb4164491dcb69cd4ebca538c93
-  - mvn cobertura:cobertura
+jobs:
+  include:
+    - stage: test
+      script: mvn test -B
+    - stage: sonar
+      script: mvn sonar:sonar -Dsonar.organization=travex -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=a0fbd8de5ac28eb4164491dcb69cd4ebca538c93
+    - stage: cobertura
+      script: mvn cobertura:cobertura
+    - stage: deploy
+      script : skip
+      deploy:
+        provider: heroku
+        api_key:
+          secure: puYTGcTt0WwdJ0rpbzz8/+e3fu7nc/sScgCIPTRzQik0+1yHWgp+PwAvR9WAPtyID7TJ6v3kPnkLT/VR4hQOSkTVm01ufRaR9AoZSORtDLDYnyH25t+CjMalDg1JDyunzKQQHaXKAQkPR8klymlwtPc7bSh6xg9zT9I9WKUKE14pwUZWovx6N/XZh6WsUmkF8bq4MGqOsswWHDBq/g5rafNky/Pv74wT8oKNmN+jBjJ1u4k/2XPHc2BSghfdK3SBrpmCnUcWcHoO81Eeib+FJ4g0d4KAMsnlSXUV6C+E09SnjsRrER+BWM5Wc9vdtmJZX3GUKCrfleehpELwaXrdwhOFiLKuq4UX0bLDQnTEhFLt+w1P+RIKzCF3HWJDJM0ABcGUdEqTWeOA8L6RJY7NHzqZM+dWn+K2DhCBgstJz+YD+Pr6pE8+J+0cII6/WxbtdU0cjag+8xKe2y8yYM/OnckqTd1aIztkNY1opsuCgSht31zewKEWjm0JmSH2B6F6XzVZ1eW0xOVmIoVXlcH5/iMRkBr3pvn4FJ5C5B+In2P3VZNZ8j/g6+AdaOIF1UAxyTkytSoAnCvG8h3/nTcR2wcko9eIQ0R4wnoQjmINZRQFhAC+ZxDDhHDWICK9sIgzvaE3K8fHJihnjy1vj8Ic0CRHWkq2baqA83pR89oNmjE=
+        on: master
+        app: travex
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 sonarqube:
