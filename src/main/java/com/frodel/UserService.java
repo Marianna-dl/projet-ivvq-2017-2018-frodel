@@ -21,12 +21,4 @@ public class UserService {
     public User saveUser(User utilisateur) {
         return utilisateurRepository.save(utilisateur) ;
     }
-
-    public UserRepository getUtilisateurRepository() {
-        return utilisateurRepository;
-    }
-
-    public void setUserRepository(UserRepository utilisateurRepository) {
-        this.utilisateurRepository = utilisateurRepository;
-    }
 }
