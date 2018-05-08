@@ -30,13 +30,24 @@ public class User {
     @NotEmpty
     @Email
     private String email;
-    User(String pseudo, String mdp, String email) {
+
+    public User()
+    {}
+
+    public User(String pseudo, String mdp, String email) {
         this.pseudo = pseudo;
         this.mdp = mdp;
         this.email =email;
     }
 
     public Long getId() {
-        return id;
+        return this.id;
     }
+    public String getPseudo() {return this.pseudo;}
+    public String getEmail() {return this.email;}
+    public String getMdp() {return this.mdp;}
+
+    public void setPseudo(String pseudo) {this.pseudo = pseudo;}
+    public void setEmail(String email) {this.email = email;}
+    public void setMdp(String mdp) {this.mdp = mdp;}
 }
