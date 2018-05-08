@@ -8,6 +8,7 @@ before_install :
 script:
   - mvn sonar:sonar -Dsonar.organization=travex -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=a0fbd8de5ac28eb4164491dcb69cd4ebca538c93
   - mvn cobertura:cobertura
+  - mvn test -B
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 sonarqube:
