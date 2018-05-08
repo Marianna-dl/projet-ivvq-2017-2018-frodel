@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/Master-DL/projet-ivvq-2017-2018-frodel.svg?branch=master)](https://travis-ci.org/Master-DL/projet-ivvq-2017-2018-frodel)
+[![codecov](https://codecov.io/gh/Master-DL/projet-ivvq-2017-2018-frodel/branch/master/graph/badge.svg)](https://codecov.io/gh/Master-DL/projet-ivvq-2017-2018-frodel)
+
 # TravEx
 
 TravEx est un site permettant de préparer son circuit de voyage ou de partager un circuit déjà fait (retours d'expériences) entre les différents membres du site. Les circuits seront organisés par continent et pays. Le site traitera les aspects suivant :
