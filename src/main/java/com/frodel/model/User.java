@@ -1,5 +1,5 @@
 
-package com.frodel;
+package com.frodel.model;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;

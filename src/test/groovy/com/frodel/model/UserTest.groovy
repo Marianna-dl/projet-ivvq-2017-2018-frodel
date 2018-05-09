@@ -1,4 +1,4 @@
-package com.frodel
+package com.frodel.model
 
 import org.springframework.boot.test.context.SpringBootTest
 

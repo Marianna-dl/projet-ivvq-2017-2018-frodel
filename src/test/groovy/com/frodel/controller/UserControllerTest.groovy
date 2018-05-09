@@ -1,8 +1,7 @@
-package com.frodel
+package com.frodel.controller
 
 import com.frodel.repositories.UserRepository
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.data.repository.PagingAndSortingRepository
 import spock.lang.Specification
 
 /**

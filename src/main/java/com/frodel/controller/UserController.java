@@ -1,5 +1,6 @@
-package com.frodel;
+package com.frodel.controller;
 
+import com.frodel.model.User;
 import com.frodel.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ public class UserController {
     private UserRepository utilisateurRepository;
 
     @RequestMapping(value = "/inscriptions", method = RequestMethod.POST)
-    public User addUser(@RequestParam(value = "pseudo") String pseudo, @RequestParam(value = "mdp") String mdp,@RequestParam(value = "email") String email) {
+    public User addUser(@RequestParam(value = "pseudo") String pseudo, @RequestParam(value = "mdp") String mdp, @RequestParam(value = "email") String email) {
         User utilisateur = new User(pseudo,mdp,email);
         utilisateurRepository.save(utilisateur);
         return utilisateur;

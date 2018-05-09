@@ -1,5 +1,6 @@
-package com.frodel
+package com.frodel.services
 
+import com.frodel.model.User
 import com.frodel.repositories.UserRepository
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.PagingAndSortingRepository
@@ -9,12 +10,6 @@ import spock.lang.Specification
 /**
  * Created by hichem on 30/03/2018.
  */
-import spock.lang.Unroll
-
-import javax.validation.Validation
-import javax.validation.Validator
-import javax.validation.ValidatorFactory
-
 @SpringBootTest
 class UserServiceTest extends Specification {
 
