@@ -18,10 +18,14 @@ public class TravelController {
     private TravelRepository travelRepository;
 
     /**
-     * Add a travel
+     * @api {post} /travel/
+     * @apiName addTravel
+     * @apiGroup Travel
+     * @apiDescription Add a travel
      *
-     * @param name The name of travel
-     * @return The added travel
+     * @apiParam {String} name The name of travel
+     *
+     * @apiSuccess {Travel} travel The new travel
      */
     @RequestMapping(value = "/travel", method = RequestMethod.POST)
     public Travel addTravel(@RequestParam(value = "name") String name) {
