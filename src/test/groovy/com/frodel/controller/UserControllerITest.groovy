@@ -1,5 +1,7 @@
-package com.frodel
+package com.frodel.controller
 
+import com.frodel.TravexApplication
+import com.frodel.model.User
 import com.frodel.repositories.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -8,8 +10,6 @@ import org.springframework.test.context.ContextConfiguration
 import org.springframework.util.LinkedMultiValueMap
 import org.springframework.util.MultiValueMap
 import spock.lang.Specification
-
-import javax.validation.ConstraintViolationException
 
 /**
  * Created by hichem on 13/04/2018.

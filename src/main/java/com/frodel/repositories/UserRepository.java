@@ -1,6 +1,6 @@
 package com.frodel.repositories;
 
-import com.frodel.User;
+import com.frodel.model.User;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
