@@ -22,35 +22,35 @@ class QuestionTest extends Specification {
     }
 
     @Unroll
-    void "test la validite d'une question valide"(String title, String content) {
+    void "tests the validity of a valid question"(String title, String content) {
 
-        given: "un utilisateur pose une question"
+        given: "A user asks a question"
         Question question = new Question(title, content)
 
-        expect: "la question est valide"
+        expect: "The question is valid"
         validator.validate(question).empty
 
         where:
         title   | content
-        "Titre question" | "Faisait-il beau ?"
-        null | "Quel endroit allez vous visiter ensuite ?"
+        "Question's title" | "How was the weather ?"
+        null | "What place would you like to go next ?"
     }
 
     @Unroll
-    void "test la validite d'une question invalide"(String title, String content) {
+    void "tests the validity of a non valid question"(String title, String content) {
 
-        given: "un utilisateur pose une question"
+        given: "A user asks a question"
         Question question = new Question(title, content)
 
-        expect: "la question est invalide"
+        expect: "The question is not valid"
         !validator.validate(question).empty
 
         where:
         title   | content
-        "Titre question" | "Faisait-il beau"
-        "Titre question" | null
+        "Question's title" | "How was the weather"
+        "Question's title" | null
         null             | null
-        "Faisait-il beau ?" | null
+        "How was the weather ?" | null
     }
 
 }
