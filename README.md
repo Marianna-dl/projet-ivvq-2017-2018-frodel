@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/Master-DL/projet-ivvq-2017-2018-frodel.svg?branch=master)](https://travis-ci.org/Master-DL/projet-ivvq-2017-2018-frodel)
 [![codecov](https://codecov.io/gh/Master-DL/projet-ivvq-2017-2018-frodel/branch/master/graph/badge.svg)](https://codecov.io/gh/Master-DL/projet-ivvq-2017-2018-frodel)
+[![Sonarcloud](https://sonarcloud.io/api/project_badges/measure?project=com.frodel%3Atravex&metric=alert_status)](https://sonarcloud.io/dashboard?id=com.frodel%3Atravex)
 
 # TravEx
 
