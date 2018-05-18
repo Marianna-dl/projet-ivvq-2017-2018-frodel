@@ -24,7 +24,7 @@ public class UserController {
      * @apiParam {String} email The email of new user
      *
      * @apiSuccess {User} utilisateur The new user
-     */
+     **/
     @RequestMapping(value = "/inscriptions", method = RequestMethod.POST)
     public User addUser(@RequestParam(value = "pseudo") String pseudo, @RequestParam(value = "mdp") String mdp, @RequestParam(value = "email") String email) {
         User utilisateur = new User(pseudo,mdp,email);
@@ -40,7 +40,7 @@ public class UserController {
      *
      * @apiParam {Long} userId The id of user to delete
      *
-     */
+     **/
     @RequestMapping(value = "/inscriptions/{user_id}", method = RequestMethod.DELETE)
     public void deleteUser(@PathVariable("user_id") Long userId) {
         utilisateurRepository.delete(userId);
