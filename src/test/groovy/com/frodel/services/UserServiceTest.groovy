@@ -2,6 +2,7 @@ package com.frodel.services
 
 import com.frodel.model.User
 import com.frodel.repositories.UserRepository
+import com.frodel.services.UserService
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.PagingAndSortingRepository
 import spock.lang.Specification
