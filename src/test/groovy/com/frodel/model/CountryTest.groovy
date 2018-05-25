@@ -1,5 +1,7 @@
 package com.frodel.model
 
+import com.frodel.model.City
+import com.frodel.model.Country
 import spock.lang.Specification
 import spock.lang.Unroll
 

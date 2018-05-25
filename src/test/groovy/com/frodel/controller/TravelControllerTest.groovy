@@ -1,5 +1,6 @@
 package com.frodel.controller
 
+import com.frodel.controller.TravelController
 import com.frodel.repositories.TravelRepository
 import spock.lang.Specification
 import spock.lang.Unroll
