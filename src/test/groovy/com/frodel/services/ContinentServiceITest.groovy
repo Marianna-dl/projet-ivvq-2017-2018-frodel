@@ -31,6 +31,7 @@ class ContinentServiceITest extends Specification{
 
         and: "the country has an id"
         country.id != null
+
     }
 
     def "test save an invalid continent"() {
