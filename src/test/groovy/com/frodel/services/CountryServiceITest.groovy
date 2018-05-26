@@ -46,4 +46,18 @@ class CountryServiceITest extends Specification{
         country.id == null
 
     }
+
+    def "test find a valid country by its name"() {
+        given: "an valid country name"
+        String countryName = "France"
+
+        when: "the country is find"
+        Country country = countryService.findCountryByName(countryName)
+
+        then: "the country has an id"
+        country.id != null
+
+        and: "the country has a name"
+        country.name == "France"
+    }
 }

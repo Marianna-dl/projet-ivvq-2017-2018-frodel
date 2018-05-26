@@ -21,6 +21,21 @@ public class City {
     @Pattern(regexp = "[a-zA-Z]+$")
     private String name;
 
+    /**
+     * Get the name of the city
+     *
+     * @return the name of the city
+     */
+    public String getName() {
+        return name;
+    }
 
-
+    /**
+     * Set the name of a city
+     *
+     * @param name The name of city to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -23,5 +23,39 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    /**
+     * Get the name of the country
+     *
+     * @return The name of the country
+     */
+    public String getName() {
+        return name;
+    }
 
+    /**
+     * Set the name of country
+     *
+     * @param name The name of county to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Get cities of a country
+     *
+     * @return Cities of country
+     */
+    public List<City> getCities() {
+        return cities;
+    }
+
+    /**
+     * Set cities of country
+     *
+     * @param cities Cities of country to set
+     */
+    public void setCities(List<City> cities) {
+        this.cities = cities;
+    }
 }

@@ -21,4 +21,25 @@ public class CountryService {
         return countryRepository.save(country);
     }
 
+    /**
+     * Find a country by its names
+     *
+     * @param name The name of country to find
+     * @return The country found or null if the country wasn't found
+     */
+    public Country findCountryByName(String name) {
+        Country country = null;
+        Iterable<Country> countries = countryRepository.findAll();
+        if (countries != null)
+        {
+            for (Country c : countries) {
+                if (c.getName().equals(name)) {
+                    country = c;
+                    break;
+                }
+            }
+        }
+        return country;
+    }
+
 }
