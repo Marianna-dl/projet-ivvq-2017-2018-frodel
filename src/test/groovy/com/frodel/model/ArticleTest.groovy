@@ -52,11 +52,12 @@ class ArticleTest extends Specification{
         "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList()
         "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | null
         "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | null | Arrays.asList(Mock(Place), Mock(Place))
-
+        "abcd" | 0 | null | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))
+        "abcd" | 0 | new Date(2018, 1, 1) | null | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))
     }
 
     @Unroll
-    void "test if the dates of an article is valid"() {
+    void "test if the dates of an article are valid"() {
 
         given: "a start date and a end date"
         Date startDate =  new Date(2018, 2, 1)
