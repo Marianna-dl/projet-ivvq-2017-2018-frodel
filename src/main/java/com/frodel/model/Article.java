@@ -1,5 +1,6 @@
 package com.frodel.model;
 
+import javax.persistence.OneToOne;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -28,6 +29,9 @@ public class Article {
     @NotNull
     private String content;
 
+    @NotNull
+    private Travel travel;
+
     private boolean isVisible = true;
 
     @AssertTrue
@@ -45,4 +49,30 @@ public class Article {
     public void setIsVisible(boolean visibility) {
         isVisible = visibility;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBudget(Long budget) {
+        this.budget = budget;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setPlaces(List<Place> places) {
+        this.places = places;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+
 }
