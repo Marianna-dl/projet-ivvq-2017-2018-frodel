@@ -21,23 +21,6 @@ public class InitialisationService {
     private Travel japanTravel;
     private Travel irelandTravel;
 
-
-    public User getTotoUser() {
-        return totoUser;
-    }
-
-    public User getTitiUser() {
-        return titiUser;
-    }
-
-    public Travel getJapanTravel() {
-        return japanTravel;
-    }
-
-    public Travel getIrelandTravel() {
-        return irelandTravel;
-    }
-
     public void initData(){
         initUsers();
         initTravels();
