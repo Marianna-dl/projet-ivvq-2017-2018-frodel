@@ -3,6 +3,7 @@ package com.frodel.controller
 import com.frodel.TravexApplication
 import com.frodel.model.User
 import com.frodel.repositories.UserRepository
+import com.frodel.services.UserService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -20,7 +21,7 @@ class UserControllerITest extends Specification{
     @Autowired
     private TestRestTemplate restTemplate;
     @Autowired
-    private UserRepository utilisateurRepository;
+    private UserService utilisateurService;
 
     void "test ajout d'un utilisateur"(String pseudo,String mdp,String email) {
 
@@ -40,17 +41,5 @@ class UserControllerITest extends Specification{
         "frodel" | "frodeltest"  | "frodel@frodel.fr"
     }
 
-    void "test suppression d'un utilisateur"(Long user_id) {
-
-        when: "un utilisateur est supprimeé"
-        restTemplate.delete("/inscriptions/${user_id}")
-
-        then: "il est effectivement supprimé de la base de donnée"
-        !utilisateurRepository.findOne(user_id)
-
-        where:
-        user_id   |_
-        1 |_
-    }
 
 }
