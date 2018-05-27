@@ -18,8 +18,6 @@ public class InitialisationService {
     private User totoUser;
     private User titiUser;
 
-    private Travel japanTravel;
-    private Travel irelandTravel;
 
     public void initData(){
         initUsers();
@@ -53,14 +51,14 @@ public class InitialisationService {
     }
 
     private void initTravelIreland() {
-        irelandTravel = new Travel();
+        Travel irelandTravel = new Travel();
         irelandTravel.setName("Ireland");
         irelandTravel.setCreator(titiUser);
         travelService.saveTravel(irelandTravel);
     }
 
     private void initTravelJapan() {
-        japanTravel = new Travel();
+        Travel japanTravel = new Travel();
         japanTravel.setName("Japan");
         japanTravel.setCreator(totoUser);
         travelService.saveTravel(japanTravel);

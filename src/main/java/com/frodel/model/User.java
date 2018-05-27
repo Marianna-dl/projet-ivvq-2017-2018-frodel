@@ -32,7 +32,7 @@ public class User {
     private String email;
 
     @OneToMany(mappedBy = "creator") @JsonIgnore
-    private List<Travel> travels = new ArrayList<Travel>();
+    private List<Travel> travels = new ArrayList<>();
 
     public User()
     {}

@@ -2,7 +2,6 @@ package com.frodel.controller;
 
 import com.frodel.model.Travel;
 import com.frodel.model.User;
-import com.frodel.repositories.TravelRepository;
 import com.frodel.services.TravelService;
 import com.frodel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
