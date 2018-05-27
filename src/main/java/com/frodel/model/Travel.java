@@ -21,6 +21,9 @@ public class Travel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotNull
+    private User creator;
+
     /**
      * Set a name of travel
      * @param name the name to set
