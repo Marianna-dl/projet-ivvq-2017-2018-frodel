@@ -30,6 +30,7 @@ public class TravelController {
      * @apiDescription Add a travel
      *
      * @apiParam {String} name The name of travel
+     * @apiParam {String} idCreator The id of the user who created the travel
      *
      * @apiSuccess {Travel} travel The new travel
      */
