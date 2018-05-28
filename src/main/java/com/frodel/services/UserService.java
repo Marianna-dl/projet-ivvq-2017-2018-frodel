@@ -22,4 +22,8 @@ public class UserService {
     public User saveUser(User utilisateur) {
         return utilisateurRepository.save(utilisateur) ;
     }
+
+    public User findOneUser(Long id) {
+        return utilisateurRepository.findOne(id);
+    }
 }
