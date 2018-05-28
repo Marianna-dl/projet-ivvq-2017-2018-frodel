@@ -1,13 +1,15 @@
 package com.frodel.model;
 
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.awt.peer.ChoicePeer;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Article {
 
     @NotNull
@@ -31,6 +33,10 @@ public class Article {
 
     @NotNull
     private Travel travel;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private boolean isVisible = true;
 
@@ -75,4 +81,7 @@ public class Article {
     }
 
 
+    public void setTravel(Travel travel) {
+        this.travel = travel;
+    }
 }

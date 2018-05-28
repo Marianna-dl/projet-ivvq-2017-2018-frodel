@@ -24,10 +24,17 @@ class TravelTest extends Specification {
     void "test if a travel is correct"(String aName) {
 
         given: "a correctly initialized travel"
-        Travel travel = new Travel(name: aName)
+        Travel travel = new Travel(name: aName, principalArticle : Mock(Article))
 
         expect: "The travel is valid"
         validator.validate(travel).empty
+
+        and : "The travel as a principal article"
+        travel.principalArticle != null
+
+        and : "The travel has no other articles"
+        travel.steps != null
+        travel.steps.size()== 0
 
         where:
         aName | _
@@ -37,19 +44,20 @@ class TravelTest extends Specification {
     }
 
     @Unroll
-    void "test if a travel is incorrect"(String aName) {
+    void "test if a travel is incorrect"(String aName, Article anArticle) {
 
         given: "an incorrectly initialized travel"
-        Travel travel = new Travel(name: aName)
+        Travel travel = new Travel(name: aName, principalArticle: anArticle)
 
         expect: "The travel is invalid"
         !validator.validate(travel).empty
 
         where:
-        aName | _
-        "" | _
-        "tr" | _
-        null | _
+        aName | anArticle
+        "" | Mock(Article)
+        "tr" | Mock(Article)
+        null | Mock(Article)
+        "Travel1" | null
     }
 
 }

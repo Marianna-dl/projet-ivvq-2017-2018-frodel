@@ -1,5 +1,6 @@
 package com.frodel.services;
 
+import com.frodel.model.Article;
 import com.frodel.model.Travel;
 import com.frodel.repositories.TravelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,11 @@ public class TravelService {
      * @return the saved travel
      */
     public Travel saveTravel(Travel travel) {
-        return travelRepository.save(travel) ;
+
+        travelRepository.save(travel) ;
+        Article principalArticle = travel.getPrincipalArticle();
+        principalArticle.setTravel(travel);
+
+        return travel;
     }
 }

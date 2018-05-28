@@ -1,5 +1,6 @@
 package com.frodel.services
 
+import com.frodel.model.Article
 import com.frodel.model.Travel
 import com.frodel.repositories.TravelRepository
 import com.frodel.services.TravelService
@@ -28,8 +29,10 @@ class TravelServiceTest extends Specification{
     }
 
     def "test delegation of save of an Travel to the repository"() {
-        given: "a travel"
-        def travel = Mock(Travel)
+        given : "a travel"
+        def travel = Mock(Travel) {
+            getPrincipalArticle() >> Mock(Article)
+        }
 
         when: "the travel is saved"
         travelService.saveTravel(travel);
