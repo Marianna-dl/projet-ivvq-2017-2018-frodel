@@ -1,5 +1,6 @@
 package com.frodel.controller
 
+import com.frodel.controller.UserController
 import com.frodel.repositories.UserRepository
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification

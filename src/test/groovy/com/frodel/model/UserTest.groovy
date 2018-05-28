@@ -1,5 +1,6 @@
 package com.frodel.model
 
+import com.frodel.model.User
 import org.springframework.boot.test.context.SpringBootTest
 
 

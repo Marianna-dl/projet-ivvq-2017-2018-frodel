@@ -2,6 +2,7 @@ package com.frodel.services
 
 import com.frodel.model.Travel
 import com.frodel.repositories.TravelRepository
+import com.frodel.services.TravelService
 import org.springframework.data.repository.PagingAndSortingRepository
 import spock.lang.Specification
 
