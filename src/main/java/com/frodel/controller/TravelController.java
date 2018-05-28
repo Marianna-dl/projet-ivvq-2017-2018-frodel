@@ -43,4 +43,19 @@ public class TravelController {
         return travelService.saveTravel(travel);
     }
 
+    /**
+     * @api {get} /travels/
+     * @apiName findAllTravels
+     * @apiGroup Travel
+     * @apiDescription find all travels
+     *
+     *
+     * @apiSuccess {Iterable<Travel>} the list of travels
+     */
+    @RequestMapping("/travels")
+    public Iterable<Travel> findAllTravels() {
+        return travelService.findAllTravels();
+    }
+
+
 }
