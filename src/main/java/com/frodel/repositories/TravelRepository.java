@@ -1,7 +1,6 @@
 package com.frodel.repositories;
 
 import com.frodel.model.Travel;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
