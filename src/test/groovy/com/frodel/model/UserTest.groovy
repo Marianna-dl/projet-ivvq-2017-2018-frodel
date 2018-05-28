@@ -33,12 +33,17 @@ class UserTest extends Specification {
         expect: "l'utilisateur est valide"
         validator.validate(utilisateur).empty
 
+        and : "he has no travels"
+        !utilisateur.travels
+
         where:
         pseudo   | mdp       | email
         "Dupont" | "azertyuiop"  | "jd@jd.com"
         "Durand" | "12zfov86§ju" | "jd@jd.com"
         "Durant" | "JacquesJacques" | "jd@jd.com"
     }
+
+
 
     @Unroll
     void "test la validite d'un utilisateur non valide"(String pseudo, String mdp, String email) {

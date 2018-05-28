@@ -28,13 +28,6 @@ class UserControllerTest extends Specification {
         1 * utilisateurRepository.save(_)
     }
 
-    def "test suppression d'un utilisateur"() {
-        when: "une requête de suppression est déclenchée"
-        utilisateurController.deleteUser(1)
-
-        then: "l'action est déléguée au repository"
-        1 * utilisateurRepository.delete(1)
-    }
 
 
 }

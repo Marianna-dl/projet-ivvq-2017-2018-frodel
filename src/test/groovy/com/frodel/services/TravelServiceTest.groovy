@@ -1,6 +1,7 @@
 package com.frodel.services
 
 import com.frodel.model.Travel
+import com.frodel.model.User
 import com.frodel.repositories.TravelRepository
 import com.frodel.services.TravelService
 import org.springframework.data.repository.PagingAndSortingRepository
@@ -29,7 +30,11 @@ class TravelServiceTest extends Specification{
 
     def "test delegation of save of an Travel to the repository"() {
         given: "a travel"
-        def travel = Mock(Travel)
+        def travel = Mock(Travel) {
+            getCreator() >> Mock(User) {
+                getTravels() >> []
+            }
+        }
 
         when: "the travel is saved"
         travelService.saveTravel(travel);
