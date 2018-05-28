@@ -6,9 +6,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-/**
- * Created by Marti_000 on 20/05/2018.
- */
+
 @Component
 public class Bootstrap {
 

@@ -16,20 +16,19 @@ class TravelControllerITest extends Specification {
 
     @Autowired
     private TestRestTemplate restTemplate;
+    @Autowired
+    private TravelRepository travelRepository
 
-    void "add a travel by calling url"(String aTravelName) {
+    void "add a travel by calling url"() {
 
         when: "add travel requested"
         MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
-        map.add("name", aTravelName);
+        map.add("name", "A travel");
         map.add("idCreator", "1");
         Travel travel = restTemplate.postForObject("/travel", map, Travel.class)
 
         then: "the recover name of travel is the same that the send name"
-        travel.name == aTravelName
+        travel.name.equals("A travel")
 
-        where:
-        aTravelName | _
-        "A travel" | _
     }
 }

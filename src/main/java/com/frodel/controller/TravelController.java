@@ -40,8 +40,7 @@ public class TravelController {
         Travel travel = new Travel();
         travel.setName(name);
         travel.setCreator(creator);
-        travelService.saveTravel(travel);
-        return travel;
+        return travelService.saveTravel(travel);
     }
 
 }
