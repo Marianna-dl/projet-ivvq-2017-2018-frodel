@@ -24,30 +24,12 @@ public class Continent {
     private Long id;
 
     /**
-     * Get the name of the continent
-     *
-     * @return The name of the continent
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
      * Set the name of continent
      *
      * @param name The name of the continent to set
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * Get countries of the continent
-     *
-     * @return Countries of the continent
-     */
-    public List<Country> getCountries() {
-        return countries;
     }
 
     /**

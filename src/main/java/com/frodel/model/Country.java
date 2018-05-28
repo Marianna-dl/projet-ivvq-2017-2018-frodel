@@ -42,15 +42,6 @@ public class Country {
     }
 
     /**
-     * Get cities of a country
-     *
-     * @return Cities of country
-     */
-    public List<City> getCities() {
-        return cities;
-    }
-
-    /**
      * Set cities of country
      *
      * @param cities Cities of country to set
