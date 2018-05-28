@@ -15,13 +15,13 @@ import spock.lang.Specification
 @SpringBootTest
 class CommentServiceTest extends Specification {
 
-    CommentService commenService
+    CommentService commentService
     CommentRepository commentRepository
 
     void setup() {
         commentRepository = Mock()
-        commenService = new CommentService()
-        commenService.commentRepository = commentRepository
+        commentService = new CommentService()
+        commentService.commentRepository = commentRepository
     }
 
     def "check type of commentRepository"() {
@@ -34,7 +34,7 @@ class CommentServiceTest extends Specification {
         def comment = Mock(Comment)
 
         when: "the comment is saved"
-        commenService.saveComment(comment);
+        commentService.saveComment(comment);
 
         then: "the save is delegated to the commentRepository"
         1 * commentRepository.save(comment)

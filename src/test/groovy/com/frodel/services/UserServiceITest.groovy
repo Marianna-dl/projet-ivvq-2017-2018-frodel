@@ -17,29 +17,29 @@ import javax.validation.ConstraintViolationException
 class UserServiceITest extends Specification{
     @Autowired UserService utilisateurService
 
-    def "test sauvegarder un utilisateur valide"() {
-        given: "valide utilisateur"
-        User bob = new User("frodel","frodelMdp","frodel@frodel.fr")
+    def "test save a valid user"() {
+        given: "valid user"
+        User bob = new User(pseudo:"frodel",mdp:"frodelMdp",email:"frodel@frodel.fr",comments: null)
 
-        when: "l'utilisateur est enregistré"
+        when: "the user is Saved"
         utilisateurService.saveUser(bob);
 
-        then: "l'utilisateur à un id"
+        then: "the user has an id"
         bob.id != null
 
     }
 
-    def "test sauvegarder un utilisateur non valide"() {
-        given: "non valide utilisateur"
-        User bob = new User(null,"frodelMdp","frodel@frodel.fr")
+    def "test sauvegard invalid user"() {
+        given: "invalid user"
+        User bob = new User(pseudo:null,mdp:"frodelMdp",email:"frodel@frodel.fr",comments: null)
 
-        when: "l'utilisateur est anregistré"
+        when: "the user is saved"
         utilisateurService.saveUser(bob);
 
-        then: "une exception est levée"
+        then: "thrown Exception"
         thrown ConstraintViolationException
 
-        and: "bob has still null id"
+        and: "user has still null id"
         bob.id == null
     }
 

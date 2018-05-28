@@ -1,15 +1,15 @@
 
 package com.frodel.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by hichem on 30/03/2018.
@@ -31,6 +31,9 @@ public class User {
     @Email
     private String email;
 
+    @OneToMany(mappedBy = "commentator") @JsonIgnore
+    private List<Comment> comments = new ArrayList<>();
+
     public User()
     {}
 
@@ -50,4 +53,5 @@ public class User {
     public void setPseudo(String pseudo) {this.pseudo = pseudo;}
     public void setEmail(String email) {this.email = email;}
     public void setMdp(String mdp) {this.mdp = mdp;}
+    public List<Comment> getComments() {return comments;}
 }
