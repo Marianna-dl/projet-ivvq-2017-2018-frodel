@@ -3,7 +3,9 @@ package com.frodel.controller;
 import com.frodel.model.Article;
 import com.frodel.model.Place;
 import com.frodel.model.Travel;
-import com.frodel.repositories.TravelRepository;
+import com.frodel.model.User;
+import com.frodel.services.TravelService;
+import com.frodel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,37 +22,24 @@ import java.util.List;
 public class TravelController {
 
     @Autowired
-    private TravelRepository travelRepository;
+    private TravelService travelService;
+
+    @Autowired
+    private UserService userService;
 
     /**
-     * @api {post} /travel/
-     * @apiName addTravel
+     * @api {get} /travels/
+     * @apiName findAllTravels
      * @apiGroup Travel
-     * @apiDescription Add a travel
+     * @apiDescription find all travels
      *
-     * @apiParam {String} name The name of travel
      *
-     * @apiSuccess {Travel} travel The new travel
+     * @apiSuccess {Iterable<Travel>} the list of travels
      */
-    @RequestMapping(value = "/travel", method = RequestMethod.POST)
-    public Travel addTravel(@RequestParam(value = "name") String name, @RequestParam(value = "travelBudget") String travelBudget,
-                            @RequestParam(value = "travelStartDate") Date travelStartDate, @RequestParam(value = "travelEndDate") Date travelEndDate,
-                            @RequestParam(value = "travelDescription") String travelDescription, @RequestParam(value = " travelPlaces") List<Place> places ) {
-
-        Article principalArticle = new Article();
-        principalArticle.setBudget(Long.parseLong(travelBudget)   );
-        principalArticle.setPlaces(places);
-        principalArticle.setContent(travelDescription);
-        principalArticle.setEndDate(travelEndDate);
-        principalArticle.setStartDate(travelStartDate);
-        principalArticle.setName(name);
-
-
-        Travel travel = new Travel();
-        travel.setPrincipalArticle(principalArticle);
-        travel.setName(name);
-        travelRepository.save(travel);
-        return travel;
+    @RequestMapping("/travels")
+    public Iterable<Travel> findAllTravels() {
+        return travelService.findAllTravels();
     }
+
 
 }

@@ -2,6 +2,7 @@ package com.frodel.services;
 
 import com.frodel.model.Article;
 import com.frodel.model.Travel;
+import com.frodel.model.User;
 import com.frodel.repositories.TravelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,17 @@ public class TravelService {
         travelRepository.save(travel) ;
         Article principalArticle = travel.getPrincipalArticle();
         principalArticle.setTravel(travel);
+        User creator = travel.getCreator();
+        creator.getTravels().add(travel);
 
-        return travel;
+        return travel ;
+    }
+
+    /**
+     * Find all travels from database
+     * @return an iterable of the travels
+     */
+    public Iterable<Travel> findAllTravels() {
+        return travelRepository.findAll();
     }
 }

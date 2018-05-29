@@ -32,17 +32,4 @@ public class UserController {
         return utilisateur;
     }
 
-    /**
-     * @api {delete} /inscriptions/:userId
-     * @apiName deleteUser
-     * @apiGroup User
-     * @apiDescription Delete an user
-     *
-     * @apiParam {Long} userId The id of user to delete
-     *
-     **/
-    @RequestMapping(value = "/inscriptions/{user_id}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable("user_id") Long userId) {
-        utilisateurRepository.delete(userId);
-    }
 }

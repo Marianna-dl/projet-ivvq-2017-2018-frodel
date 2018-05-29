@@ -12,6 +12,10 @@ import java.util.List;
 @Entity
 public class Article {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     @NotNull
     @Size(min = 3)
     private String name;
@@ -25,18 +29,19 @@ public class Article {
 
     @Size(min = 1)
     @NotNull
+    @OneToMany
     private List<Place> places;
 
     @Size(min = 100)
     @NotNull
     private String content;
 
-    @NotNull
+
+    @ManyToOne
     private Travel travel;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Comment> comments ;
 
     private boolean isVisible = true;
 

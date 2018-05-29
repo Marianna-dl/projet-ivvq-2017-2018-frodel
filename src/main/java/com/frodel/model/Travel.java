@@ -23,10 +23,15 @@ public class Travel {
     private Long id;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(mappedBy = "travel", cascade = CascadeType.PERSIST)
     private Article principalArticle;
 
+    @OneToMany(mappedBy = "travel", cascade = CascadeType.PERSIST)
     private List<Article> steps = new ArrayList<>();
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private User creator;
+
 
     /**
      * Set a name of travel
@@ -52,5 +57,13 @@ public class Travel {
 
     public Article getPrincipalArticle() {
         return principalArticle;
+    }
+
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
     }
 }
