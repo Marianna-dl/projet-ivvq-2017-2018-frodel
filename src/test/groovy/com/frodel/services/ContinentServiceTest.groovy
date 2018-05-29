@@ -32,4 +32,15 @@ class ContinentServiceTest extends Specification {
         1 * continentRepository.save(continent)
     }
 
+    def "test delegation to find a continent by its name to the repository"() {
+        given: "a continent name"
+        String continentName = "continentName"
+
+        when: "the continent is found"
+        continentService.findContinentByName(continentName);
+
+        then: "the search is delegated to the continentRepository"
+        1 * continentRepository.findContinentByName(continentName)
+    }
+
 }

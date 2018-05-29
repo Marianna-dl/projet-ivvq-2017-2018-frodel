@@ -80,5 +80,18 @@ class ContinentServiceITest extends Specification{
         continentRepository.delete(continent1.id)
     }
 
+    def "test find a valid continent by its name"() {
+        given: "an valid continent name"
+        String continentName = "Eurasie"
+
+        when: "the continent is find"
+        Continent continent = continentService.findContinentByName(continentName)
+
+        then: "the continent has an id"
+        continent.id != null
+
+        and: "the continent has a name"
+        continent.name == continentName
+    }
 
 }

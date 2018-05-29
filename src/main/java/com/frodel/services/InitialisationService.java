@@ -2,7 +2,6 @@ package com.frodel.services;
 
 import com.frodel.model.*;
 import com.frodel.repositories.CityRepository;
-import com.frodel.repositories.ContinentRepository;
 import com.frodel.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +31,7 @@ public class InitialisationService {
     @Autowired
     private CountryRepository countryRepository;
     @Autowired
-    private ContinentRepository continentRepository;
+    private ContinentService continentService;
 
     private Continent eurasie;
 
@@ -108,22 +107,19 @@ public class InitialisationService {
         travelService.saveTravel(japanTravel);
     }
 
-    private void initCityToulouse()
-    {
+    private void initCityToulouse() {
         toulouse = new City();
         toulouse.setName("Toulouse");
         cityRepository.save(toulouse);
     }
 
-    private void initCityParis()
-    {
+    private void initCityParis() {
         paris = new City();
         paris.setName("Paris");
         cityRepository.save(paris);
     }
 
-    private void initCountryFrance()
-    {
+    private void initCountryFrance() {
         france = new Country();
         france.setName("France");
         List<City> cities = new ArrayList<>();
@@ -136,22 +132,20 @@ public class InitialisationService {
     public Travel getJapanTravel() {
         return japanTravel;
     }
-    private void initCityMadrid()
-    {
+
+    private void initCityMadrid() {
         madrid = new City();
         madrid.setName("Madrid");
         cityRepository.save(madrid);
     }
 
-    private void initCityBarcelone()
-    {
+    private void initCityBarcelone() {
         barcelone = new City();
         barcelone.setName("Barcelonne");
         cityRepository.save(barcelone);
     }
 
-    private void initCountryEspagne()
-    {
+    private void initCountryEspagne() {
         espagne = new Country();
         espagne.setName("Espagne");
         List<City> cities = new ArrayList<>();
@@ -161,15 +155,14 @@ public class InitialisationService {
         countryRepository.save(espagne);
     }
 
-    private void initContinentEurasie()
-    {
+    private void initContinentEurasie() {
         eurasie = new Continent();
         eurasie.setName("Eurasie");
         List<Country> countries = new ArrayList<>();
         countries.add(france);
         countries.add(espagne);
         eurasie.setCountries(countries);
-        continentRepository.save(eurasie);
+        continentService.saveContinent(eurasie);
     }
 
     public Travel getIrelandTravel() {

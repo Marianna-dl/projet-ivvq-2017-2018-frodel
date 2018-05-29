@@ -21,4 +21,13 @@ public class ContinentService {
         return continentRepository.save(continent) ;
     }
 
+    /**
+     * Find a continent by its name
+     *
+     * @param name The name of the continent to find
+     * @return The continent found or null if the continent wasn't found
+     */
+    public Continent findContinentByName(String name) {
+        return continentRepository.findContinentByName(name);
+    }
 }
