@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 @Transactional
@@ -136,8 +133,8 @@ public class InitialisationService {
     private void initArticleIreland() {
         articleIrelande = new Article();
         articleIrelande.setName("Mon voyage en Irelande");
-        articleIrelande.setStartDate(new Date(2018, 1, 1));
-        articleIrelande.setEndDate(new Date(2018, 2, 1));
+        articleIrelande.setStartDate(new GregorianCalendar(2018, 1, 1).getTime());
+        articleIrelande.setEndDate(new GregorianCalendar(2018, 2, 1).getTime());
         articleIrelande.setContent("Mon fabuleux voyage en Irelande où j'ai vu des lieux extraordinaires avec des gens super sympa, j'y retournerai c'est sûr !!! ");
         articleIrelande.setBudget(1200l);
 
@@ -147,8 +144,8 @@ public class InitialisationService {
     private void initArticleJapan() {
         articleJapan = new Article();
         articleJapan.setName("Mon voyage au japon");
-        articleJapan.setStartDate(new Date(2018, 5, 1));
-        articleJapan.setEndDate(new Date(2018, 5, 10));
+        articleJapan.setStartDate(new GregorianCalendar(2018, 5, 1).getTime());
+        articleJapan.setEndDate(new GregorianCalendar(2018, 5, 10).getTime());
         articleJapan.setContent("Mon fabuleux voyage au Japon où j'ai vu des lieux extraordinaires avec des gens super sympa, j'y retournerai c'est sûr !!! ");
         articleJapan.setBudget(1500l);
         articleJapan.setPlaces(Arrays.asList(tokyoPlace, kyotoPlace));
