@@ -5,6 +5,7 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.awt.peer.ChoicePeer;
 import java.util.Date;
 import java.util.List;
 
@@ -35,6 +36,10 @@ public class Article {
     @NotNull
     private String content;
 
+
+    @ManyToOne
+    private Travel travel;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments ;
 
@@ -54,5 +59,34 @@ public class Article {
 
     public void setIsVisible(boolean visibility) {
         isVisible = visibility;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBudget(Long budget) {
+        this.budget = budget;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setPlaces(List<Place> places) {
+        this.places = places;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+
+    public void setTravel(Travel travel) {
+        this.travel = travel;
     }
 }

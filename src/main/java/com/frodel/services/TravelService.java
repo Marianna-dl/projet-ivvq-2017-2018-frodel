@@ -1,5 +1,6 @@
 package com.frodel.services;
 
+import com.frodel.model.Article;
 import com.frodel.model.Travel;
 import com.frodel.model.User;
 import com.frodel.repositories.TravelRepository;
@@ -22,7 +23,9 @@ public class TravelService {
      */
     public Travel saveTravel(Travel travel) {
 
-        travelRepository.save(travel);
+        travelRepository.save(travel) ;
+        Article principalArticle = travel.getPrincipalArticle();
+        principalArticle.setTravel(travel);
         User creator = travel.getCreator();
         creator.getTravels().add(travel);
 
