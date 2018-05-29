@@ -11,6 +11,7 @@ public class Continent {
     @NotNull
     @Size(min = 3)
     @Pattern(regexp = "[a-zA-Z ]+$")
+    @Column(unique = true)
     private String name;
 
     @NotNull
