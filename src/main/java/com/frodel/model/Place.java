@@ -13,12 +13,13 @@ public class Place {
     @NotNull
     @OneToOne
     private Continent continent;
+
     @NotNull
     @OneToOne
     private Country country;
+
     @NotNull
     @OneToOne
     private City city;
-
 
 }

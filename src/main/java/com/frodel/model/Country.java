@@ -9,10 +9,6 @@ import java.util.List;
 @Entity
 public class Country {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @NotNull
     @Size(min = 4)
     @Pattern(regexp = "[a-zA-Z]+$")
@@ -20,6 +16,37 @@ public class Country {
 
     @NotNull
     @Size(min = 1)
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<City> cities;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    /**
+     * Get the name of the country
+     *
+     * @return The name of the country
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Set the name of country
+     *
+     * @param name The name of county to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Set cities of country
+     *
+     * @param cities Cities of country to set
+     */
+    public void setCities(List<City> cities) {
+        this.cities = cities;
+    }
 }

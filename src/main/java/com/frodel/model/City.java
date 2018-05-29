@@ -8,8 +8,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+@Entity
+public class City {
 
-class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +21,12 @@ class City {
     @Pattern(regexp = "[a-zA-Z]+$")
     private String name;
 
-
-
+    /**
+     * Set the name of a city
+     *
+     * @param name The name of city to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 }

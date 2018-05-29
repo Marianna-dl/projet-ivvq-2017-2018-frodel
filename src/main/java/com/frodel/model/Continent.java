@@ -8,10 +8,6 @@ import java.util.List;
 @Entity
 public class Continent {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @NotNull
     @Size(min = 3)
     @Pattern(regexp = "[a-zA-Z ]+$")
@@ -19,7 +15,28 @@ public class Continent {
 
     @NotNull
     @Size(min = 1)
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Country> countries;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    /**
+     * Set the name of continent
+     *
+     * @param name The name of the continent to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Set countries of continent
+     *
+     * @param countries Countries of continent to set
+     */
+    public void setCountries(List<Country> countries) {
+        this.countries = countries;
+    }
 }

@@ -34,13 +34,16 @@ public class User {
     @OneToMany(mappedBy = "commentator") @JsonIgnore
     private List<Comment> comments;
 
+    @OneToMany(mappedBy = "creator") @JsonIgnore
+    private List<Travel> travels = new ArrayList<>();
+
     public User()
     {}
 
     public User(String pseudo, String mdp, String email) {
         this.pseudo = pseudo;
         this.mdp = mdp;
-        this.email =email;
+        this.email = email;
     }
 
     public Long getId() {
@@ -54,4 +57,8 @@ public class User {
     public void setEmail(String email) {this.email = email;}
     public void setMdp(String mdp) {this.mdp = mdp;}
     public List<Comment> getComments() {return comments;}
+
+    public List<Travel> getTravels() {
+        return travels;
+    }
 }
