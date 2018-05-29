@@ -26,7 +26,7 @@ class QuestionTest extends Specification {
     void "tests the validity of a valid question"(String title, String content, User interrogator) {
 
         given: "A user asks a question"
-        Question question = new Question(title, content, interrogator)
+        Question question = new Question(title: title, content: content, interrogator: interrogator)
 
         expect: "The question is valid"
         validator.validate(question).empty
@@ -41,7 +41,7 @@ class QuestionTest extends Specification {
     void "tests the validity of a non valid question"(String title, String content, User interrogator) {
 
         given: "A user asks a question"
-        Question question = new Question(title, content, interrogator)
+        Question question = new Question(title: title, content: content, interrogator: interrogator)
 
         expect: "The question is not valid"
         !validator.validate(question).empty
