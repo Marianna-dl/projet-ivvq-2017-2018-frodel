@@ -13,6 +13,18 @@ public class UserController {
     @Autowired
     private UserRepository utilisateurRepository;
 
+    /**
+     * @api {post} /inscriptions/
+     * @apiName addUser
+     * @apiGroup User
+     * @apiDescription Add an user
+     *
+     * @apiParam {String} pseudo The pseudo of new user
+     * @apiParam {String} mdp The password of new user
+     * @apiParam {String} email The email of new user
+     *
+     * @apiSuccess {User} utilisateur The new user
+     **/
     @RequestMapping(value = "/inscriptions", method = RequestMethod.POST)
     public User addUser(@RequestParam(value = "pseudo") String pseudo, @RequestParam(value = "mdp") String mdp, @RequestParam(value = "email") String email) {
         User utilisateur = new User(pseudo,mdp,email);
@@ -20,8 +32,4 @@ public class UserController {
         return utilisateur;
     }
 
-    @RequestMapping(value = "/inscriptions/{user_id}", method = RequestMethod.DELETE)
-    public void deleteUser(@PathVariable("user_id") Long userId) {
-        utilisateurRepository.delete(userId);
-    }
 }

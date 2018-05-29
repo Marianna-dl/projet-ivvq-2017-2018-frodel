@@ -1,5 +1,6 @@
 package com.frodel.model
 
+import com.frodel.model.User
 import org.springframework.boot.test.context.SpringBootTest
 
 
@@ -24,39 +25,44 @@ class UserTest extends Specification {
     }
 
     @Unroll
-    void "test la validite d'un utilisateur valide"(String pseudo, String mdp, String email) {
+    void "test if a user is correct"(String pseudo, String mdp, String email, List<Comment> comments) {
 
-        given: "un utilisateur initialise correctement"
-        User utilisateur = new User(pseudo,mdp,email)
+        given: "a correctly initialized user"
+        User utilisateur = new User(pseudo:pseudo,mdp: mdp,email:email, comments: comments)
 
-        expect: "l'utilisateur est valide"
+        expect: "The user is valid"
         validator.validate(utilisateur).empty
 
+        and : "he has no travels"
+        !utilisateur.travels
+
         where:
-        pseudo   | mdp       | email
-        "Dupont" | "azertyuiop"  | "jd@jd.com"
-        "Durand" | "12zfov86§ju" | "jd@jd.com"
-        "Durant" | "JacquesJacques" | "jd@jd.com"
+        pseudo   | mdp              | email         |comments
+        "Dupont" | "azertyuiop"     | "jd@jd.com"   | Arrays.asList(Mock(Comment), Mock(Comment))
+        "Durand" | "12zfov86§ju"    | "jd@jd.com"   | Arrays.asList(Mock(Comment))
+        "Durant" | "JacquesJacques" | "jd@jd.com"   | null
     }
 
+
+
     @Unroll
-    void "test la validite d'un utilisateur non valide"(String pseudo, String mdp, String email) {
+    void "test if a user is incorrect"(String pseudo, String mdp, String email,List<Comment> comments) {
 
-        given: "un utilisateur initialise correctement"
-        User utilisateur = new User(pseudo,mdp,email)
+        given: "an incorrectly initialized user"
+        User utilisateur = new User(pseudo:pseudo,mdp:mdp,email:email,comments: comments)
 
-        expect: "l'utilisateur est valide"
+        expect: "The user is invalid"
         !validator.validate(utilisateur).empty
 
         where:
-        pseudo   | mdp       | email
-        "" | "azertyuiop"  | "jd@jd.com"
-        "Durand1" | "" | "jd@jd.com"
-        "Durant1" | "JacquesJacques" | ""
-        null | "azertyuiop"  | "jd@jd.com"
-        "Durand2" | null | "jd@jd.com"
-        "Durant2" | "JacquesJacques" | null
-        "Durand3" | "123" | "jd@jd.com"
-        "Durant3" | "JacquesJacques" | "emailnonvalide"
+        pseudo      | mdp               | email             |comments
+        ""          | "azertyuiop"      | "jd@jd.com"       |Arrays.asList(Mock(Comment), Mock(Comment))
+        "Durand1"   | ""                | "jd@jd.com"       |null
+        "Durant1"   | "JacquesJacques"  | ""                |Arrays.asList(Mock(Comment))
+        null        | "azertyuiop"      | "jd@jd.com"       |new ArrayList<>()
+        "Durand2"   | null              | "jd@jd.com"       |new ArrayList<>()
+        "Durant2"   | "JacquesJacques"  | null              |new ArrayList<>()
+        "Durand3"   | "123"             | "jd@jd.com"       |new ArrayList<>()
+        "Durant3"   | "JacquesJacques"  | "emailnonvalide"  |new ArrayList<>()
     }
 }

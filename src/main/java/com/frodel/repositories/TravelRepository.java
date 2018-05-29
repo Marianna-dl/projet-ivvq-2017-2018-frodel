@@ -10,5 +10,4 @@ public interface TravelRepository extends PagingAndSortingRepository<Travel, Lon
 
 
 
-
 }
