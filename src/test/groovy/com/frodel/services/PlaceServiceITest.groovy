@@ -32,12 +32,12 @@ class PlaceServiceITest extends Specification {
 
         City toulouseCity = new City(name : "Toulouse")
         City parisCity = new City(name : "Paris")
-        Country franceCountry = new Country(name : "FranceCountry", cities : Arrays.asList(toulouseCity, parisCity));
+        Country franceCountry = new Country(name : "FranceCountryTest", cities : Arrays.asList(toulouseCity, parisCity));
 
 
         City romeCity = new City(name : "Rome")
         City veniseCity = new City(name : "Venise")
-        Country italieCountry = new Country(name : "ItalieCountry",cities : Arrays.asList(romeCity, veniseCity));
+        Country italieCountry = new Country(name : "ItalieCountryTest",cities : Arrays.asList(romeCity, veniseCity));
 
         Continent continent = new Continent(name : "EuropeContinent", countries : Arrays.asList(franceCountry, italieCountry))
 
