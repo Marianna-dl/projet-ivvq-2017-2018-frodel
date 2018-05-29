@@ -23,4 +23,16 @@ public class Place {
     @OneToOne
     private City city;
 
+
+    public void setContinent(Continent continent) {
+        this.continent = continent;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 }

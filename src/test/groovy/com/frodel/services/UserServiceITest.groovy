@@ -18,6 +18,7 @@ import javax.validation.ConstraintViolationException
 @SpringBootTest(classes = TravexApplication.class,webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 class UserServiceITest extends Specification{
     @Autowired UserService utilisateurService
+    @Autowired InitialisationService initialisationService
 
     def "test save a valid user"() {
         given: "valid user"
@@ -43,6 +44,20 @@ class UserServiceITest extends Specification{
 
         and: "user has still null id"
         bob.id == null
+    }
+
+    def "test find a valid user by its id"() {
+        given: "a previous saved user"
+        User user = initialisationService.totoUser
+
+        when: "the user is found"
+        User userFound = utilisateurService.findOneUser(user.id)
+
+        then: "the user found has the same pseudo"
+        userFound.pseudo == user.pseudo
+
+        and: "the user has a same id"
+        userFound.id == user.id
     }
 
 }
