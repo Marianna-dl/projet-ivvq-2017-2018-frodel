@@ -58,7 +58,7 @@ class CountryServiceITest extends Specification{
 
     def "test find a valid country by its name"() {
         given: "an valid country name"
-        String countryName = "France"
+        String countryName = "Japon"
 
         when: "the country is find"
         Country country = countryService.findCountryByName(countryName)
