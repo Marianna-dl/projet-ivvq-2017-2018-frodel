@@ -26,7 +26,7 @@ class ContinentServiceITest extends Specification{
     def "test save a valid continent"() {
         given: "a valid continent"
         Country country = new Country(name: "FranceCountry", cities: Arrays.asList(new City(name : "Toulouse")))
-        Continent continent = new Continent(name:"EuropeCountry", countries: Arrays.asList(country))
+        Continent continent = new Continent(name:"EuropeContinent", countries: Arrays.asList(country))
 
         when: "the continent is saved"
         continentService.saveContinent(continent)
@@ -39,6 +39,9 @@ class ContinentServiceITest extends Specification{
 
         cleanup:
         continentRepository.delete(continent.id)
+
+        and: "france has no id"
+        country.id == null
 
     }
 
@@ -61,8 +64,8 @@ class ContinentServiceITest extends Specification{
         given: "an valid country name and two countries"
         City city = new City(name : "Toulouse")
         Country country = new Country(name: "PaysImaginaire", cities: Arrays.asList(city))
-        Continent continent1 = new Continent(name: "continent", countries: Arrays.asList(country))
-        Continent continent2 = new Continent(name: "continent", countries: Arrays.asList(country))
+        Continent continent1 = new Continent(name: "continentTest", countries: Arrays.asList(country))
+        Continent continent2 = new Continent(name: "continentTest", countries: Arrays.asList(country))
 
         when: "the two continent are saved"
         continentService.saveContinent(continent1)
