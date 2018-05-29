@@ -17,43 +17,44 @@ class ArticleTest extends Specification{
     }
 
     @Unroll
-    void "test if a article is correct"(String aName, Long aBudget, Date aStartDate, Date anEndDate, String aContent, List<Place> itsPlaces ,List<Comment> comments) {
+    void "test if a article is correct"(String aName, Long aBudget, Date aStartDate, Date anEndDate, String aContent, List<Place> itsPlaces ,List<Comment> comments, List<Comment> questions) {
 
         given: "a correctly initialized article"
-        Article article = new Article(name: aName, budget : aBudget, startDate : aStartDate, endDate : anEndDate, content : aContent, places : itsPlaces, isVisible : true,comments: comments)
+        Article article = new Article(name: aName, budget : aBudget, startDate : aStartDate, endDate : anEndDate, content : aContent, places : itsPlaces, isVisible : true,comments: comments, questions: questions)
 
         expect: "The article is valid"
         validator.validate(article).empty
 
         where:
-        aName | aBudget | aStartDate | anEndDate | aContent | itsPlaces|comments
-        "Article" | 550.3 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))
-        "abcd" | 1 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ... !! " | Arrays.asList(Mock(Place))|null
-        "étape" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))
+        aName | aBudget | aStartDate | anEndDate | aContent | itsPlaces|comments|questions
+        "Article" | 550.3 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))|Arrays.asList(Mock(Question), Mock(Question))
+        "abcd" | 1 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ... !! " | Arrays.asList(Mock(Place))|null|Arrays.asList(Mock(Question), Mock(Question))
+        "étape" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))|Arrays.asList(Mock(Question), Mock(Question))
+        "Article" | 550.3 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))|null
 
     }
 
 
     @Unroll
-    void "test if a article is incorrect"(String aName, Long aBudget, Date aStartDate, Date anEndDate, String aContent, List<Place> itsPlaces ,List<Comment> comments) {
+    void "test if a article is incorrect"(String aName, Long aBudget, Date aStartDate, Date anEndDate, String aContent, List<Place> itsPlaces ,List<Comment> comments, List<Question> questions) {
 
         given: "an incorrectly initialized article"
-        Article article = new Article(name: aName, budget : aBudget, startDate : aStartDate, endDate : anEndDate, content : aContent, places : itsPlaces, isVisible : true,comments: comments)
+        Article article = new Article(name: aName, budget : aBudget, startDate : aStartDate, endDate : anEndDate, content : aContent, places : itsPlaces, isVisible : true,comments: comments, questions: questions)
 
         expect: "The article is not valid"
         !validator.validate(article).empty
 
         where:
-        aName | aBudget | aStartDate | anEndDate | aContent | itsPlaces|comments
-        "ab" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))
-        null | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))
-        "abcd" | -1 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place))|null
-        "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines" | Arrays.asList(Mock(Place), Mock(Place))|null
-        "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList()|Arrays.asList()
-        "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | null|Arrays.asList(Mock(Comment))
-        "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | null | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))
-        "abcd" | 0 | null | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))
-        "abcd" | 0 | new Date(2018, 1, 1) | null | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))
+        aName | aBudget | aStartDate | anEndDate | aContent | itsPlaces|comments|questions
+        "ab" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))|Arrays.asList(Mock(Question), Mock(Question))
+        null | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))|Arrays.asList(Mock(Question), Mock(Question))
+        "abcd" | -1 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place))|null|Arrays.asList(Mock(Question), Mock(Question))
+        "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines" | Arrays.asList(Mock(Place), Mock(Place))|null|Arrays.asList(Mock(Question), Mock(Question))
+        "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList()|Arrays.asList()|Arrays.asList()
+        "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | null|Arrays.asList(Mock(Comment))|Arrays.asList(Mock(Question), Mock(Question))
+        "abcd" | 0 | new Date(2018, 1, 1) | new Date(2018, 2, 1) | null | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))|Arrays.asList(Mock(Question), Mock(Question))
+        "abcd" | 0 | null | new Date(2018, 2, 1) | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))|Arrays.asList(Mock(Question), Mock(Question))
+        "abcd" | 0 | new Date(2018, 1, 1) | null | "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ..." | Arrays.asList(Mock(Place), Mock(Place))|Arrays.asList(Mock(Comment), Mock(Comment))|Arrays.asList(Mock(Question), Mock(Question))
     }
 
     @Unroll
@@ -65,7 +66,7 @@ class ArticleTest extends Specification{
 
         when : "the article is initialized with those date"
         Article article = new Article(name: "Article", budget : 0, startDate : startDate, endDate : endDate,
-                content : "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ...", places : Arrays.asList(Mock(Place)), isVisible : true,comments: null)
+                content : "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ...", places : Arrays.asList(Mock(Place)), isVisible : true,comments: null, questions: null)
 
         then: "The article is not valid"
         !validator.validate(article).empty
@@ -77,7 +78,7 @@ class ArticleTest extends Specification{
 
         given: "a correctly initialized article without visibility specified"
         Article article = new Article(name: "Article", budget : 0, startDate :  new Date(2018, 1, 1), endDate :  new Date(2018, 2, 1),
-                content : "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ...", places : Arrays.asList(Mock(Place)),comments: null)
+                content : "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ...", places : Arrays.asList(Mock(Place)),comments: null, questions: null)
 
         expect: "The article is valid"
         validator.validate(article).empty
@@ -92,7 +93,7 @@ class ArticleTest extends Specification{
 
         given: "a correctly initialized article without visibility specified"
         Article article = new Article(name: "Article", budget : 0, startDate :  new Date(2018, 1, 1), endDate :  new Date(2018, 2, 1),
-                content : "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ...", places : Arrays.asList(Mock(Place)),comments: null)
+                content : "This travel was amazing ! But the content must have a size of 100 characters so we write some lines ...", places : Arrays.asList(Mock(Place)),comments: null, questions: null)
 
         when: "The visibility is changed"
         article.setIsVisible(false);

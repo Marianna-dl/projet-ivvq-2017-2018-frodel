@@ -1,6 +1,7 @@
 package groovy.com.frodel.model
 
 import com.frodel.model.Question
+import com.frodel.model.User
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -22,35 +23,36 @@ class QuestionTest extends Specification {
     }
 
     @Unroll
-    void "tests the validity of a valid question"(String title, String content) {
+    void "tests the validity of a valid question"(String title, String content, User interrogator) {
 
         given: "A user asks a question"
-        Question question = new Question(title, content)
+        Question question = new Question(title, content, interrogator)
 
         expect: "The question is valid"
         validator.validate(question).empty
 
         where:
-        title   | content
-        "Question's title" | "How was the weather ?"
-        null | "What place would you like to go next ?"
+        title   | content | interrogator
+        "Question's title" | "How was the weather ?" | new User()
+        null | "What place would you like to go next ?" | new User()
     }
 
     @Unroll
-    void "tests the validity of a non valid question"(String title, String content) {
+    void "tests the validity of a non valid question"(String title, String content, User interrogator) {
 
         given: "A user asks a question"
-        Question question = new Question(title, content)
+        Question question = new Question(title, content, interrogator)
 
         expect: "The question is not valid"
         !validator.validate(question).empty
 
         where:
-        title   | content
-        "Question's title" | "How was the weather"
-        "Question's title" | null
-        null             | null
-        "How was the weather ?" | null
+        title   | content | interrogator
+        "Question's title" | "How was the weather" | new User()
+        "Question's title" | null | new User()
+        null             | null | new User()
+        "How was the weather ?" | null | new User()
+        "Question's title" | "How was the weather ?" | null
     }
 
 }

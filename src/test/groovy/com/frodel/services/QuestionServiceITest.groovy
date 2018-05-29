@@ -2,6 +2,7 @@ package groovy.com.frodel.services
 
 import com.frodel.TravexApplication
 import com.frodel.model.Question
+import com.frodel.model.User
 import com.frodel.services.QuestionService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -19,20 +20,23 @@ class QuestionServiceITest extends Specification {
     @Autowired QuestionService questionService
 
         def "test save a valid question"() {
-               given: "valid question"
-                Question question = new Question("My question","How was the weather ?")
+            given: "valid user"
+            User interrogator = new User(pseudo :"Dupont",mdp:"dupontMdp",email:"Dupont@frodel.com", questions: null)
 
-                        when: "the question is Saved"
-                        questionService.saveQuestion(question);
+            and: "a valid question"
+            Question question = new Question("My question","How was the weather ?", interrogator)
 
-                        then: "the question has an id"
-                        question.id != null
+                    when: "the question is Saved"
+                    questionService.saveQuestion(question);
 
-                    }
+                    then: "the question has an id"
+                    question.id != null
+
+                }
 
         def "test save an non valid question"() {
                 given: "invalid question"
-                Question question = new Question("My question",null)
+                Question question = new Question("My question",null, null)
 
                         when: "the question is saved"
                         questionService.saveQuestion(question);
