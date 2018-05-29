@@ -12,11 +12,12 @@ public class Country {
     @NotNull
     @Size(min = 4)
     @Pattern(regexp = "[a-zA-Z]+$")
+    @Column(unique = true)
     private String name;
 
     @NotNull
     @Size(min = 1)
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<City> cities;
 
     @Id

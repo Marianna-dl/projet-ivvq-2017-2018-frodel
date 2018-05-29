@@ -5,6 +5,8 @@ import com.frodel.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CountryService {
 
@@ -28,18 +30,6 @@ public class CountryService {
      * @return The country found or null if the country wasn't found
      */
     public Country findCountryByName(String name) {
-        Country country = null;
-        Iterable<Country> countries = countryRepository.findAll();
-        if (countries != null)
-        {
-            for (Country c : countries) {
-                if (c.getName().equals(name)) {
-                    country = c;
-                    break;
-                }
-            }
-        }
-        return country;
+        return countryRepository.findCountryByName(name);
     }
-
 }

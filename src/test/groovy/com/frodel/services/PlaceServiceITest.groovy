@@ -5,6 +5,9 @@ import com.frodel.model.City
 import com.frodel.model.Continent
 import com.frodel.model.Country
 import com.frodel.model.Place
+import com.frodel.repositories.ContinentRepository
+import com.frodel.repositories.CountryRepository
+import com.frodel.repositories.PlaceRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
@@ -20,20 +23,23 @@ class PlaceServiceITest extends Specification {
     PlaceService placeService
     @Autowired
     ContinentService continentService
+    @Autowired
+    PlaceRepository placeRepository
+
 
     def "test save a valid place"() {
         given: "a valid place initialized with a previously saved continent"
 
         City toulouseCity = new City(name : "Toulouse")
         City parisCity = new City(name : "Paris")
-        Country franceCountry = new Country(name : "France", cities : Arrays.asList(toulouseCity, parisCity));
+        Country franceCountry = new Country(name : "FranceCountryTest", cities : Arrays.asList(toulouseCity, parisCity));
 
 
         City romeCity = new City(name : "Rome")
         City veniseCity = new City(name : "Venise")
-        Country italieCountry = new Country(name : "Italie",cities : Arrays.asList(romeCity, veniseCity));
+        Country italieCountry = new Country(name : "ItalieCountryTest",cities : Arrays.asList(romeCity, veniseCity));
 
-        Continent continent = new Continent(name : "Europe", countries : Arrays.asList(franceCountry, italieCountry))
+        Continent continent = new Continent(name : "EuropeContinent", countries : Arrays.asList(franceCountry, italieCountry))
 
         continentService.saveContinent(continent)
 
@@ -44,6 +50,9 @@ class PlaceServiceITest extends Specification {
 
         then: "the place has an id"
         place.id != null
+
+        cleanup :
+        placeRepository.delete(place.id)
 
     }
 
