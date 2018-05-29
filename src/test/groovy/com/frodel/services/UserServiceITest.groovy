@@ -1,6 +1,7 @@
 package com.frodel.services
 
 import com.frodel.TravexApplication
+import com.frodel.model.Comment
 import com.frodel.model.User
 import com.frodel.services.UserService
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,7 +21,7 @@ class UserServiceITest extends Specification{
 
     def "test save a valid user"() {
         given: "valid user"
-        User bob = new User(pseudo:"frodel",mdp:"frodelMdp",email:"frodel@frodel.fr",comments: null)
+        User bob = new User(pseudo:"frodel",mdp:"frodelMdp",email:"frodel@frodel.fr",comments: Arrays.asList())
 
         when: "the user is Saved"
         utilisateurService.saveUser(bob);

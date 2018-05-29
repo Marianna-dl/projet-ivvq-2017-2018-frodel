@@ -35,8 +35,8 @@ class UserTest extends Specification {
 
         where:
         pseudo   | mdp              | email         |comments
-        "Dupont" | "azertyuiop"     | "jd@jd.com"   | null
-        "Durand" | "12zfov86§ju"    | "jd@jd.com"   | new ArrayList<>()
+        "Dupont" | "azertyuiop"     | "jd@jd.com"   | Arrays.asList(Mock(Comment), Mock(Comment))
+        "Durand" | "12zfov86§ju"    | "jd@jd.com"   | Arrays.asList(Mock(Comment))
         "Durant" | "JacquesJacques" | "jd@jd.com"   | null
     }
 
@@ -51,9 +51,9 @@ class UserTest extends Specification {
 
         where:
         pseudo      | mdp               | email             |comments
-        ""          | "azertyuiop"      | "jd@jd.com"       |new ArrayList<>()
+        ""          | "azertyuiop"      | "jd@jd.com"       |Arrays.asList(Mock(Comment), Mock(Comment))
         "Durand1"   | ""                | "jd@jd.com"       |null
-        "Durant1"   | "JacquesJacques"  | ""                |new ArrayList<>()
+        "Durant1"   | "JacquesJacques"  | ""                |Arrays.asList(Mock(Comment))
         null        | "azertyuiop"      | "jd@jd.com"       |new ArrayList<>()
         "Durand2"   | null              | "jd@jd.com"       |new ArrayList<>()
         "Durant2"   | "JacquesJacques"  | null              |new ArrayList<>()

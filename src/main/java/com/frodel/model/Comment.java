@@ -24,20 +24,16 @@ public class Comment {
     private String content;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private User commentator;
 
-    @NotNull
-    @ManyToOne
-    private Article article;
 
     public Comment(){}
-    public Comment(String title,Long mark,String content,User commentator, Article article){
+    public Comment(String title,Long mark,String content,User commentator){
         this.title = title;
         this.mark = mark;
         this.content = content;
         this.commentator = commentator;
-        this.article = article;
 
     }
 
@@ -71,9 +67,7 @@ public class Comment {
 
     public User getCommentator() {return commentator;}
 
-    public Article getArticle() {return article;}
-
     public void setCommentator(User commentator) {this.commentator = commentator;}
 
-    public void setArticle(Article article) {this.article = article;}
+
 }

@@ -25,35 +25,34 @@ class CommentTest extends Specification {
     }
 
     @Unroll
-    void "test if a comment is correct"(String title, Long mark, String content,User commentator,Article article) {
+    void "test if a comment is correct"(String title, Long mark, String content,User commentator) {
 
         given: "a correctly initialized comment"
-        Comment comment = new Comment(title: title,mark:mark,content:content,commentator: commentator,article: article)
+        Comment comment = new Comment(title: title,mark:mark,content:content,commentator: commentator)
 
         expect: "The comment is valid"
         validator.validate(comment).empty
 
         where:
-        title   | mark      | content       |commentator    | article
-        ""      | 0         | "my comment"  |new User()     | new Article()
-        null    | 0         | "my comment"  |new User()     | new Article()
-        "title" | null      | "my comment"  |new User()     | new Article()
+        title   | mark      | content       |commentator
+        ""      | 0         | "my comment"  |new User()
+        null    | 0         | "my comment"  |new User()
+        "title" | null      | "my comment"  |new User()
     }
 
     @Unroll
-    void "test if a comment is incorrect"(String title, Long mark, String content,User commentator,Article article) {
+    void "test if a comment is incorrect"(String title, Long mark, String content,User commentator) {
 
         given: "an incorrectly initialized comment"
-        Comment comment = new Comment(title:  title,mark:mark,content:  content, commentator: commentator,article: article)
+        Comment comment = new Comment(title:  title,mark:mark,content:  content, commentator: commentator)
 
         expect: "The comment is invalid"
         !validator.validate(comment).empty
         where:
-        title   | mark | content       | commentator | article
-        ""      | 0    | null          | new User()  | new Article()
-        null    | 0    | null          | new User()  | new Article()
-        "title" | null | ""            | new User()  | new Article()
-        "title" | null | "my comment"  | null        | new Article()
-        "title" | null | "my comment"  | new User()  | null
+        title   | mark | content       | commentator
+        ""      | 0    | null          | new User()
+        null    | 0    | null          | new User()
+        "title" | null | ""            | new User()
+        "title" | null | "my comment"  | null
     }
 }

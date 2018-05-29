@@ -2,7 +2,11 @@ package com.frodel.services
 
 import com.frodel.TravexApplication
 import com.frodel.model.Article
+import com.frodel.model.City
 import com.frodel.model.Comment
+import com.frodel.model.Continent
+import com.frodel.model.Country
+import com.frodel.model.Place
 import com.frodel.model.User
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -19,8 +23,11 @@ import javax.validation.ConstraintViolationException
 class CommentServiceITest extends Specification{
     @Autowired CommentService commentService
     def "test save a valid comment"() {
-        given: "valid comment"
-        Comment comment = new Comment(title:"title",mark:1,content: "my comment",commentator: new User(pseudo :"Dupont",mdp:"azertyuiop",email:"jd@jd.com",comments:null),article: new Article())
+        given: "valid user"
+        User commentator = new User(pseudo :"Dupont",mdp:"azertyuiop",email:"jd@jd.com",comments:null)
+
+        and: "valid comment"
+        Comment comment = new Comment(title:"title",mark:1,content: "my comment",commentator: commentator)
 
         when: "the comment is Saved"
         commentService.saveComment(comment);
@@ -32,7 +39,7 @@ class CommentServiceITest extends Specification{
 
     def "test sauvegard invalid comment"() {
         given: "invalid comment"
-        Comment comment = new Comment(title:  "title",mark:  2,content : null,commentator: null,article: null)
+        Comment comment = new Comment(title:  "title",mark:  2,content : null,commentator: null)
 
         when: "the comment is saved"
         commentService.saveComment(comment);
