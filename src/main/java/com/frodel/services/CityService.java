@@ -1,7 +1,6 @@
 package com.frodel.services;
 
 import com.frodel.model.City;
-import com.frodel.model.Country;
 import com.frodel.repositories.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

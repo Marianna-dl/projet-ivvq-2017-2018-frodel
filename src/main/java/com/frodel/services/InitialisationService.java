@@ -1,7 +1,6 @@
 package com.frodel.services;
 
 import com.frodel.model.*;
-import com.frodel.repositories.CityRepository;
 import com.frodel.repositories.ContinentRepository;
 import com.frodel.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
