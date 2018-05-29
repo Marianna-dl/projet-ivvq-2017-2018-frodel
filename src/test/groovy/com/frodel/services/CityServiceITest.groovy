@@ -2,6 +2,7 @@ package com.frodel.services
 
 import com.frodel.TravexApplication
 import com.frodel.model.City
+import com.frodel.model.Country
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
@@ -40,6 +41,20 @@ class CityServiceITest extends Specification{
         and: "the city has still null id"
         city.id == null
 
+    }
+
+    def "test find a valid city by its name"() {
+        given: "an valid city name"
+        String cityName = "Madrid"
+
+        when: "the city is find"
+        City city = cityService.findCityByName(cityName)
+
+        then: "the city has an id"
+        city.id != null
+
+        and: "the country has a name"
+        city.name == cityName
     }
 
 
