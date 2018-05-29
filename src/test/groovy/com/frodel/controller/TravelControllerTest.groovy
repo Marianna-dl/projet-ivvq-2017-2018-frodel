@@ -25,8 +25,17 @@ class TravelControllerTest extends Specification {
         when: "adding a travel"
         travelController.addTravel("A travel", "1")
 
-        then: "the request id performed"
+        then: "the request is performed"
         1 * travelService.saveTravel(_)
+    }
+
+    def "test to find all travels by calling controller"() {
+
+        when: "requesting for all travels"
+        travelController.findAllTravels()
+
+        then: "the request is performed"
+        1 * travelService.findAllTravels()
     }
 
 }

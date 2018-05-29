@@ -40,8 +40,22 @@ public class TravelController {
         Travel travel = new Travel();
         travel.setName(name);
         travel.setCreator(creator);
-        travelService.saveTravel(travel);
-        return travel;
+        return travelService.saveTravel(travel);
     }
+
+    /**
+     * @api {get} /travels/
+     * @apiName findAllTravels
+     * @apiGroup Travel
+     * @apiDescription find all travels
+     *
+     *
+     * @apiSuccess {Iterable<Travel>} the list of travels
+     */
+    @RequestMapping("/travels")
+    public Iterable<Travel> findAllTravels() {
+        return travelService.findAllTravels();
+    }
+
 
 }

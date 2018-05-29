@@ -24,6 +24,9 @@ public class InitialisationService {
     private User totoUser;
     private User titiUser;
 
+    private Travel japanTravel;
+    private Travel irelandTravel;
+
     @Autowired
     private CityRepository cityRepository;
     @Autowired
@@ -92,14 +95,14 @@ public class InitialisationService {
     }
 
     private void initTravelIreland() {
-        Travel irelandTravel = new Travel();
+        irelandTravel = new Travel();
         irelandTravel.setName("Ireland");
         irelandTravel.setCreator(titiUser);
         travelService.saveTravel(irelandTravel);
     }
 
     private void initTravelJapan() {
-        Travel japanTravel = new Travel();
+        japanTravel = new Travel();
         japanTravel.setName("Japan");
         japanTravel.setCreator(totoUser);
         travelService.saveTravel(japanTravel);
@@ -130,6 +133,9 @@ public class InitialisationService {
         countryRepository.save(france);
     }
 
+    public Travel getJapanTravel() {
+        return japanTravel;
+    }
     private void initCityMadrid()
     {
         madrid = new City();
@@ -166,4 +172,7 @@ public class InitialisationService {
         continentRepository.save(eurasie);
     }
 
+    public Travel getIrelandTravel() {
+        return irelandTravel;
+    }
 }

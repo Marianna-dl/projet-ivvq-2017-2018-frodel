@@ -28,4 +28,12 @@ public class TravelService {
 
         return travel ;
     }
+
+    /**
+     * Find all travels from database
+     * @return an iterable of the travels
+     */
+    public Iterable<Travel> findAllTravels() {
+        return travelRepository.findAll();
+    }
 }
