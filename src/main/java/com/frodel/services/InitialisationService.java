@@ -168,4 +168,8 @@ public class InitialisationService {
     public Travel getIrelandTravel() {
         return irelandTravel;
     }
+
+    public Continent getEurasie() {
+        return eurasie;
+    }
 }

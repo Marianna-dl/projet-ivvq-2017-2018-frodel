@@ -40,4 +40,16 @@ public class Continent {
     public void setCountries(List<Country> countries) {
         this.countries = countries;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Country> getCountries() {
+        return countries;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }
