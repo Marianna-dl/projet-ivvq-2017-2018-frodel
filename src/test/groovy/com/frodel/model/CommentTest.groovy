@@ -35,7 +35,7 @@ class CommentTest extends Specification {
 
         where:
         title   | mark      | content       |commentator
-        ""      | 0         | "my comment"  |new User()
+        "title" | 0         | "my comment"  |new User()
         null    | 0         | "my comment"  |new User()
         "title" | null      | "my comment"  |new User()
     }

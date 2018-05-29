@@ -1,9 +1,10 @@
 package com.frodel.model;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,7 +18,10 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Size(min = 0)
     private String title;
+    @Min(0)
+    @Max(5)
     private Long mark;
     @NotNull
     @NotEmpty
@@ -26,9 +30,6 @@ public class Comment {
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User commentator;
-
-
-    public Comment(){}
 
     public Long getId() {
         return id;
