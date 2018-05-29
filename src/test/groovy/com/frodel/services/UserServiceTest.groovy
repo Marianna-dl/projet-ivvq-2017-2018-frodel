@@ -39,5 +39,15 @@ class UserServiceTest extends Specification {
         1 * userRepository.save(utilisateur)
     }
 
+    def "test delegation of find one user to the repository"() {
+        given: "a user"
+        def utilisateur = Mock(User)
+
+        when: "the user is found"
+        userService.findOneUser(utilisateur.id);
+
+        then: "the find is delegated to the userRepository"
+        1 * userRepository.findOne(utilisateur.id)
+    }
 
 }

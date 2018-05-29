@@ -269,4 +269,8 @@ public class InitialisationService {
     public Travel getIrelandTravel() {
         return irelandTravel;
     }
+
+    public User getTotoUser() {
+        return totoUser;
+    }
 }
