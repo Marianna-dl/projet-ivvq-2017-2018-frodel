@@ -28,7 +28,7 @@ public class InitialisationService {
     private Travel irelandTravel;
 
     @Autowired
-    private CityRepository cityRepository;
+    private CityService cityService;
     @Autowired
     private CountryRepository countryRepository;
     @Autowired
@@ -112,14 +112,14 @@ public class InitialisationService {
     {
         toulouse = new City();
         toulouse.setName("Toulouse");
-        cityRepository.save(toulouse);
+        cityService.saveCity(toulouse);
     }
 
     private void initCityParis()
     {
         paris = new City();
         paris.setName("Paris");
-        cityRepository.save(paris);
+        cityService.saveCity(paris);
     }
 
     private void initCountryFrance()
@@ -140,14 +140,14 @@ public class InitialisationService {
     {
         madrid = new City();
         madrid.setName("Madrid");
-        cityRepository.save(madrid);
+        cityService.saveCity(madrid);
     }
 
     private void initCityBarcelone()
     {
         barcelone = new City();
         barcelone.setName("Barcelonne");
-        cityRepository.save(barcelone);
+        cityService.saveCity(barcelone);
     }
 
     private void initCountryEspagne()
@@ -174,5 +174,9 @@ public class InitialisationService {
 
     public Travel getIrelandTravel() {
         return irelandTravel;
+    }
+
+    public Country getFrance() {
+        return france;
     }
 }
