@@ -40,9 +40,6 @@ class ContinentServiceITest extends Specification{
         cleanup:
         continentRepository.delete(continent.id)
 
-        and: "france has no id"
-        country.id == null
-
     }
 
     def "test save an invalid continent"() {
