@@ -17,9 +17,9 @@ public class CommentService {
     private CommentRepository commentRepository ;
 
     /**
-     * Save the given utilisateur
-     * @param comment the utilisateur
-     * @return the saved utilisateur
+     * Save the given comment
+     * @param comment the comment
+     * @return the saved comment
      */
     public Comment saveComment(Comment comment) {
         return commentRepository.save(comment) ;

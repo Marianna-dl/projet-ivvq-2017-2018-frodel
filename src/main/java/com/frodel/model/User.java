@@ -56,7 +56,6 @@ public class User {
     public void setPseudo(String pseudo) {this.pseudo = pseudo;}
     public void setEmail(String email) {this.email = email;}
     public void setMdp(String mdp) {this.mdp = mdp;}
-    public List<Comment> getComments() {return comments;}
 
     public List<Travel> getTravels() {
         return travels;
