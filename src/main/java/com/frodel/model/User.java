@@ -31,6 +31,9 @@ public class User {
     @Email
     private String email;
 
+    @OneToMany(mappedBy = "commentator") @JsonIgnore
+    private List<Comment> comments;
+
     @OneToMany(mappedBy = "creator") @JsonIgnore
     private List<Travel> travels = new ArrayList<>();
 

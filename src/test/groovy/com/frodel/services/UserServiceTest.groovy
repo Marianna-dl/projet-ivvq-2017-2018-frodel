@@ -14,29 +14,29 @@ import spock.lang.Specification
 @SpringBootTest
 class UserServiceTest extends Specification {
 
-    UserService utilisateurService
-    UserRepository utilisateurRepository
+    UserService userService
+    UserRepository userRepository
 
     void setup() {
-        utilisateurRepository = Mock()
-        utilisateurService = new UserService()
-        utilisateurService.utilisateurRepository = utilisateurRepository
+        userRepository = Mock()
+        userService = new UserService()
+        userService.utilisateurRepository = userRepository
     }
 
-    def "vérifier  le type d'un utilisateurRepository"() {
-        expect: "utilisateurRepository est un Spring repository"
-        utilisateurRepository instanceof PagingAndSortingRepository
+    def "check type of commentRepository"() {
+        expect: "userRepository is a Spring repository"
+        userRepository instanceof PagingAndSortingRepository
     }
 
-    def "tester la delegation de la sauvegarde d'un Utilisateur à repository"() {
-        given: "un utilisateur"
+    def "test delegation of save of an user to the repository"() {
+        given: "a user"
         def utilisateur = Mock(User)
 
-        when: "l'utilisateur est enregistré"
-        utilisateurService.saveUser(utilisateur);
+        when: "the user is saved"
+        userService.saveUser(utilisateur);
 
-        then: "la sauvegarde est deléguée à utilisateurRepository"
-        1 * utilisateurRepository.save(utilisateur)
+        then: "the save is delegated to the userRepository"
+        1 * userRepository.save(utilisateur)
     }
 
 
