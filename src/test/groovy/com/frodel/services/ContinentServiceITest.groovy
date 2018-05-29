@@ -4,6 +4,7 @@ import com.frodel.TravexApplication
 import com.frodel.model.City
 import com.frodel.model.Continent
 import com.frodel.model.Country
+import com.frodel.repositories.ContinentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ContextConfiguration
@@ -18,10 +19,13 @@ class ContinentServiceITest extends Specification{
     @Autowired
     ContinentService continentService
 
+    @Autowired
+    ContinentRepository continentRepository
+
     def "test save a valid continent"() {
         given: "a valid continent"
-        Country country = new Country(name: "France", cities: Arrays.asList(new City(name : "Toulouse")))
-        Continent continent = new Continent(name:"Europe", countries: Arrays.asList(country))
+        Country country = new Country(name: "FranceCountry", cities: Arrays.asList(new City(name : "Toulouse")))
+        Continent continent = new Continent(name:"EuropeCountry", countries: Arrays.asList(country))
 
         when: "the continent is saved"
         continentService.saveContinent(continent)
@@ -31,6 +35,9 @@ class ContinentServiceITest extends Specification{
 
         and: "the country has an id"
         country.id != null
+
+        cleanup:
+        continentRepository.delete(continent.id)
 
     }
 

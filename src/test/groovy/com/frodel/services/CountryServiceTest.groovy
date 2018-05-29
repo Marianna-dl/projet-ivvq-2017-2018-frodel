@@ -40,6 +40,6 @@ class CountryServiceTest extends Specification{
         countryService.findCountryByName(countryName);
 
         then: "the search is delegated to the countryRepository"
-        1 * countryRepository.findAll()
+        1 * countryRepository.findCountryByName(countryName)
     }
 }

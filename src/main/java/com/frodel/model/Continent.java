@@ -15,7 +15,7 @@ public class Continent {
 
     @NotNull
     @Size(min = 1)
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Country> countries;
 
     @Id

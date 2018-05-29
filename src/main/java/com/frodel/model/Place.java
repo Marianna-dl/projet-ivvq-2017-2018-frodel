@@ -12,6 +12,7 @@ public class Place {
 
     @NotNull
     @OneToOne
+    @OneToMany(cascade = { CascadeType.REMOVE})
     private Continent continent;
 
     @NotNull
