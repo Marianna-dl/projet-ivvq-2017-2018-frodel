@@ -1,9 +1,7 @@
 package com.frodel.services;
 
 import com.frodel.model.*;
-import com.frodel.repositories.CityRepository;
 import com.frodel.repositories.ContinentRepository;
-import com.frodel.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +28,7 @@ public class InitialisationService {
     @Autowired
     private CityService cityService;
     @Autowired
-    private CountryRepository countryRepository;
+    private CountryService countryService;
     @Autowired
     private ContinentRepository continentRepository;
 
@@ -130,7 +128,7 @@ public class InitialisationService {
         cities.add(toulouse);
         cities.add(paris);
         france.setCities(cities);
-        countryRepository.save(france);
+        countryService.saveCountry(france);
     }
 
     public Travel getJapanTravel() {
@@ -158,7 +156,7 @@ public class InitialisationService {
         cities.add(madrid);
         cities.add(barcelone);
         espagne.setCities(cities);
-        countryRepository.save(espagne);
+        countryService.saveCountry(espagne);
     }
 
     private void initContinentEurasie()

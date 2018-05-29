@@ -27,7 +27,13 @@ class CountryControllerITest extends Specification {
         when: "get a country requested"
         Country country = this.restTemplate.getForObject("/country/France", Country.class)
 
-        then: "the recover country name is the same that the recover country name of initialisationService"
+        then: "the recover country is the same that the country of initialisationService"
+        country.id == initialisationService.france.id
+
+        and:
         country.name == initialisationService.france.name
+
+        and:
+        country.cities.size() == initialisationService.france.cities.size()
     }
 }
