@@ -42,11 +42,12 @@ public class Comment {
     public void setMark(Long mark) {
         this.mark = mark;
     }
-
+    public String getContent() {
+        return content;
+    }
     public void setContent(String content) {
         this.content = content;
     }
-
     public void setCommentator(User commentator) {this.commentator = commentator;}
 
 
