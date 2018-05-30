@@ -22,4 +22,8 @@ public class ArticleService {
     public Article saveArticle(Article article) {
         return articleRepository.save(article) ;
     }
+
+    public Iterable<Article> findAllArticles() {
+        return articleRepository.findAll();
+    }
 }
