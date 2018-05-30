@@ -7,6 +7,10 @@ import com.frodel.repositories.TravelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Marianna on 13/04/2018.
  */
@@ -26,6 +30,9 @@ public class TravelService {
         travelRepository.save(travel) ;
         Article principalArticle = travel.getPrincipalArticle();
         principalArticle.setTravel(travel);
+        if(travel.getSteps().size() > 0){
+            travel.getSteps().stream().forEach(step -> step.setTravel(travel));
+        }
         User creator = travel.getCreator();
         creator.getTravels().add(travel);
 
@@ -46,5 +53,15 @@ public class TravelService {
 
     public Travel findTravelById(Long id) {
         return travelRepository.findOne(id);
+    }
+
+    public Iterable<Article> findAllArticlesForTravel(Long id) {
+        Travel travel = travelRepository.findOne(id);
+        List<Article> articles = new ArrayList<>();
+        if(travel != null){
+            articles.addAll(travel.getSteps());
+        }
+        return articles;
+
     }
 }

@@ -32,6 +32,7 @@ class TravelServiceTest extends Specification{
     def "test delegation of save of an Travel to the repository"() {
         given: "a travel"
         def travel = Mock(Travel) {
+            getSteps() >> Arrays.asList(Mock(Article))
             getPrincipalArticle() >> Mock(Article)
             getCreator() >> Mock(User) {
                 getTravels() >> []
@@ -65,6 +66,14 @@ class TravelServiceTest extends Specification{
     def "test delegation of finding a travel by its id to the repository"() {
         when: "requesting for a travel by its id"
         travelService.findTravelById(1)
+
+        then: "the request is delegated to the travelRepository"
+        1 * travelRepository.findOne(1)
+    }
+
+    def "test delegation of finding all articles for a travel to the repository"() {
+        when: "requesting for all articles"
+        travelService.findAllArticlesForTravel(1)
 
         then: "the request is delegated to the travelRepository"
         1 * travelRepository.findOne(1)
