@@ -39,4 +39,8 @@ public class TravelService {
     public Iterable<Travel> findAllTravels() {
         return travelRepository.findAll();
     }
+
+    public Iterable<Travel>  findTravelByName(String name) {
+        return travelRepository.findTravelByName(name);
+    }
 }

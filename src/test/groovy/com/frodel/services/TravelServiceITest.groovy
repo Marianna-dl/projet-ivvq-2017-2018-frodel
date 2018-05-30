@@ -92,6 +92,21 @@ class TravelServiceITest extends Specification{
     }
 
 
+    def "test finding a travel by its name"() {
+        given: "The instance of InitialisationService provided by the bootstrap object"
+        InitialisationService initialisationService = bootstrap.initialisationService
+
+
+        and: "2 travels name provided by the initialisation service"
+        String name = initialisationService.japanTravelName
+
+        when: "requesting a travel"
+        Iterable<Travel> travel = travelService.findTravelByName(name)
+
+        then : "the travel are the same given by the initialisation service"
+        travel.name[0] == initialisationService.japanTravelName
+    }
+
 
 
 
