@@ -21,10 +21,10 @@ class QuestionServiceITest extends Specification {
 
         def "test save a valid question"() {
             given: "valid user"
-            User interrogator = new User(pseudo :"Dupont",mdp:"dupontMdp",email:"Dupont@frodel.com", questions: null)
+            User interrogator = new User(pseudo :"Dupont",mdp:"dupontMdp",email:"Dupont@frodel.com", questions: null, answers: null)
 
             and: "a valid question"
-            Question question = new Question(title: "My question",content: "How was the weather ?", interrogator: interrogator)
+            Question question = new Question(title: "My question",content: "How was the weather ?", interrogator: interrogator, answers: null)
 
                     when: "the question is Saved"
                     questionService.saveQuestion(question);
@@ -36,7 +36,7 @@ class QuestionServiceITest extends Specification {
 
         def "test save an non valid question"() {
                 given: "invalid question"
-                Question question = new Question(title: "My question", content: null, interrogator: null)
+                Question question = new Question(title: "My question", content: null, interrogator: null, answers: null)
 
                         when: "the question is saved"
                         questionService.saveQuestion(question);
