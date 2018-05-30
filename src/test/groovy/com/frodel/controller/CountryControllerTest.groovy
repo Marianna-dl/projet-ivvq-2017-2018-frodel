@@ -20,7 +20,7 @@ class CountryControllerTest extends Specification {
         String countryName = "name"
 
         when: "get a country"
-        countryController.getCountry(countryName)
+        countryController.findCountryByName(countryName)
 
         then: "the recover name is good"
         1 * countryService.findCountryByName(countryName)
