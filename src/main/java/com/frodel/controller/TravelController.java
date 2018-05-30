@@ -50,4 +50,19 @@ public class TravelController {
     public Iterable<Travel> findAllTravelsByName(@PathVariable  String travelName) {
         return travelService.findTravelByName(travelName);
     }
+
+
+    /**
+     * @api {get} /travel/:idTravel
+     * @apiName findTravelById
+     * @apiGroup Travel
+     * @apiDescription find a travel with a given id
+     *
+     * @apiParam {Long} idTravel The id of searched travel
+     * @apiSuccess {Travel} the travel
+     */
+    @RequestMapping("/travel/{idTravel}")
+    public Travel findTravelById(@PathVariable Long idTravel) {
+        return travelService.findTravelById(idTravel);
+    }
 }
