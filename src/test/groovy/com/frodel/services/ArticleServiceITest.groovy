@@ -59,7 +59,8 @@ class ArticleServiceITest extends Specification {
 
         then : "the articles are the same given by the initialisation service"
         articles[0].name == initialisationService.articleJapan.name
-        articles[1].name == initialisationService.articleIrelande.name
+        articles[1].name == initialisationService.articleJapanStep1.name
+        articles[2].name == initialisationService.articleIrelande.name
     }
 
 

@@ -21,7 +21,7 @@ public class Travel {
     private Long id;
 
     @NotNull
-    @OneToOne(mappedBy = "travel", cascade = CascadeType.PERSIST)
+    @OneToOne( cascade = CascadeType.PERSIST)
     private Article principalArticle;
 
     @OneToMany(mappedBy = "travel", cascade = CascadeType.PERSIST)
@@ -63,5 +63,9 @@ public class Travel {
 
     public void setCreator(User creator) {
         this.creator = creator;
+    }
+
+    public List<Article> getSteps() {
+        return steps;
     }
 }

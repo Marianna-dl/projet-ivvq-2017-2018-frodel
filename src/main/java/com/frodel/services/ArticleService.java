@@ -1,6 +1,7 @@
 package com.frodel.services;
 
 import com.frodel.model.Article;
+import com.frodel.model.Travel;
 import com.frodel.repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,8 @@ public class ArticleService {
 
     @Autowired
     private ArticleRepository articleRepository;
+    @Autowired
+    private TravelService travelService;
 
     /**
      * Save the given article
@@ -26,4 +29,5 @@ public class ArticleService {
     public Iterable<Article> findAllArticles() {
         return articleRepository.findAll();
     }
+
 }
