@@ -1,8 +1,11 @@
 package com.frodel.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 /**
  * This class represents a question
@@ -21,8 +24,8 @@ public class Question {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private User interrogator;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    private Answer answers;
+    @OneToMany(mappedBy = "question") @JsonIgnore
+    private List<Answer> answers;
 
     public Long getId() {
         return id;
@@ -40,7 +43,4 @@ public class Question {
         this.interrogator = interrogator;
     }
 
-    public void setAnswers(Answer answers) {
-        this.answers = answers;
-    }
 }
