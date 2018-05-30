@@ -48,7 +48,7 @@ public class InitialisationService {
     private City dublin;
     private City galway;
 
-    private  Article articleJapan;
+    private Article articleJapan;
     private Article articleIrelande;
 
     private Place tokyoPlace;
@@ -60,6 +60,26 @@ public class InitialisationService {
 
     public String getJapanTravelName() {
         return japanTravelName;
+    }
+
+    public Article getArticleJapan() {
+        return articleJapan;
+    }
+
+    public Article getArticleIrelande() {
+        return articleIrelande;
+    }
+
+    public Continent getAsie() {
+        return asie;
+    }
+
+    public Country getJapan() {
+        return japan;
+    }
+
+    public City getTokyo() {
+        return tokyo;
     }
 
     public void initData() {

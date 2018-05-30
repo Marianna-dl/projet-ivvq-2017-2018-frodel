@@ -34,4 +34,12 @@ class ArticleServiceTest extends Specification{
         1 * articleRepository.save(article)
     }
 
+    def "test delegation of finding all articles to the repository"() {
+        when: "requesting for all articles"
+        articleService.findAllArticles()
+
+        then: "the request is delegated to the travelRepository"
+        1 * articleRepository.findAll()
+    }
+
 }
