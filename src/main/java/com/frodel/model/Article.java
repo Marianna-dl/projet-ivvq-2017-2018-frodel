@@ -42,6 +42,9 @@ public class Article {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments ;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Question> questions ;
+
     private boolean isVisible = true;
 
     @AssertTrue

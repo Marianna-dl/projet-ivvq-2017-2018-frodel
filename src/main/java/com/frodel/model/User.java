@@ -37,6 +37,9 @@ public class User {
     @OneToMany(mappedBy = "creator") @JsonIgnore
     private List<Travel> travels = new ArrayList<>();
 
+    @OneToMany(mappedBy = "interrogator") @JsonIgnore
+    private List<Question> questions = new ArrayList<>();
+
     public User()
     {}
 
