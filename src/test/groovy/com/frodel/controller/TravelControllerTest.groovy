@@ -36,5 +36,13 @@ class TravelControllerTest extends Specification {
         1 * travelService.findTravelByName("Japan")
     }
 
+    def "test to find a travel with a given id by calling controller"() {
+
+        when: "requesting for a travel with the given id"
+        travelController.findTravelById(1)
+
+        then: "the request is performed"
+        1 * travelService.findTravelById(1)
+    }
 
 }

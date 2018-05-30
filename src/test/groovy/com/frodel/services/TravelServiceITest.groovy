@@ -107,6 +107,21 @@ class TravelServiceITest extends Specification{
         travel.name[0] == initialisationService.japanTravelName
     }
 
+    def "test finding a travel by its id"() {
+        given: "The instance of InitialisationService provided by the bootstrap object"
+        InitialisationService initialisationService = bootstrap.initialisationService
+
+
+        and: "1 travel id provided by the initialisation service"
+        Travel japanTravel = initialisationService.japanTravel
+
+        when: "requesting a travel"
+        Travel travel = travelService.findTravelById(japanTravel.id)
+
+        then : "the travel are the same id given by the initialisation service"
+        travel.id == japanTravel.id
+    }
+
 
 
 

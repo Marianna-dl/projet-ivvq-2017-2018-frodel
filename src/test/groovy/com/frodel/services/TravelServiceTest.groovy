@@ -62,4 +62,11 @@ class TravelServiceTest extends Specification{
         1 * travelRepository.findTravelByName("Mon voyage au Japon")
     }
 
+    def "test delegation of finding a travel by its id to the repository"() {
+        when: "requesting for a travel by its id"
+        travelService.findTravelById(1)
+
+        then: "the request is delegated to the travelRepository"
+        1 * travelRepository.findOne(1)
+    }
 }

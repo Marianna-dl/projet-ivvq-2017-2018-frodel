@@ -43,4 +43,8 @@ public class TravelService {
     public Iterable<Travel>  findTravelByName(String name) {
         return travelRepository.findTravelByName(name);
     }
+
+    public Travel findTravelById(Long id) {
+        return travelRepository.findOne(id);
+    }
 }
