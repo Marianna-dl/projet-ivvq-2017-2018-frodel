@@ -41,7 +41,7 @@ public class TravelController {
     }
 
     /**
-     * @api {get} /travel/:travelName
+     * @api {get} /travel/name/:travelName
      * @apiName findAllTravelsByName
      * @apiGroup Travel
      * @apiDescription find all travels with a given name
@@ -49,14 +49,14 @@ public class TravelController {
      * @apiParam {String} travelName The name of searched travel
      * @apiSuccess {Iterable<Travel>} the list of travels
      */
-    @RequestMapping("/travel/{travelName}")
+    @RequestMapping("/travel/name/{travelName}")
     public Iterable<Travel> findAllTravelsByName(@PathVariable  String travelName) {
         return travelService.findTravelByName(travelName);
     }
 
 
     /**
-     * @api {get} /travel/:idTravel
+     * @api {get} /travel/id/:idTravel
      * @apiName findTravelById
      * @apiGroup Travel
      * @apiDescription find a travel with a given id
@@ -64,7 +64,7 @@ public class TravelController {
      * @apiParam {Long} idTravel The id of searched travel
      * @apiSuccess {Travel} the travel
      */
-    @RequestMapping("/travel/{idTravel}")
+    @RequestMapping("/travel/id/{idTravel}")
     public Travel findTravelById(@PathVariable Long idTravel) {
         return travelService.findTravelById(idTravel);
     }
