@@ -122,6 +122,21 @@ class TravelServiceITest extends Specification{
         travel.id == japanTravel.id
     }
 
+    def "test finding all articles for a travel"() {
+        given: "The instance of InitialisationService provided by the bootstrap object"
+        InitialisationService initialisationService = bootstrap.initialisationService
+
+
+        and: "1 travel id provided by the initialisation service"
+        Travel japanTravel = initialisationService.japanTravel
+
+        when: "requesting a travel"
+        Iterable<Article> articles = travelService.findAllArticlesForTravel(japanTravel.id)
+
+        then : "the articles are the same id given by the initialisation service"
+        articles[0].id == initialisationService.articleJapan.id
+        articles[1].id == initialisationService.articleJapanStep1.id
+    }
 
 
 

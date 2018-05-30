@@ -95,4 +95,23 @@ public class Article {
         return name;
     }
 
+    public Long getBudget() {
+        return budget;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public List<Place> getPlaces() {
+        return places;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }

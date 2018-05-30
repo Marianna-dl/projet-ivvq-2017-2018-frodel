@@ -49,6 +49,7 @@ public class InitialisationService {
     private City galway;
 
     private Article articleJapan;
+    private Article articleJapanStep1;
     private Article articleIrelande;
 
     private Place tokyoPlace;
@@ -57,6 +58,11 @@ public class InitialisationService {
     private Place galwayPlace;
 
     private String japanTravelName = "Japan";
+
+
+    public Article getArticleJapanStep1() {
+        return articleJapanStep1;
+    }
 
     public String getJapanTravelName() {
         return japanTravelName;
@@ -88,6 +94,7 @@ public class InitialisationService {
         initCities();
         initPlaces();
         initPrincipalArticles();
+        initJapanSteps();
         initUsers();
         initTravels();
 
@@ -155,6 +162,26 @@ public class InitialisationService {
         initArticleIreland();
     }
 
+    private void initJapanSteps(){
+        initJapanArticleStep1();
+    }
+
+    private void initJapanArticleStep1() {
+        Place place = new Place();
+        place.setContinent(asie);
+        place.setCity(tokyo);
+        place.setCountry(japan);
+        placeService.savePlace(place);
+
+        articleJapanStep1 = new Article();
+        articleJapanStep1.setName("Première étape : Tokyo !");
+        articleJapanStep1.setStartDate(new GregorianCalendar(2018, 5, 1).getTime());
+        articleJapanStep1.setEndDate(new GregorianCalendar(2018, 5, 3).getTime());
+        articleJapanStep1.setContent("Ma première étape (3 jours), a été de visiter la superbe ville de Tokyo. A un prix raisonnable, on peut acheter des trucs intéressants ! ");
+        articleJapanStep1.setBudget(200l);
+        articleJapanStep1.setPlaces(Arrays.asList(place));
+    }
+
     private void initArticleIreland() {
         articleIrelande = new Article();
         articleIrelande.setName("Mon voyage en Irelande");
@@ -210,6 +237,7 @@ public class InitialisationService {
         japanTravel.setName("Japan");
         japanTravel.setCreator(totoUser);
         japanTravel.setPrincipalArticle(articleJapan);
+        japanTravel.getSteps().add(articleJapanStep1);
         travelService.saveTravel(japanTravel);
     }
 
