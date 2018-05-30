@@ -5,42 +5,37 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
- * This class represents a question
+ * This class represents an Answer
  */
 @Entity
-public class Question {
+public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String title;
     @NotNull
-    @Pattern(regexp = ".*\\?$")
     private String content;
 
     @NotNull
     @ManyToOne(cascade = CascadeType.PERSIST)
-    private User interrogator;
+    private User answerer;
 
-    @OneToMany(cascade = CascadeType.PERSIST)
-    private Answer answers;
+    @NotNull
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Question question;
 
     public Long getId() {
         return id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public void setContent(String content) {
         this.content = content;
     }
 
-    public void setInterrogator(User interrogator) {
-        this.interrogator = interrogator;
+    public void setAnswerer(User answerer) {
+        this.answerer = answerer;
     }
 
-    public void setAnswers(Answer answers) {
-        this.answers = answers;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 }

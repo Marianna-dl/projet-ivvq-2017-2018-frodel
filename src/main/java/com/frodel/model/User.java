@@ -40,6 +40,9 @@ public class User {
     @OneToMany(mappedBy = "interrogator") @JsonIgnore
     private List<Question> questions = new ArrayList<>();
 
+    @OneToMany(mappedBy = "answerer") @JsonIgnore
+    private List<Answer> answers = new ArrayList<>();
+
     public User()
     {}
 
