@@ -37,4 +37,15 @@ class TravelControllerITest extends Specification {
         body.contains(initialisationService.japanTravel.name)
         body.contains(initialisationService.irelandTravel.name)
     }
+
+    def "test to find all travels with a given name calling url"() {
+        given: "a travel name"
+        String name = initialisationService.japanTravelName
+
+        when: "find travel by name requested"
+        String body = this.restTemplate.getForObject("/travel/" + name, String.class);
+
+        then:"the result provides 1 travel"
+        body.contains(initialisationService.japanTravel.name)
+    }
 }

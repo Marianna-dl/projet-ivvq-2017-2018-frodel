@@ -6,6 +6,7 @@ import com.frodel.model.Travel;
 import com.frodel.services.TravelService;
 import com.frodel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -36,5 +37,17 @@ public class TravelController {
         return travelService.findAllTravels();
     }
 
-
+    /**
+     * @api {get} /travel/:travelName
+     * @apiName findAllTravelsByName
+     * @apiGroup Travel
+     * @apiDescription find all travels with a given name
+     *
+     * @apiParam {String} travelName The name of searched travel
+     * @apiSuccess {Iterable<Travel>} the list of travels
+     */
+    @RequestMapping("/travel/{travelName}")
+    public Iterable<Travel> findAllTravelsByName(@PathVariable  String travelName) {
+        return travelService.findTravelByName(travelName);
+    }
 }

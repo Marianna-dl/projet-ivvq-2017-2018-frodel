@@ -267,9 +267,6 @@ public class InitialisationService {
         continentRepository.save(europe);
     }
 
-    public Article getArticleJapan() {
-        return articleJapan;
-    }
 
     public Travel getIrelandTravel() {
         return irelandTravel;
