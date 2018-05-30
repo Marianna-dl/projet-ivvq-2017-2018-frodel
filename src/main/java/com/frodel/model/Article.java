@@ -87,8 +87,12 @@ public class Article {
         this.content = content;
     }
 
-
     public void setTravel(Travel travel) {
         this.travel = travel;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }
