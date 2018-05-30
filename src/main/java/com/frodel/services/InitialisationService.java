@@ -56,6 +56,11 @@ public class InitialisationService {
     private Place dublinPlace;
     private Place galwayPlace;
 
+    private String japanTravelName = "Japan";
+
+    public String getJapanTravelName() {
+        return japanTravelName;
+    }
 
     public void initData() {
         initContinent();
@@ -180,7 +185,7 @@ public class InitialisationService {
         travelService.saveTravel(irelandTravel);
     }
 
-    private void initTravelJapan() {
+    public void initTravelJapan() {
         japanTravel = new Travel();
         japanTravel.setName("Japan");
         japanTravel.setCreator(totoUser);
