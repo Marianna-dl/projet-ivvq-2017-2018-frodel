@@ -16,8 +16,18 @@ public class CityController {
     @Autowired
     private CityService cityService;
 
+    /**
+     * @api {get} /city/{name}
+     * @apiName findCityByName
+     * @apiGroup City
+     * @apiDescription Find a city by its name
+     *
+     * @apiParam {String} name The name of city
+     *
+     * @apiSuccess {City} city The city found
+     */
     @RequestMapping("/city/{name}")
-    public City getCity(@PathVariable String name) {
+    public City findCityByName(@PathVariable String name) {
         return cityService.findCityByName(name);
     }
 }

@@ -22,7 +22,7 @@ class CityControllerTest extends Specification {
         String cityName = "name"
 
         when: "get a country"
-        cityController.getCity(cityName)
+        cityController.findCityByName(cityName)
 
         then: "the recover name is good"
         1 * cityService.findCityByName(cityName)
