@@ -19,11 +19,31 @@ public class ContinentController {
     @Autowired
     private ContinentService continentService;
 
+    /**
+     * @api {get} /continent/{name}
+     * @apiName getContinent
+     * @apiGroup Continent
+     * @apiDescription Find a continent by its name
+     *
+     * @apiParam {String} name The name of the continent
+     *
+     * @apiSuccess {Continent} continent The continent found
+     */
     @RequestMapping("/continent/{name}")
     public Continent getContinent(@PathVariable String name) {
         return continentService.findContinentByName(name);
     }
 
+    /**
+     * @api {get} /countries/{name}
+     * @apiName findCountriesOfContinent
+     * @apiGroup Continent
+     * @apiDescription Find countries of a continent
+     *
+     * @apiParam {String} name The name of the continent
+     *
+     * @apiSuccess {Country[]} countries All countries of a continent
+     */
     @RequestMapping("/countries/{name}")
     public List<Country> findCountriesOfContinent(@PathVariable String name) { return  continentService.findCountriesOfContinent(name); }
 
@@ -31,7 +51,7 @@ public class ContinentController {
      * @api {get} /continents
      * @apiName findAllContinents
      * @apiGroup Continent
-     * @apiDescription find all continents
+     * @apiDescription Find all continents
      *
      * @apiSuccess {Iterable[]} continents All continents
      */
