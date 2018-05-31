@@ -1,7 +1,7 @@
 package com.frodel.controller
 
-import com.frodel.controller.UserController
 import com.frodel.repositories.UserRepository
+import com.frodel.services.UserService
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
@@ -11,23 +11,41 @@ import spock.lang.Specification
 @SpringBootTest
 class UserControllerTest extends Specification {
 
-    UserRepository utilisateurRepository
-    UserController utilisateurController
+    UserRepository userRepository
+    UserController userController
+    UserService userService
     void setup() {
-        utilisateurRepository = Mock()
-        utilisateurController = new UserController(
-                utilisateurRepository: utilisateurRepository
+        userService = Mock()
+        userRepository = Mock()
+        userController = new UserController(
+                userService: userService
         )
     }
 
-    def "test ajout d'un utilisateur "() {
-        when: "une requête d'ajout est déclenchée"
-        utilisateurController.addUser("frodel","frodeltest","frodel@frodel.fr")
+    def "add a user by calling controller "() {
+        when: "adding a user"
+        userController.addUser("frodel","frodeltest","frodel@frodel.fr")
 
-        then: "différentes actions sur les différents repository sont déclenchées"
-        1 * utilisateurRepository.save(_)
+        then: "the request is performed"
+        1 * userService.saveUser(_)
+    }
+
+    def "test to find a user with a given pseudo by calling controller"() {
+
+        when: "requesting for a user with the given pseudo"
+        userController.findUserByPseudo("frodel")
+
+        then: "the request is performed"
+        1 * userService.findUserByPseudo("frodel")
     }
 
 
+    def "test to find all users by calling controller"() {
 
+        when: "requesting for all users"
+        userController.findAllUsers()
+
+        then: "the request is performed"
+        1 * userService.findAllUsers()
+    }
 }
