@@ -576,7 +576,7 @@
       "examples": [
         {
           "title": "Request-Example:",
-          "content": "{\n  \"pseudo\" : [{\"toto\"}, {\"titi\"}]\n}",
+          "content": "{\n  \"userPseudo\" : [{\"toto\"}, {\"titi\"}]\n}",
           "type": "json"
         }
       ],
