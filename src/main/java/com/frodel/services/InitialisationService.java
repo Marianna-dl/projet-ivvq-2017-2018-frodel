@@ -1,15 +1,14 @@
 package com.frodel.services;
 
 import com.frodel.model.*;
-import com.frodel.repositories.CityRepository;
-import com.frodel.repositories.CommentRepository;
-import com.frodel.repositories.ContinentRepository;
-import com.frodel.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 @Service
 @Transactional
@@ -24,38 +23,43 @@ public class InitialisationService {
     @Autowired
     private CommentService commentService;
 
+    @Autowired
+    private CityService cityService;
+
+    @Autowired
+    private CountryService countryService;
+
+    @Autowired
+    private ContinentService continentService;
+
+    @Autowired
+    private PlaceService placeService;
+
     private User totoUser;
     private User titiUser;
 
     private Travel japanTravel;
-    private Comment totoComment;
-
-    private Comment titiComment;
     private Travel irelandTravel;
 
-    @Autowired
-    private CityRepository cityRepository;
-    @Autowired
-    private CountryRepository countryRepository;
-    @Autowired
-    private ContinentRepository continentRepository;
-    @Autowired
-    private PlaceService placeService;
-
-    @Autowired
-    private CommentRepository commentRepository;
-
+    private Comment totoComment;
+    private Comment titiComment;
 
     private Continent europe;
     private Continent asie;
 
     private Country japan;
     private Country ireland;
+    private Country france;
+    private Country espagne;
 
     private City tokyo;
     private City kyoto;
     private City dublin;
     private City galway;
+    private City toulouse;
+    private City paris;
+    private City madrid;
+    private City barcelone;
 
     private Article articleJapan;
     private Article articleJapanStep1;
@@ -69,36 +73,6 @@ public class InitialisationService {
     private String japanTravelName = "Japan";
 
     private String totoUserPseudo = "toto";
-
-    public Article getArticleJapanStep1() {
-        return articleJapanStep1;
-    }
-
-    public String getJapanTravelName() {
-        return japanTravelName;
-    }
-
-    public String getTotoUserPseudo() {return totoUserPseudo;}
-
-    public Article getArticleJapan() {
-        return articleJapan;
-    }
-
-    public Article getArticleIrelande() {
-        return articleIrelande;
-    }
-
-    public Continent getAsie() {
-        return asie;
-    }
-
-    public Country getJapan() {
-        return japan;
-    }
-
-    public City getTokyo() {
-        return tokyo;
-    }
 
     public void initData() {
         initContinent();
@@ -162,25 +136,30 @@ public class InitialisationService {
         initCityKyoto();
         initCityDublin();
         initCityGalway();
+        initCityToulouse();
+        initCityParis();
+        initCityMadrid();
+        initCityBarcelone();
     }
 
     private void initCountries() {
         initCountryJapan();
         initCountryIreland();
+        initCountryFrance();
+        initCountryEspagne();
     }
-
 
     private void initPrincipalArticles() {
         initArticleJapan();
         initArticleIreland();
     }
 
-    private void initComments(){
+    private void initComments() {
         initTotoComment();
         initTitiComment();
     }
 
-    private void initJapanSteps(){
+    private void initJapanSteps() {
         initJapanArticleStep1();
     }
 
@@ -250,7 +229,7 @@ public class InitialisationService {
         travelService.saveTravel(irelandTravel);
     }
 
-    public void initTravelJapan() {
+    private void initTravelJapan() {
         japanTravel = new Travel();
         japanTravel.setName("Japan");
         japanTravel.setCreator(totoUser);
@@ -259,7 +238,7 @@ public class InitialisationService {
         travelService.saveTravel(japanTravel);
     }
 
-    public void initTotoComment() {
+    private void initTotoComment() {
         totoComment = new Comment();
         totoComment.setTitle("toto comment");
         totoComment.setCommentator(totoUser);
@@ -268,7 +247,7 @@ public class InitialisationService {
         commentService.saveComment(totoComment);
     }
 
-    public void initTitiComment() {
+    private void initTitiComment() {
         titiComment = new Comment();
         titiComment.setTitle("titi comment");
         titiComment.setCommentator(titiUser);
@@ -277,90 +256,170 @@ public class InitialisationService {
         commentService.saveComment(titiComment);
     }
 
-    private void initCityTokyo()
-    {
+    private void initCityTokyo() {
         tokyo = new City();
         tokyo.setName("Tokyo");
-        cityRepository.save(tokyo);
+        cityService.saveCity(tokyo);
     }
 
-    private void initCityKyoto()
-    {
+    private void initCityKyoto() {
         kyoto = new City();
         kyoto.setName("Kyoto");
-        cityRepository.save(kyoto);
+        cityService.saveCity(kyoto);
     }
 
-    private void initCountryJapan()
-    {
+    private void initCountryJapan() {
         japan = new Country();
         japan.setName("Japon");
         List<City> cities = new ArrayList<>();
         cities.add(tokyo);
         cities.add(kyoto);
         japan.setCities(cities);
-        countryRepository.save(japan);
+        countryService.saveCountry(japan);
     }
 
-    public Travel getJapanTravel() {
-        return japanTravel;
-    }
-
-    private void initCityDublin()
-    {
+    private void initCityDublin() {
         dublin = new City();
         dublin.setName("Dublin");
-        cityRepository.save(dublin);
+        cityService.saveCity(dublin);
     }
 
-    private void initCityGalway()
-    {
+    private void initCityGalway() {
         galway = new City();
         galway.setName("Galway");
-        cityRepository.save(galway);
+        cityService.saveCity(galway);
     }
 
-    private void initCountryIreland()
-    {
+    private void initCountryIreland() {
         ireland = new Country();
         ireland.setName("Irelande");
         List<City> cities = new ArrayList<>();
         cities.add(dublin);
         cities.add(galway);
         ireland.setCities(cities);
-        countryRepository.save(ireland);
+        countryService.saveCountry(ireland);
     }
 
-    private void initContinentAsie()
-    {
+    private void initContinentAsie() {
         asie = new Continent();
         asie.setName("Asie");
         List<Country> countries = new ArrayList<>();
         countries.add(japan);
         asie.setCountries(countries);
-        continentRepository.save(asie);
+        continentService.saveContinent(asie);
     }
 
-    private void initContinentEurope()
-    {
+    private void initContinentEurope() {
         europe = new Continent();
         europe.setName("Europe");
         List<Country> countries = new ArrayList<>();
         countries.add(ireland);
+        countries.add(france);
         europe.setCountries(countries);
-        continentRepository.save(europe);
+        continentService.saveContinent(europe);
     }
 
+    private void initCityToulouse() {
+        toulouse = new City();
+        toulouse.setName("Toulouse");
+        cityService.saveCity(toulouse);
+    }
+
+    private void initCityParis() {
+        paris = new City();
+        paris.setName("Paris");
+        cityService.saveCity(paris);
+    }
+
+    private void initCountryFrance() {
+        france = new Country();
+        france.setName("France");
+        List<City> cities = new ArrayList<>();
+        cities.add(toulouse);
+        cities.add(paris);
+        france.setCities(cities);
+        countryService.saveCountry(france);
+    }
+
+    private void initCityMadrid() {
+        madrid = new City();
+        madrid.setName("Madrid");
+        cityService.saveCity(madrid);
+    }
+
+    private void initCityBarcelone() {
+        barcelone = new City();
+        barcelone.setName("Barcelone");
+        cityService.saveCity(barcelone);
+    }
+
+    private void initCountryEspagne() {
+        espagne = new Country();
+        espagne.setName("Espagne");
+        List<City> cities = new ArrayList<>();
+        cities.add(madrid);
+        cities.add(barcelone);
+        espagne.setCities(cities);
+        countryService.saveCountry(espagne);
+    }
 
     public Travel getIrelandTravel() {
         return irelandTravel;
     }
 
+    public Travel getJapanTravel() {
+        return japanTravel;
+    }
+
     public User getTotoUser() {
         return totoUser;
     }
-    public Comment getTotoComment() {return totoComment;}
-    public Comment getTitiComment() {return titiComment;}
 
-    public User getTitiUser() {return titiUser;}
+    public User getTitiUser() {
+        return titiUser;
+    }
+
+    public Comment getTotoComment() {
+        return totoComment;
+    }
+
+    public Comment getTitiComment() {
+        return titiComment;
+    }
+
+    public City getMadrid() {
+        return madrid;
+    }
+
+    public Article getArticleJapanStep1() {
+        return articleJapanStep1;
+    }
+
+    public String getJapanTravelName() {
+        return japanTravelName;
+    }
+
+    public String getTotoUserPseudo() {
+        return totoUserPseudo;
+    }
+
+    public Article getArticleJapan() {
+        return articleJapan;
+    }
+
+    public Article getArticleIrelande() {
+        return articleIrelande;
+    }
+
+    public Continent getAsie() {
+        return asie;
+    }
+
+    public Country getJapan() {
+        return japan;
+    }
+
+    public City getTokyo() {
+        return tokyo;
+    }
 }

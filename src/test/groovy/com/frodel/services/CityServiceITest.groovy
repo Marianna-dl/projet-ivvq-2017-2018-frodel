@@ -42,5 +42,19 @@ class CityServiceITest extends Specification{
 
     }
 
+    def "test find a valid city by its name"() {
+        given: "an valid city name"
+        String cityName = "Madrid"
+
+        when: "the city is find"
+        City city = cityService.findCityByName(cityName)
+
+        then: "the city has an id"
+        city.id != null
+
+        and: "the country has a name"
+        city.name == cityName
+    }
+
 
 }
