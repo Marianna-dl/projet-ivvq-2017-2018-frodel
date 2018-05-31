@@ -22,7 +22,7 @@ public class ArticleController {
      * @apiDescription find all articles
      *
      *
-     * @apiSuccess {Article[]} articles the list of articles
+     * @apiSuccess (Success 200) {Article[]} articles the list of articles
      */
     @RequestMapping("/articles")
     public Iterable<Article> findAllArticles() {

@@ -22,7 +22,14 @@
             "description": "<p>the list of articles</p>"
           }
         ]
-      }
+      },
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.0 200 OK\n{\n\"request_id\": \"ad506913-a073-4d23-9f95-388d1c1e2c46\",\n\"result\": 0.3606252123151169\n}",
+          "type": "js"
+        }
+      ]
     },
     "version": "0.0.0",
     "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/ArticleController.java",
