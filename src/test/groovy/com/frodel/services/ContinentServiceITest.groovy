@@ -2,6 +2,7 @@ package com.frodel.services
 
 import com.frodel.Bootstrap
 import com.frodel.TravexApplication
+import com.frodel.model.Article
 import com.frodel.model.City
 import com.frodel.model.Continent
 import com.frodel.model.Country
@@ -127,6 +128,26 @@ class ContinentServiceITest extends Specification{
         countries[0].cities.size() == initialisationService.ireland.cities.size()
         countries[1].cities.size() == initialisationService.france.cities.size()
         countries[2].cities.size() == initialisationService.espagne.cities.size()
+    }
+
+    def "test getting all continents"() {
+        given: "2 continents provided by the initialisation service"
+        InitialisationService initialisationService = bootstrap.initialisationService
+        initialisationService.europe
+        initialisationService.asie
+
+        when: "requesting all continent"
+        Iterable<Continent> continents = continentService.findAllContinents()
+
+        then : "continent are the same given by the initialisation service"
+        continents[0].id == initialisationService.asie.id
+        continents[1].id == initialisationService.europe.id
+
+        continents[0].name == initialisationService.asie.name
+        continents[1].name == initialisationService.europe.name
+
+        continents[0].countries.size() == initialisationService.asie.countries.size()
+        continents[1].countries.size() == initialisationService.europe.countries.size()
     }
 
 }
