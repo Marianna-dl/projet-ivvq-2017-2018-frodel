@@ -2,6 +2,7 @@ package com.frodel.services
 
 import com.frodel.Bootstrap
 import com.frodel.TravexApplication
+import com.frodel.model.Article
 import com.frodel.model.City
 import com.frodel.model.Country
 import com.frodel.repositories.CountryRepository
@@ -110,5 +111,16 @@ class CountryServiceITest extends Specification{
         and: "the country has a name"
         cities[0].id == initialisationService.toulouse.id
         cities[1].id == initialisationService.paris.id
+    }
+
+    def "test getting all countries"() {
+        given: "The instance number of countries in the bootstrap object"
+        int countryNumber = 8
+
+        when: "requesting all articles"
+        Iterable<Country> countries = countryService.findAllCountries()
+
+        then : "the articles are the same given by the initialisation service"
+        countries.size() == countryNumber
     }
 }
