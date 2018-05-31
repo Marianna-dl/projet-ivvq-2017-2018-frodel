@@ -17,11 +17,12 @@ public class ContinentService {
 
     /**
      * Save the given continent
+     *
      * @param continent the continent
      * @return the saved continent
      */
     public Continent saveContinent(Continent continent) {
-        return continentRepository.save(continent) ;
+        return continentRepository.save(continent);
     }
 
     /**
@@ -37,10 +38,18 @@ public class ContinentService {
     public List<Country> findCountriesOfContinent(String name) {
         List<Country> countries = null;
         Continent continent = findContinentByName(name);
-        if (continent != null)
-        {
+        if (continent != null) {
             countries = continent.getCountries();
         }
-        return  countries;
+        return countries;
+    }
+
+    /**
+     * Find all continents
+     *
+     * @return All continents
+     */
+    public Iterable<Continent> findAllContinents() {
+        return continentRepository.findAll();
     }
 }

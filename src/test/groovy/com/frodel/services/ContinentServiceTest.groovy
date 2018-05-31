@@ -54,4 +54,12 @@ class ContinentServiceTest extends Specification {
         1 * continentRepository.findContinentByName(continentName)
     }
 
+    def "test delegation of finding all continents to the repository"() {
+        when: "requesting for all continents"
+        continentService.findAllContinents()
+
+        then: "the request is delegated to the travelRepository"
+        1 * continentRepository.findAll()
+    }
+
 }
