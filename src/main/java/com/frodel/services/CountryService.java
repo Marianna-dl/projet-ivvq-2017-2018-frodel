@@ -1,10 +1,12 @@
 package com.frodel.services;
 
+import com.frodel.model.City;
 import com.frodel.model.Country;
 import com.frodel.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,5 +33,19 @@ public class CountryService {
      */
     public Country findCountryByName(String name) {
         return countryRepository.findCountryByName(name);
+    }
+
+    /**
+     * Find cities of country by its name
+     * @param name The name of the country
+     * @return Cities of country
+     */
+    public List<City> findCitiesOfCountry(String name) {
+        List<City> cities = null;
+        Country country = countryRepository.findCountryByName(name);
+        if (country != null){
+            cities = country.getCities();
+        }
+        return cities;
     }
 }

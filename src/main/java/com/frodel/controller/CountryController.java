@@ -1,10 +1,14 @@
 package com.frodel.controller;
 
+import com.frodel.model.City;
 import com.frodel.model.Country;
-import com.frodel.repositories.CountryRepository;
 import com.frodel.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Controller of a country
@@ -29,6 +33,22 @@ public class CountryController {
     public Country findCountryByName(@PathVariable String name)
     {
         return countryService.findCountryByName(name);
+    }
+
+    /**
+     * @api {get} /cities/{name}
+     * @apiName findCitiesOfCountry
+     * @apiGroup Country
+     * @apiDescription find cities of country
+     *
+     * @apiParam {String} name The name of country
+     *
+     * @apiSuccess {List<City>} cities Cities found for the country
+     */
+    @RequestMapping("/cities/{name}")
+    public List<City> findCitiesOfCountry(@PathVariable String name)
+    {
+        return countryService.findCitiesOfCountry(name);
     }
 
 }

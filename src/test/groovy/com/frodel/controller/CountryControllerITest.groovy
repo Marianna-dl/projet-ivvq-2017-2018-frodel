@@ -1,5 +1,6 @@
 package com.frodel.controller
 
+import com.frodel.model.City
 import com.frodel.model.Country
 import com.frodel.services.InitialisationService
 import org.springframework.beans.factory.annotation.Autowired
@@ -35,5 +36,22 @@ class CountryControllerITest extends Specification {
 
         and:
         country.cities.size() == initialisationService.france.cities.size()
+    }
+
+    void "get a cities of a country by calling url"() {
+        when: "get cities requested"
+        List<City> cities = this.restTemplate.getForObject("/cities/France", List.class)
+
+        then: "recover cities are the same that cities of initialisationService"
+        cities[0].id == initialisationService.toulouse.id
+
+        and:
+        cities[0].name == initialisationService.toulouse.name
+
+        and:
+        cities[1].id == initialisationService.paris.id
+
+        and:
+        cities[1].name == initialisationService.paris.name
     }
 }

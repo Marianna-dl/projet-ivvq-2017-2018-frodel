@@ -14,15 +14,25 @@ class CountryControllerTest extends Specification {
         countryController = new CountryController(countryService: countryService)
     }
 
-    @Unroll
-    void "get a country by calling controller"() {
+    def "get a country by calling controller"() {
         given: "a country name"
         String countryName = "name"
 
         when: "get a country"
         countryController.findCountryByName(countryName)
 
-        then: "the recover name is good"
+        then: "the search is delegated to the countryService"
         1 * countryService.findCountryByName(countryName)
+    }
+
+    def "get a cities of a country by calling controller"() {
+        given: "a country name"
+        String countryName = "name"
+
+        when: "get cities"
+        countryController.findCitiesOfCountry(countryName)
+
+        then: "the search is delegated to the countryService"
+        1 * countryService.findCitiesOfCountry(countryName)
     }
 }

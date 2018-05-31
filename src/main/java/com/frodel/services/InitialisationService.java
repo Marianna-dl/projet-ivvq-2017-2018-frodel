@@ -177,4 +177,12 @@ public class InitialisationService {
     public Country getFrance() {
         return france;
     }
+
+    public City getToulouse() {
+        return toulouse;
+    }
+
+    public City getParis() {
+        return paris;
+    }
 }
