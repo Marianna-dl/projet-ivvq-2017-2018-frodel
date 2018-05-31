@@ -36,4 +36,13 @@ class ContinentControllerTest extends Specification {
         then: "the search is delegated to the continentService"
         1 * continentService.findCountriesOfContinent(continentName)
     }
+
+    def "test to find all continents by calling controller"() {
+
+        when: "requesting for all continents"
+        continentController.findAllContinents()
+
+        then: "the request is performed"
+        1 * continentService.findAllContinents()
+    }
 }

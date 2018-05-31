@@ -27,4 +27,6 @@ public class ContinentController {
     @RequestMapping("/countries/{name}")
     public List<Country> findCountriesOfContinent(@PathVariable String name) { return  continentService.findCountriesOfContinent(name); }
 
+    public Iterable<Continent> findAllContinents(String name) { return continentService.findAllContinents(); }
+
 }
