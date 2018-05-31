@@ -68,6 +68,7 @@ public class InitialisationService {
 
     private String japanTravelName = "Japan";
 
+    private String totoUserPseudo = "toto";
 
     public Article getArticleJapanStep1() {
         return articleJapanStep1;
@@ -76,6 +77,8 @@ public class InitialisationService {
     public String getJapanTravelName() {
         return japanTravelName;
     }
+
+    public String getTotoUserPseudo() {return totoUserPseudo;}
 
     public Article getArticleJapan() {
         return articleJapan;
