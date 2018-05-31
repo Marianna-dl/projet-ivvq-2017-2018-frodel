@@ -44,4 +44,12 @@ class CityServiceTest extends Specification{
         1 * cityRepository.findCityByName(cityName)
     }
 
+    def "test delegation of finding all cities to the repository"() {
+        when: "requesting for all cities"
+        cityService.findAllCities()
+
+        then: "the request is delegated to the travelRepository"
+        1 * cityRepository.findAll()
+    }
+
 }
