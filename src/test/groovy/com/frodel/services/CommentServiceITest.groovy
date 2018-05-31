@@ -62,4 +62,22 @@ class CommentServiceITest extends Specification{
         then : "the Comment are the same id given by the initialisation service"
         comment.id == totoComment.id
     }
+
+    def "test getting all comments"() {
+        given: "The instance of InitialisationService provided by the bootstrap object"
+        InitialisationService initialisationService = bootstrap.initialisationService
+
+        and: "2 comments provided by the initialisation service"
+        initialisationService.totoComment
+        initialisationService.titiComment
+
+        when: "requesting all comments"
+        Iterable<Comment> commentsIter = commentService.findAllComments()
+        def comments = commentsIter as List<Comment>
+
+        then : "the comment are the same given by the initialisation service"
+        comments[0].content == initialisationService.totoComment.content
+        comments[1].content == initialisationService.titiComment.content
+    }
+
 }

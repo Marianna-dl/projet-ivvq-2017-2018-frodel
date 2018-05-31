@@ -29,6 +29,8 @@ public class InitialisationService {
 
     private Travel japanTravel;
     private Comment totoComment;
+
+    private Comment titiComment;
     private Travel irelandTravel;
 
     @Autowired
@@ -104,7 +106,7 @@ public class InitialisationService {
         initJapanSteps();
         initUsers();
         initTravels();
-        initTotoComment();
+        initComments();
 
     }
 
@@ -168,6 +170,11 @@ public class InitialisationService {
     private void initPrincipalArticles() {
         initArticleJapan();
         initArticleIreland();
+    }
+
+    private void initComments(){
+        initTotoComment();
+        initTitiComment();
     }
 
     private void initJapanSteps(){
@@ -258,6 +265,15 @@ public class InitialisationService {
         commentService.saveComment(totoComment);
     }
 
+    public void initTitiComment() {
+        titiComment = new Comment();
+        titiComment.setTitle("titi comment");
+        titiComment.setCommentator(titiUser);
+        titiComment.setMark((long) 1);
+        titiComment.setContent("c'est un comment de titi");
+        commentService.saveComment(titiComment);
+    }
+
     private void initCityTokyo()
     {
         tokyo = new City();
@@ -341,4 +357,5 @@ public class InitialisationService {
         return totoUser;
     }
     public Comment getTotoComment() {return totoComment;}
+    public Comment getTitiComment() {return titiComment;}
 }

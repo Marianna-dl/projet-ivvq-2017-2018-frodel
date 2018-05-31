@@ -35,4 +35,13 @@ class CommentControllerTest extends Specification {
         1 * commentService.findCommentById(1)
     }
 
+    def "test to find all comments by calling controller"() {
+
+        when: "requesting for all comments"
+        commentController.findAllComments()
+
+        then: "the request is performed"
+        1 * commentService.findAllComments()
+    }
+
 }

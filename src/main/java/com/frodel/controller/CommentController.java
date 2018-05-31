@@ -56,4 +56,18 @@ public class CommentController {
         return commentService.findCommentById(idComment);
     }
 
+    /**
+     * @api {get} /comments/
+     * @apiName findAllComments
+     * @apiGroup Comment
+     * @apiDescription find all comments
+     *
+     *
+     * @apiSuccess {Iterable<Comment>} the list of comments
+     */
+    @RequestMapping("/comments")
+    public Iterable<Comment> findAllComments() {
+        return commentService.findAllComments();
+    }
+
 }

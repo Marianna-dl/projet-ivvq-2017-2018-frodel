@@ -26,4 +26,8 @@ public class CommentService {
     public Comment findCommentById(Long id) {
         return commentRepository.findOne(id);
     }
+
+    public Iterable<Comment> findAllComments() {
+        return commentRepository.findAll();
+    }
 }

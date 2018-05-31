@@ -46,4 +46,12 @@ class CommentServiceTest extends Specification {
         1 * commentRepository.findOne(1)
     }
 
+    def "test delegation of finding all comments to the repository"() {
+        when: "requesting for all comments"
+        commentService.findAllComments()
+
+        then: "the request is delegated to the commentRepository"
+        1 * commentRepository.findAll()
+    }
+
 }

@@ -45,4 +45,14 @@ class CommentControllerITest extends Specification {
         then:"the result provides 1 comment"
         body.contains(initialisationService.totoComment.content)
     }
+
+    def "test to find all comments by calling url"() {
+
+        when: "find comments requested"
+        String body = this.restTemplate.getForObject("/comments", String.class);
+
+        then:"the result provides 2 comments"
+        body.contains(initialisationService.totoComment.content)
+        body.contains(initialisationService.titiComment.content)
+    }
 }
