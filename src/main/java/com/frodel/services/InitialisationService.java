@@ -361,4 +361,6 @@ public class InitialisationService {
     }
     public Comment getTotoComment() {return totoComment;}
     public Comment getTitiComment() {return titiComment;}
+
+    public User getTitiUser() {return titiUser;}
 }

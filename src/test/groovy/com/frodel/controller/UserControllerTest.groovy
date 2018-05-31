@@ -40,4 +40,12 @@ class UserControllerTest extends Specification {
     }
 
 
+    def "test to find all users by calling controller"() {
+
+        when: "requesting for all users"
+        userController.findAllUsers()
+
+        then: "the request is performed"
+        1 * userService.findAllUsers()
+    }
 }
