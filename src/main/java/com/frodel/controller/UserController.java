@@ -35,7 +35,12 @@ public class UserController {
 
 
     /**
-     * @api {get} /user/pseudo/:userPseudo
+     * @api {get} /user/pseudo/{userPseudo}
+     * @apiSampleRequest /user/pseudo/toto
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "userPseudo" : [{"toto"}, {"titi"}]
+     *     }
      * @apiName findUserByPseudo
      * @apiGroup User
      * @apiDescription find user with a given pseudo
@@ -43,7 +48,7 @@ public class UserController {
      * @apiParam {String} userPseudo The pseudo of searched user
      * @apiSuccess {User} the user
      */
-    @RequestMapping("/user/pseudo/{pseudo}")
+    @RequestMapping("/user/pseudo/{userPseudo}")
     public User findUserByPseudo(@PathVariable  String userPseudo) {
         return userService.findUserByPseudo(userPseudo);
     }
@@ -51,6 +56,7 @@ public class UserController {
 
     /**
      * @api {get} /users/
+     * @apiSampleRequest /users/
      * @apiName findAllUsers
      * @apiGroup User
      * @apiDescription find all users

@@ -44,7 +44,12 @@ public class CommentController {
 
 
     /**
-     * @api {get} /comment/id/:idComment
+     * @api {get} /comment/id/{idComment}
+     * @apiSampleRequest /comment/id/1
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "idComment" : [{"1"}, {"2"}]
+     *     }
      * @apiName findCommentById
      * @apiGroup Comment
      * @apiDescription find a comment with a given id
@@ -59,6 +64,7 @@ public class CommentController {
 
     /**
      * @api {get} /comments/
+     * @apiSampleRequest /comments/
      * @apiName findAllComments
      * @apiGroup Comment
      * @apiDescription find all comments

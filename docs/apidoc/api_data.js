@@ -22,18 +22,60 @@ define({ "api": [
             "description": "<p>the list of articles</p>"
           }
         ]
-      },
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.0 200 OK\n{\n\"request_id\": \"ad506913-a073-4d23-9f95-388d1c1e2c46\",\n\"result\": 0.3606252123151169\n}",
-          "type": "js"
-        }
-      ]
+      }
     },
     "version": "0.0.0",
     "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/ArticleController.java",
     "groupTitle": "Article"
+  },
+  {
+    "type": "get",
+    "url": "/city/{name}/",
+    "title": "",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/city/Kyoto"
+      }
+    ],
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"name\" : [{\"Kyoto\"}, {\"Tokyo\"}, {\"Galway\"}]\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The name of city</p>"
+          }
+        ]
+      }
+    },
+    "name": "findCityByName",
+    "group": "City",
+    "description": "<p>Find a city by its name</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "City",
+            "optional": false,
+            "field": "city",
+            "description": "<p>The city found</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/CityController.java",
+    "groupTitle": "City"
   },
   {
     "type": "post",
@@ -88,6 +130,11 @@ define({ "api": [
     "type": "get",
     "url": "/comments/",
     "title": "",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/comments/"
+      }
+    ],
     "name": "findAllComments",
     "group": "Comment",
     "description": "<p>find all comments</p>",
@@ -106,21 +153,25 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/CommentController.java",
-    "groupTitle": "Comment",
-    "sampleRequest": [
-      {
-        "url": "https://travex.herokuapp.com/comments/"
-      }
-    ]
+    "groupTitle": "Comment"
   },
   {
     "type": "get",
-    "url": "/comment/id/:idComment",
+    "url": "/comment/id/{idComment}",
     "title": "",
-    "name": "findCommentById",
-    "group": "Comment",
-    "description": "<p>find a comment with a given id</p>",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/comment/id/1"
+      }
+    ],
     "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"idComment\" : [{\"1\"}, {\"2\"}]\n}",
+          "type": "json"
+        }
+      ],
       "fields": {
         "Parameter": [
           {
@@ -133,6 +184,9 @@ define({ "api": [
         ]
       }
     },
+    "name": "findCommentById",
+    "group": "Comment",
+    "description": "<p>find a comment with a given id</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -148,21 +202,123 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/CommentController.java",
-    "groupTitle": "Comment",
-    "sampleRequest": [
-      {
-        "url": "https://travex.herokuapp.com/comment/id/:idComment"
-      }
-    ]
+    "groupTitle": "Comment"
   },
   {
     "type": "get",
-    "url": "/travel/articles/:idTravel",
+    "url": "/cities/{name}",
     "title": "",
-    "name": "findAllArticles",
-    "group": "Travel",
-    "description": "<p>find all articles of a travel with a given travel id</p>",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/cities/Japon"
+      }
+    ],
     "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"name\" : [{\"Japon\"}, {\"Irelande\"}, {\"France\"}]\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The name of country</p>"
+          }
+        ]
+      }
+    },
+    "name": "findCitiesOfCountry",
+    "group": "Country",
+    "description": "<p>find cities of country</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "City[]",
+            "optional": false,
+            "field": "cities",
+            "description": "<p>Cities found for the country</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/CountryController.java",
+    "groupTitle": "Country"
+  },
+  {
+    "type": "get",
+    "url": "/country/{name}",
+    "title": "",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/country/Japon"
+      }
+    ],
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"name\" : [{\"Japon\"}, {\"Irelande\"}, {\"France\"}]\n}",
+          "type": "json"
+        }
+      ],
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>The name of country to find</p>"
+          }
+        ]
+      }
+    },
+    "name": "findCountryByName",
+    "group": "Country",
+    "description": "<p>find a country by its name</p>",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Country",
+            "optional": false,
+            "field": "country",
+            "description": "<p>the country found</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/CountryController.java",
+    "groupTitle": "Country"
+  },
+  {
+    "type": "get",
+    "url": "/travel/articles/{idTravel}",
+    "title": "",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/travel/articles/1"
+      }
+    ],
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"id\" : [{\"1\"}, {\"2\"}]\n}",
+          "type": "json"
+        }
+      ],
       "fields": {
         "Parameter": [
           {
@@ -175,6 +331,9 @@ define({ "api": [
         ]
       }
     },
+    "name": "findAllArticles",
+    "group": "Travel",
+    "description": "<p>find all articles of a travel with a given travel id</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -190,17 +349,17 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/TravelController.java",
-    "groupTitle": "Travel",
-    "sampleRequest": [
-      {
-        "url": "https://travex.herokuapp.com/travel/articles/:idTravel"
-      }
-    ]
+    "groupTitle": "Travel"
   },
   {
     "type": "get",
     "url": "/travels/",
     "title": "",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/travels/"
+      }
+    ],
     "name": "findAllTravels",
     "group": "Travel",
     "description": "<p>find all travels</p>",
@@ -219,21 +378,25 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/TravelController.java",
-    "groupTitle": "Travel",
-    "sampleRequest": [
-      {
-        "url": "https://travex.herokuapp.com/travels/"
-      }
-    ]
+    "groupTitle": "Travel"
   },
   {
     "type": "get",
-    "url": "/travel/name/:travelName",
+    "url": "/travel/name/{travelName}",
     "title": "",
-    "name": "findAllTravelsByName",
-    "group": "Travel",
-    "description": "<p>find all travels with a given name</p>",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/travel/name/Japan"
+      }
+    ],
     "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"name\" : [{\"Japan\"}, {\"Ireland\"}]\n}",
+          "type": "json"
+        }
+      ],
       "fields": {
         "Parameter": [
           {
@@ -246,6 +409,9 @@ define({ "api": [
         ]
       }
     },
+    "name": "findAllTravelsByName",
+    "group": "Travel",
+    "description": "<p>find all travels with a given name</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -261,21 +427,25 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/TravelController.java",
-    "groupTitle": "Travel",
-    "sampleRequest": [
-      {
-        "url": "https://travex.herokuapp.com/travel/name/:travelName"
-      }
-    ]
+    "groupTitle": "Travel"
   },
   {
     "type": "get",
-    "url": "/travel/id/:idTravel",
+    "url": "/travel/id/{idTravel}",
     "title": "",
-    "name": "findTravelById",
-    "group": "Travel",
-    "description": "<p>find a travel with a given id</p>",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/travel/id/1"
+      }
+    ],
     "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"id\" : [{\"1\"}, {\"2\"}]\n}",
+          "type": "json"
+        }
+      ],
       "fields": {
         "Parameter": [
           {
@@ -288,6 +458,9 @@ define({ "api": [
         ]
       }
     },
+    "name": "findTravelById",
+    "group": "Travel",
+    "description": "<p>find a travel with a given id</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -303,12 +476,7 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/TravelController.java",
-    "groupTitle": "Travel",
-    "sampleRequest": [
-      {
-        "url": "https://travex.herokuapp.com/travel/id/:idTravel"
-      }
-    ]
+    "groupTitle": "Travel"
   },
   {
     "type": "post",
@@ -370,6 +538,11 @@ define({ "api": [
     "type": "get",
     "url": "/users/",
     "title": "",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/users/"
+      }
+    ],
     "name": "findAllUsers",
     "group": "User",
     "description": "<p>find all users</p>",
@@ -388,21 +561,25 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/UserController.java",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "https://travex.herokuapp.com/users/"
-      }
-    ]
+    "groupTitle": "User"
   },
   {
     "type": "get",
-    "url": "/user/pseudo/:userPseudo",
+    "url": "/user/pseudo/{userPseudo}",
     "title": "",
-    "name": "findUserByPseudo",
-    "group": "User",
-    "description": "<p>find user with a given pseudo</p>",
+    "sampleRequest": [
+      {
+        "url": "https://travex.herokuapp.com/user/pseudo/toto"
+      }
+    ],
     "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n  \"pseudo\" : [{\"toto\"}, {\"titi\"}]\n}",
+          "type": "json"
+        }
+      ],
       "fields": {
         "Parameter": [
           {
@@ -415,6 +592,9 @@ define({ "api": [
         ]
       }
     },
+    "name": "findUserByPseudo",
+    "group": "User",
+    "description": "<p>find user with a given pseudo</p>",
     "success": {
       "fields": {
         "Success 200": [
@@ -430,11 +610,6 @@ define({ "api": [
     },
     "version": "0.0.0",
     "filename": "C:/Users/Marianna/Projets/ivvq/projet-ivvq-2017-2018-frodel/src/main/java/com/frodel/controller/UserController.java",
-    "groupTitle": "User",
-    "sampleRequest": [
-      {
-        "url": "https://travex.herokuapp.com/user/pseudo/:userPseudo"
-      }
-    ]
+    "groupTitle": "User"
   }
 ] });

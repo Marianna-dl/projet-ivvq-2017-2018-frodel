@@ -23,6 +23,11 @@ public class CountryController {
 
     /**
      * @api {get} /country/{name}
+     * @apiSampleRequest /country/Japon
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "name" : [{"Japon"}, {"Irelande"}, {"France"}]
+     *     }
      * @apiName findCountryByName
      * @apiGroup Country
      * @apiDescription find a country by its name
@@ -39,13 +44,18 @@ public class CountryController {
 
     /**
      * @api {get} /cities/{name}
+     * @apiSampleRequest /cities/Japon
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "name" : [{"Japon"}, {"Irelande"}, {"France"}]
+     *     }
      * @apiName findCitiesOfCountry
      * @apiGroup Country
      * @apiDescription find cities of country
      *
      * @apiParam {String} name The name of country
      *
-     * @apiSuccess {List<City>} cities Cities found for the country
+     * @apiSuccess {City[]} cities Cities found for the country
      */
     @RequestMapping("/cities/{name}")
     public List<City> findCitiesOfCountry(@PathVariable String name)
