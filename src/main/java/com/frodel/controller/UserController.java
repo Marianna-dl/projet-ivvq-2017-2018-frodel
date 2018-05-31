@@ -56,7 +56,7 @@ public class UserController {
      * @apiDescription find all users
      *
      *
-     * @apiSuccess {Iterable<User>} the list of users
+     * @apiSuccess {User[]} the list of users
      */
     @RequestMapping("/users")
     public Iterable<User> findAllUsers() {

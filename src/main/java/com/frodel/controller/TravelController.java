@@ -33,7 +33,7 @@ public class TravelController {
      * @apiDescription find all travels
      *
      *
-     * @apiSuccess {Iterable<Travel>} the list of travels
+     * @apiSuccess {Travel[]} the list of travels
      */
     @RequestMapping("/travels")
     public Iterable<Travel> findAllTravels() {
@@ -47,7 +47,7 @@ public class TravelController {
      * @apiDescription find all travels with a given name
      *
      * @apiParam {String} travelName The name of searched travel
-     * @apiSuccess {Iterable<Travel>} the list of travels
+     * @apiSuccess {Travel[]} the list of travels
      */
     @RequestMapping("/travel/name/{travelName}")
     public Iterable<Travel> findAllTravelsByName(@PathVariable  String travelName) {
@@ -76,7 +76,7 @@ public class TravelController {
      * @apiDescription find all articles of a travel with a given travel id
      *
      * @apiParam {Long} idTravel The id of the travel
-     * @apiSuccess {Iterable<Article>} the list of articles related to the travel
+     * @apiSuccess {Article[]} the list of articles related to the travel
      */
     @RequestMapping("/travel/articles/{idTravel}")
     public Iterable<Article> findAllArticles(@PathVariable Long idTravel) {
