@@ -31,4 +31,15 @@ class CityControllerITest extends Specification {
         and:
         city.name == initialisationService.madrid.name
     }
+
+    def "test to find all cities by calling url"() {
+        given: "the number of cities"
+        int numberCities = 8
+
+        when: "find cities requested"
+        Iterable<City> cities = this.restTemplate.getForObject("/cities", Iterable.class);
+
+        then:"the result provides 8 articles"
+        cities.size() >=  numberCities
+    }
 }
