@@ -76,8 +76,8 @@ public class InitialisationService {
 
     public void initData() {
         initContinent();
-        initCountries();
         initCities();
+        initCountries();
         initPlaces();
         initPrincipalArticles();
         initJapanSteps();
