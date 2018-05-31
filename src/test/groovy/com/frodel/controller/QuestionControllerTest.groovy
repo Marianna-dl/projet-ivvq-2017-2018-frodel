@@ -2,7 +2,6 @@ package groovy.com.frodel.controller
 
 import com.frodel.controller.QuestionController
 import com.frodel.services.QuestionService
-import com.frodel.services.UserService
 import spock.lang.Specification
 
 /**
@@ -12,18 +11,25 @@ class QuestionControllerTest extends Specification {
 
     private QuestionService questionService
     private QuestionController questionController
-    private UserService userService;
 
     void setup() {
         questionService = Mock();
-        userService = Mock();
-        questionController = new QuestionController(questionService: questionService, userService: userService)
+        questionController = new QuestionController(questionService: questionService)
     }
 
-    def "test to find all the questions for an=n interrogator by calling controller"() {
+    def "test to find all the questions by calling controller"() {
 
         when: "requesting for all the questions for an interrogator"
-        questionController.getQuestionsByInterrogator("titi")
+        questionController.findAllQuestions()
+
+        then: "the request is performed"
+        1 * questionService.findAllQuestions()
+    }
+
+    def "test to find all the questions for an interrogator by calling controller"() {
+
+        when: "requesting for all the questions for an interrogator"
+        questionController.findAllQuestionsByInterrogator("titi")
 
         then: "the request is performed"
         1 * questionService.findQuestionsByInterrogator("titi")

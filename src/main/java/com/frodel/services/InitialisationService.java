@@ -348,6 +348,11 @@ public class InitialisationService {
         return titiWeatherQuestion;
     }
 
+    public Question getTotoMoneyQuestion()
+    {
+        return totoMoneyQuestion;
+    }
+
 
     public Travel getIrelandTravel() {
         return irelandTravel;

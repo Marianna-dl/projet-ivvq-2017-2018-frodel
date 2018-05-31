@@ -17,6 +17,22 @@ public class QuestionController {
 
     /**
      * @api {get} /questions/{idInterrogator}
+     * @apiName findAllQuestions
+     * @apiGroup Question
+     * @apiDescription find all the questions for an interrogator
+     *
+     *
+     * @apiSuccess {Iterable<Question>} the list of questions
+     */
+    @RequestMapping("/questions")
+    public Iterable<Question> findAllQuestions()
+    {
+        return questionService.findAllQuestions();
+    }
+
+
+    /**
+     * @api {get} /questions/pseudo/{pseudo}
      * @apiName findAllQuestionsByInterrogator
      * @apiGroup Question
      * @apiDescription find all the questions for an interrogator
@@ -25,7 +41,7 @@ public class QuestionController {
      * @apiSuccess {Iterable<Question>} the list of questions
      */
     @RequestMapping("/questions/pseudo/{pseudoInterrogator}")
-    public Iterable<Question> getQuestionsByInterrogator(@PathVariable String pseudoInterrogator)
+    public Iterable<Question> findAllQuestionsByInterrogator(@PathVariable String pseudoInterrogator)
     {
         return questionService.findQuestionsByInterrogator(pseudoInterrogator);
     }

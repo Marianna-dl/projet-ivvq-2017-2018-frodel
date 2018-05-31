@@ -30,6 +30,15 @@ public class QuestionService {
     /**
      * Find all the questions for an interrogator
      *
+     * @return The Iterable<Question> found
+     */
+    public Iterable<Question> findAllQuestions() {
+        return (Iterable<Question>) questionRepository.findAll();
+    }
+
+    /**
+     * Find all the questions for an interrogator
+     *
      * @param pseudoInterrogator The id of the interrogator that asked the questions
      * @return The Iterable<Question> found or null if the interrogator wasn't found
      */
