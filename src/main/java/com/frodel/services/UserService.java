@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     @Autowired
-    private UserRepository utilisateurRepository ;
+    private UserRepository userRepository ;
 
     /**
      * Save the given utilisateur
@@ -20,6 +20,23 @@ public class UserService {
      * @return the saved utilisateur
      */
     public User saveUser(User utilisateur) {
-        return utilisateurRepository.save(utilisateur) ;
+        return userRepository.save(utilisateur) ;
+    }
+
+    /**
+     * get user by Pseudo
+     * @param pseudo the pseudo of the user
+     * @return the user
+     */
+    public User findUserByPseudo(String pseudo) {
+        return userRepository.findUserByPSeudo(pseudo) ;
+    }
+
+    public User findOneUser(Long id) {
+        return userRepository.findOne(id);
+    }
+
+    public Iterable<User> findAllUsers() {
+        return userRepository.findAll();
     }
 }

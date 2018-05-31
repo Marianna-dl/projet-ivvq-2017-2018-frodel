@@ -2,7 +2,7 @@ package com.frodel.controller
 
 import com.frodel.TravexApplication
 import com.frodel.model.User
-import com.frodel.repositories.UserRepository
+import com.frodel.services.InitialisationService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -19,8 +19,9 @@ import spock.lang.Specification
 class UserControllerITest extends Specification{
     @Autowired
     private TestRestTemplate restTemplate;
+
     @Autowired
-    private UserRepository utilisateurRepository;
+    private InitialisationService initialisationService;
 
     void "test ajout d'un utilisateur"(String pseudo,String mdp,String email) {
 
@@ -40,17 +41,25 @@ class UserControllerITest extends Specification{
         "frodel" | "frodeltest"  | "frodel@frodel.fr"
     }
 
-    void "test suppression d'un utilisateur"(Long user_id) {
+    def "test to find a user with a given pseudo calling url"() {
+        given: "a user pseudo"
+        String pseudo = initialisationService.totoUser.pseudo
 
-        when: "un utilisateur est supprimeé"
-        restTemplate.delete("/inscriptions/${user_id}")
+        when: "find user by pseudo requested"
+        String body = this.restTemplate.getForObject("/user/pseudo/" + pseudo, String.class);
 
-        then: "il est effectivement supprimé de la base de donnée"
-        !utilisateurRepository.findOne(user_id)
+        then:"the result provides 1 user"
+        body.contains(initialisationService.totoUser.pseudo)
+    }
 
-        where:
-        user_id   |_
-        1 |_
+    def "test to find all users by calling url"() {
+
+        when: "find Users requested"
+        String body = this.restTemplate.getForObject("/users", String.class);
+
+        then:"the result provides 2 users"
+        body.contains(initialisationService.totoUser.pseudo)
+        body.contains(initialisationService.titiUser.pseudo)
     }
 
 }
