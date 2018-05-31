@@ -4,6 +4,7 @@ import com.frodel.model.*;
 import com.frodel.repositories.CityRepository;
 import com.frodel.repositories.ContinentRepository;
 import com.frodel.repositories.CountryRepository;
+import com.frodel.repositories.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +34,8 @@ public class InitialisationService {
     @Autowired
     private ContinentRepository continentRepository;
     @Autowired
+    private QuestionRepository questionRepository;
+    @Autowired
     private PlaceService placeService;
 
 
@@ -58,6 +61,9 @@ public class InitialisationService {
     private Place galwayPlace;
 
     private String japanTravelName = "Japan";
+
+    private Question titiWeatherQuestion;
+    private Question totoMoneyQuestion;
 
 
     public Article getArticleJapanStep1() {
@@ -97,6 +103,7 @@ public class InitialisationService {
         initJapanSteps();
         initUsers();
         initTravels();
+        initQuestions();
 
     }
 
@@ -313,6 +320,32 @@ public class InitialisationService {
         countries.add(ireland);
         europe.setCountries(countries);
         continentRepository.save(europe);
+    }
+
+    private void initQuestions()
+    {
+        initQuestionsTitiWeatherQuestion();
+        initQuestionsTotoMoneyQuestion();
+    }
+    private void initQuestionsTitiWeatherQuestion()
+    {
+        titiWeatherQuestion = new Question();
+        titiWeatherQuestion.setContent("How was the weather ?");
+        titiWeatherQuestion.setInterrogator(titiUser);
+        questionRepository.save(titiWeatherQuestion);
+    }
+
+    private void initQuestionsTotoMoneyQuestion()
+    {
+        totoMoneyQuestion = new Question();
+        totoMoneyQuestion.setContent("How much does it cost ?");
+        totoMoneyQuestion.setInterrogator(totoUser);
+        questionRepository.save(totoMoneyQuestion);
+    }
+
+    public Question getTitiWeatherQuestion()
+    {
+        return titiWeatherQuestion;
     }
 
 

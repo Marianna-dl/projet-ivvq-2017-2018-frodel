@@ -1,14 +1,11 @@
 package com.frodel.controller;
 
 import com.frodel.model.Question;
-import com.frodel.model.User;
 import com.frodel.services.QuestionService;
-import com.frodel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Controller of a Question
@@ -18,28 +15,18 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    @Autowired
-    private UserService userService;
-
     /**
-     * @api {post} /question/
-     * @apiName addQuestion
+     * @api {get} /questions/{idInterrogator}
+     * @apiName findAllQuestionsByInterrogator
      * @apiGroup Question
-     * @apiDescription Add a Question
+     * @apiDescription find all the questions for an interrogator
      *
-     * @apiParam {String} content The content of the question
-     * @apiParam {String} idInterrogator The id of the user who asked the Question
      *
-     * @apiSuccess {Question} question The new Question
+     * @apiSuccess {Iterable<Question>} the list of questions
      */
-    @RequestMapping(value = "/question", method = RequestMethod.POST)
-    public Question addQuestion(@RequestParam(value = "content") String content, @RequestParam(value = "idInterrogator") String idInterrogator) {
-
-        User interrogator = userService.findOneUser(Long.parseLong(idInterrogator));
-        Question question = new Question();
-        question.setContent(content);
-        question.setInterrogator(interrogator);
-        questionService.saveQuestion(question);
-        return question;
+    @RequestMapping("/questions/pseudo/{pseudoInterrogator}")
+    public Iterable<Question> getQuestionsByInterrogator(@PathVariable String pseudoInterrogator)
+    {
+        return questionService.findQuestionsByInterrogator(pseudoInterrogator);
     }
 }

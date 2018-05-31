@@ -1,33 +1,31 @@
 package groovy.com.frodel.controller
 
-import com.frodel.model.Question
+import com.frodel.TravexApplication
+import com.frodel.services.InitialisationService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.test.context.ContextConfiguration
-import org.springframework.util.LinkedMultiValueMap
-import org.springframework.util.MultiValueMap
 import spock.lang.Specification
 
 @ContextConfiguration
-@SpringBootTest(webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = TravexApplication.class,webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
 class QuestionControllerITest extends Specification {
     @Autowired
     private TestRestTemplate restTemplate;
+    @Autowired
+    private InitialisationService initialisationService;
 
-    void "add a question by calling url"(String aQuestionContent) {
+    void "test to find all questions with a given pseudo calling url"() {
 
-        when: "add question requested"
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
-        map.add("content", aQuestionContent);
-        map.add("idInterrogator", "1");
-        Question question = restTemplate.postForObject("/question", map, question.class)
+        given: "a user pseudo"
+        String pseudo = "titi"
 
-        then: "the recover content of the question is the same that the send content"
-        question.content == aQuestionContent
+        when: "find questions by pseudo requested"
+        String body = this.restTemplate.getForObject("/questions/pseudo/" + pseudo, String.class);
 
-        where:
-        aQuestionContent | _
-        "A question" | _
+        then:"the result provides 1 question"
+        body.contains(initialisationService.titiWeatherQuestion.content)
     }
+
 }
