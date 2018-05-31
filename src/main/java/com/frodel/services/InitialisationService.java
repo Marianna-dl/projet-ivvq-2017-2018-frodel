@@ -24,6 +24,9 @@ public class InitialisationService {
     private CommentService commentService;
 
     @Autowired
+    private QuestionService questionService;
+
+    @Autowired
     private CityService cityService;
 
     @Autowired
@@ -43,6 +46,9 @@ public class InitialisationService {
 
     private Comment totoComment;
     private Comment titiComment;
+
+    private Question titiWeatherQuestion;
+    private Question totoMoneyQuestion;
 
     private Continent europe;
     private Continent asie;
@@ -74,6 +80,7 @@ public class InitialisationService {
 
     private String totoUserPseudo = "toto";
 
+
     public void initData() {
         initContinent();
         initCountries();
@@ -84,6 +91,7 @@ public class InitialisationService {
         initUsers();
         initTravels();
         initComments();
+        initQuestions();
 
     }
 
@@ -254,6 +262,37 @@ public class InitialisationService {
         titiComment.setMark((long) 1);
         titiComment.setContent("c'est un comment de titi");
         commentService.saveComment(titiComment);
+    }
+
+    private void initQuestions()
+    {
+        initQuestionsTitiWeatherQuestion();
+        initQuestionsTotoMoneyQuestion();
+    }
+    private void initQuestionsTitiWeatherQuestion()
+    {
+        titiWeatherQuestion = new Question();
+        titiWeatherQuestion.setContent("How was the weather ?");
+        titiWeatherQuestion.setInterrogator(titiUser);
+        questionService.saveQuestion(titiWeatherQuestion);
+    }
+
+    private void initQuestionsTotoMoneyQuestion()
+    {
+        totoMoneyQuestion = new Question();
+        totoMoneyQuestion.setContent("How much does it cost ?");
+        totoMoneyQuestion.setInterrogator(totoUser);
+        questionService.saveQuestion(totoMoneyQuestion);
+    }
+
+    public Question getTitiWeatherQuestion()
+    {
+        return titiWeatherQuestion;
+    }
+
+    public Question getTotoMoneyQuestion()
+    {
+        return totoMoneyQuestion;
     }
 
     private void initCityTokyo() {
