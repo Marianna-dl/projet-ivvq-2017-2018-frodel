@@ -45,6 +45,14 @@ public class CountryController {
         return countryService.findCitiesOfCountry(name);
     }
 
+    /**
+     * @api {get} /countries/
+     * @apiName findAllCountries
+     * @apiGroup Country
+     * @apiDescription Find all countries
+     * @apiSuccess {Country[]} All countries
+     */
+    @RequestMapping("/countries")
     public Iterable<Country> findAllCountries() {
         return countryService.findAllCountries();
     }
