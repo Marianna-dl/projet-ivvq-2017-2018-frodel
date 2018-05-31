@@ -1,7 +1,6 @@
 package com.frodel.services;
 
 import com.frodel.model.Article;
-import com.frodel.model.Travel;
 import com.frodel.repositories.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

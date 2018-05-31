@@ -5,10 +5,7 @@ import com.frodel.model.User;
 import com.frodel.services.CommentService;
 import com.frodel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Controller of a travel
@@ -42,6 +39,35 @@ public class CommentController {
         comment.setCommentator(commentator);
         commentService.saveComment(comment);
         return comment;
+    }
+
+
+    /**
+     * @api {get} /comment/id/:idComment
+     * @apiName findCommentById
+     * @apiGroup Comment
+     * @apiDescription find a comment with a given id
+     *
+     * @apiParam {Long} idComment The id of searched comment
+     * @apiSuccess {Comment} the comment
+     */
+    @RequestMapping("/comment/id/{idComment}")
+    public Comment findCommentById(@PathVariable Long idComment) {
+        return commentService.findCommentById(idComment);
+    }
+
+    /**
+     * @api {get} /comments/
+     * @apiName findAllComments
+     * @apiGroup Comment
+     * @apiDescription find all comments
+     *
+     *
+     * @apiSuccess {Iterable<Comment>} the list of comments
+     */
+    @RequestMapping("/comments")
+    public Iterable<Comment> findAllComments() {
+        return commentService.findAllComments();
     }
 
 }

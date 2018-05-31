@@ -1,7 +1,6 @@
 package com.frodel.controller
 
 import com.frodel.services.CommentService
-import com.frodel.services.TravelService
 import com.frodel.services.UserService
 import spock.lang.Specification
 import spock.lang.Unroll
@@ -25,6 +24,24 @@ class CommentControllerTest extends Specification {
 
         then: "the request id performed"
         1 * commentService.saveComment(_)
+    }
+
+    def "test to find a comment with a given id by calling controller"() {
+
+        when: "requesting for a comment with the given id"
+        commentController.findCommentById(1)
+
+        then: "the request is performed"
+        1 * commentService.findCommentById(1)
+    }
+
+    def "test to find all comments by calling controller"() {
+
+        when: "requesting for all comments"
+        commentController.findAllComments()
+
+        then: "the request is performed"
+        1 * commentService.findAllComments()
     }
 
 }

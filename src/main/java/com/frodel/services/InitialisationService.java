@@ -2,6 +2,7 @@ package com.frodel.services;
 
 import com.frodel.model.*;
 import com.frodel.repositories.CityRepository;
+import com.frodel.repositories.CommentRepository;
 import com.frodel.repositories.ContinentRepository;
 import com.frodel.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,16 @@ public class InitialisationService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CommentService commentService;
+
     private User totoUser;
     private User titiUser;
 
     private Travel japanTravel;
+    private Comment totoComment;
+
+    private Comment titiComment;
     private Travel irelandTravel;
 
     @Autowired
@@ -35,6 +42,8 @@ public class InitialisationService {
     @Autowired
     private PlaceService placeService;
 
+    @Autowired
+    private CommentRepository commentRepository;
 
 
     private Continent europe;
@@ -97,6 +106,7 @@ public class InitialisationService {
         initJapanSteps();
         initUsers();
         initTravels();
+        initComments();
 
     }
 
@@ -160,6 +170,11 @@ public class InitialisationService {
     private void initPrincipalArticles() {
         initArticleJapan();
         initArticleIreland();
+    }
+
+    private void initComments(){
+        initTotoComment();
+        initTitiComment();
     }
 
     private void initJapanSteps(){
@@ -239,6 +254,24 @@ public class InitialisationService {
         japanTravel.setPrincipalArticle(articleJapan);
         japanTravel.getSteps().add(articleJapanStep1);
         travelService.saveTravel(japanTravel);
+    }
+
+    public void initTotoComment() {
+        totoComment = new Comment();
+        totoComment.setTitle("toto comment");
+        totoComment.setCommentator(totoUser);
+        totoComment.setMark((long) 5);
+        totoComment.setContent("c'est un comment");
+        commentService.saveComment(totoComment);
+    }
+
+    public void initTitiComment() {
+        titiComment = new Comment();
+        titiComment.setTitle("titi comment");
+        titiComment.setCommentator(titiUser);
+        titiComment.setMark((long) 1);
+        titiComment.setContent("c'est un comment de titi");
+        commentService.saveComment(titiComment);
     }
 
     private void initCityTokyo()
@@ -323,4 +356,6 @@ public class InitialisationService {
     public User getTotoUser() {
         return totoUser;
     }
+    public Comment getTotoComment() {return totoComment;}
+    public Comment getTitiComment() {return titiComment;}
 }
