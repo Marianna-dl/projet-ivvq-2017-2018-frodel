@@ -63,7 +63,7 @@ public class CommentController {
      * @apiDescription find all comments
      *
      *
-     * @apiSuccess {Iterable<Comment>} the list of comments
+     * @apiSuccess {Comment[]} the list of comments
      */
     @RequestMapping("/comments")
     public Iterable<Comment> findAllComments() {
