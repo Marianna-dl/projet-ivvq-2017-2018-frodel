@@ -2,7 +2,6 @@ package com.frodel.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 /**
  * This class represents an Answer
