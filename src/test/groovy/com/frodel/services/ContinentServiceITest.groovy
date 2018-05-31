@@ -1,5 +1,6 @@
 package com.frodel.services
 
+import com.frodel.Bootstrap
 import com.frodel.TravexApplication
 import com.frodel.model.City
 import com.frodel.model.Continent
@@ -11,10 +12,12 @@ import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
+import javax.transaction.Transactional
 import javax.validation.ConstraintViolationException
 
 @ContextConfiguration
 @SpringBootTest(classes = TravexApplication.class ,webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
 class ContinentServiceITest extends Specification{
 
     @Autowired
@@ -22,6 +25,9 @@ class ContinentServiceITest extends Specification{
 
     @Autowired
     ContinentRepository continentRepository
+
+    @Autowired
+    Bootstrap bootstrap
 
     def "test save a valid continent"() {
         given: "a valid continent"
@@ -92,6 +98,35 @@ class ContinentServiceITest extends Specification{
 
         and: "the continent has a name"
         continent.name == continentName
+    }
+
+    def "test find countries by continent name"() {
+        given: "The instance of InitialisationService provided by the bootstrap object"
+        InitialisationService initialisationService = bootstrap.initialisationService
+
+        and: "an valid continent name"
+        String continentName = "Europe"
+
+        when: "countries are found"
+        List<Country> countries = continentService.findCountriesOfContinent(continentName)
+
+        then: "country list is not null"
+        countries != null
+
+        and: "countries has an id"
+        countries[0].id == initialisationService.ireland.id
+        countries[1].id == initialisationService.france.id
+        countries[2].id == initialisationService.espagne.id
+
+        and: "countries has a name"
+        countries[0].name == initialisationService.ireland.name
+        countries[1].name == initialisationService.france.name
+        countries[2].name == initialisationService.espagne.name
+
+        and: "countries has cities"
+        countries[0].cities.size() == initialisationService.ireland.cities.size()
+        countries[1].cities.size() == initialisationService.france.cities.size()
+        countries[2].cities.size() == initialisationService.espagne.cities.size()
     }
 
 }

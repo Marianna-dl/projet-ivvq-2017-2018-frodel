@@ -315,6 +315,7 @@ public class InitialisationService {
         List<Country> countries = new ArrayList<>();
         countries.add(ireland);
         countries.add(france);
+        countries.add(espagne);
         europe.setCountries(countries);
         continentService.saveContinent(europe);
     }
@@ -437,5 +438,13 @@ public class InitialisationService {
 
     public Continent getEurope() {
         return europe;
+    }
+
+    public Country getIreland() {
+        return ireland;
+    }
+
+    public Country getEspagne() {
+        return espagne;
     }
 }
