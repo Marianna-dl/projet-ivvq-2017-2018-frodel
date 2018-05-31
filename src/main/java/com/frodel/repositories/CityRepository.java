@@ -1,7 +1,11 @@
 package com.frodel.repositories;
 
 import com.frodel.model.City;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface CityRepository extends PagingAndSortingRepository<City, Long> {
+
+    @Query("select city from City city where city.name = ?1")
+    City findCityByName(String name);
 }

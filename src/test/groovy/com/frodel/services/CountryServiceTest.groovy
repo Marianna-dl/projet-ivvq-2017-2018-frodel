@@ -42,4 +42,15 @@ class CountryServiceTest extends Specification{
         then: "the search is delegated to the countryRepository"
         1 * countryRepository.findCountryByName(countryName)
     }
+
+    def "test delegation to find a cities of country by its name to the repository"() {
+        given: "a country name"
+        String countryName = "France"
+
+        when: "Cities are found"
+        countryService.findCitiesOfCountry(countryName);
+
+        then: "the search is delegated to the countryRepository"
+        1 * countryRepository.findCountryByName(countryName)
+    }
 }

@@ -35,8 +35,15 @@ public class Article {
     @NotNull
     private String content;
 
+
+    @ManyToOne
+    private Travel travel;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Comment> comments ;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Question> questions ;
 
     private boolean isVisible = true;
 
@@ -54,5 +61,57 @@ public class Article {
 
     public void setIsVisible(boolean visibility) {
         isVisible = visibility;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setBudget(Long budget) {
+        this.budget = budget;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setPlaces(List<Place> places) {
+        this.places = places;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setTravel(Travel travel) {
+        this.travel = travel;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getBudget() {
+        return budget;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public List<Place> getPlaces() {
+        return places;
+    }
+
+    public String getContent() {
+        return content;
     }
 }

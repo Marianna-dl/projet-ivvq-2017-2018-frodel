@@ -1,5 +1,9 @@
 package com.frodel.controller
 
+import com.frodel.model.City
+import com.frodel.model.Continent
+import com.frodel.model.Country
+import com.frodel.model.Place
 import com.frodel.model.Travel
 import com.frodel.repositories.TravelRepository
 import com.frodel.services.InitialisationService
@@ -23,19 +27,6 @@ class TravelControllerITest extends Specification {
     @Autowired
     private InitialisationService initialisationService;
 
-    void "add a travel by calling url"() {
-
-        when: "add travel requested"
-        MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
-        map.add("name", "A travel");
-        map.add("idCreator", "1");
-        Travel travel = restTemplate.postForObject("/travel", map, Travel.class)
-
-        then: "the recover name of travel is the same that the send name"
-        travel.name.equals("A travel")
-
-    }
-
 
     def "test to find all travels by calling url"() {
 
@@ -45,5 +36,39 @@ class TravelControllerITest extends Specification {
         then:"the result provides 2 travels"
         body.contains(initialisationService.japanTravel.name)
         body.contains(initialisationService.irelandTravel.name)
+    }
+
+    def "test to find all travels with a given name calling url"() {
+        given: "a travel name"
+        String name = initialisationService.japanTravelName
+
+        when: "find travel by name requested"
+        String body = this.restTemplate.getForObject("/travel/name/" + name, String.class);
+
+        then:"the result provides 1 travel"
+        body.contains(initialisationService.japanTravel.name)
+    }
+
+    def "test to find a travel with a given id calling url"() {
+        given: "a travel id"
+        Long id = initialisationService.japanTravel.id
+
+        when: "find travel by name requested"
+        String body = this.restTemplate.getForObject("/travel/id/" + id, String.class);
+
+        then:"the result provides 1 travel"
+        body.contains(initialisationService.japanTravel.name)
+    }
+
+    def "test to find all article of a travel with a given id calling url"() {
+        given: "a travel name"
+        Long id = initialisationService.japanTravel.id
+
+        when: "find travel by name requested"
+        String body = this.restTemplate.getForObject("/travel/articles/" + id, String.class);
+
+        then:"the result provides the articles"
+        body.contains(initialisationService.articleJapanStep1.name)
+        body.contains(initialisationService.articleJapan.name)
     }
 }

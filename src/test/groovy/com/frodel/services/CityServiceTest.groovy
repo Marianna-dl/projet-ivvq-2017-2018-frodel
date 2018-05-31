@@ -33,4 +33,15 @@ class CityServiceTest extends Specification{
         1 * cityRepository.save(city)
     }
 
+    def "test delegation to find a city by its name to the repository"() {
+        given: "a city name"
+        String cityName = "cityName"
+
+        when: "the city is found"
+        cityService.findCityByName(cityName);
+
+        then: "the search is delegated to the cityRepository"
+        1 * cityRepository.findCityByName(cityName)
+    }
+
 }

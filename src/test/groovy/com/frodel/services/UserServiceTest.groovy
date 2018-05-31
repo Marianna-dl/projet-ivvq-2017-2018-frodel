@@ -2,7 +2,6 @@ package com.frodel.services
 
 import com.frodel.model.User
 import com.frodel.repositories.UserRepository
-import com.frodel.services.UserService
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.PagingAndSortingRepository
 import spock.lang.Specification
@@ -20,7 +19,7 @@ class UserServiceTest extends Specification {
     void setup() {
         userRepository = Mock()
         userService = new UserService()
-        userService.utilisateurRepository = userRepository
+        userService.userRepository = userRepository
     }
 
     def "check type of commentRepository"() {
@@ -39,5 +38,34 @@ class UserServiceTest extends Specification {
         1 * userRepository.save(utilisateur)
     }
 
+    def "test delegation of find one user to the repository"() {
+        given: "a user"
+        def user = Mock(User)
+
+        when: "the user is found"
+        userService.findOneUser(user.id);
+
+        then: "the find is delegated to the userRepository"
+        1 * userRepository.findOne(user.id)
+    }
+
+    def "test delegation of find user by pseudo to the repository"() {
+        given: "a user"
+        def user = Mock(User)
+
+        when: "the user is found"
+        userService.findUserByPseudo(user.pseudo);
+
+        then: "the find is delegated to the userRepository"
+        1 * userRepository.findUserByPSeudo(user.pseudo)
+    }
+
+    def "test delegation of finding all users to the repository"() {
+        when: "requesting for all users"
+        userService.findAllUsers()
+
+        then: "the request is delegated to the userRepository"
+        1 * userRepository.findAll()
+    }
 
 }

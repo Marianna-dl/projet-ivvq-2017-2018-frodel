@@ -25,10 +25,10 @@ class UserTest extends Specification {
     }
 
     @Unroll
-    void "test if a user is correct"(String pseudo, String mdp, String email, List<Comment> comments) {
+    void "test if a user is correct"(String pseudo, String mdp, String email, List<Comment> comments, List<Question> questions, List<Answer> answers) {
 
         given: "a correctly initialized user"
-        User utilisateur = new User(pseudo:pseudo,mdp: mdp,email:email, comments: comments)
+        User utilisateur = new User(pseudo:pseudo,mdp: mdp,email:email, comments: comments, questions: questions, answers: answers )
 
         expect: "The user is valid"
         validator.validate(utilisateur).empty
@@ -37,32 +37,36 @@ class UserTest extends Specification {
         !utilisateur.travels
 
         where:
-        pseudo   | mdp              | email         |comments
-        "Dupont" | "azertyuiop"     | "jd@jd.com"   | Arrays.asList(Mock(Comment), Mock(Comment))
-        "Durand" | "12zfov86§ju"    | "jd@jd.com"   | Arrays.asList(Mock(Comment))
-        "Durant" | "JacquesJacques" | "jd@jd.com"   | null
+        pseudo   | mdp              | email         |comments                                     | questions                                     | answers
+        "Dupont" | "azertyuiop"     | "jd@jd.com"   | Arrays.asList(Mock(Comment), Mock(Comment)) | Arrays.asList(Mock(Question), Mock(Question)) | Arrays.asList(Mock(Answer), Mock(Answer))
+        "Durand" | "12zfov86§ju"    | "jd@jd.com"   | Arrays.asList(Mock(Comment))                | Arrays.asList(Mock(Question), Mock(Question)) | Arrays.asList(Mock(Answer), Mock(Answer))
+        "Durant" | "JacquesJacques" | "jd@jd.com"   | null                                        | Arrays.asList(Mock(Question), Mock(Question)) | Arrays.asList(Mock(Answer), Mock(Answer))
+        "Dupont" | "azertyuiop"     | "jd@jd.com"   | Arrays.asList(Mock(Comment), Mock(Comment)) | Arrays.asList(Mock(Question)) | Arrays.asList(Mock(Answer), Mock(Answer))
+        "Dupont" | "azertyuiop"     | "jd@jd.com"   | Arrays.asList(Mock(Comment), Mock(Comment)) | null | Arrays.asList(Mock(Answer), Mock(Answer))
+        "Dupont" | "azertyuiop"     | "jd@jd.com"   | Arrays.asList(Mock(Comment), Mock(Comment)) | Arrays.asList(Mock(Question), Mock(Question)) | Arrays.asList(Mock(Answer))
+        "Dupont" | "azertyuiop"     | "jd@jd.com"   | Arrays.asList(Mock(Comment), Mock(Comment)) | Arrays.asList(Mock(Question), Mock(Question)) | null
     }
 
 
 
     @Unroll
-    void "test if a user is incorrect"(String pseudo, String mdp, String email,List<Comment> comments) {
+    void "test if a user is incorrect"(String pseudo, String mdp, String email,List<Comment> comments, List<Question> questions, List<Answer> answers) {
 
         given: "an incorrectly initialized user"
-        User utilisateur = new User(pseudo:pseudo,mdp:mdp,email:email,comments: comments)
+        User utilisateur = new User(pseudo:pseudo,mdp:mdp,email:email,comments: comments, questions: questions, answers: answers)
 
         expect: "The user is invalid"
         !validator.validate(utilisateur).empty
 
         where:
-        pseudo      | mdp               | email             |comments
-        ""          | "azertyuiop"      | "jd@jd.com"       |Arrays.asList(Mock(Comment), Mock(Comment))
-        "Durand1"   | ""                | "jd@jd.com"       |null
-        "Durant1"   | "JacquesJacques"  | ""                |Arrays.asList(Mock(Comment))
-        null        | "azertyuiop"      | "jd@jd.com"       |new ArrayList<>()
-        "Durand2"   | null              | "jd@jd.com"       |new ArrayList<>()
-        "Durant2"   | "JacquesJacques"  | null              |new ArrayList<>()
-        "Durand3"   | "123"             | "jd@jd.com"       |new ArrayList<>()
-        "Durant3"   | "JacquesJacques"  | "emailnonvalide"  |new ArrayList<>()
+        pseudo      | mdp               | email             |comments                                    | questions                                    | answers
+        ""          | "azertyuiop"      | "jd@jd.com"       |Arrays.asList(Mock(Comment), Mock(Comment)) |Arrays.asList(Mock(Question), Mock(Question)) |Arrays.asList(Mock(Answer), Mock(Answer))
+        "Durand1"   | ""                | "jd@jd.com"       |null                                        | new ArrayList<>()                            | new ArrayList<>()
+        "Durant1"   | "JacquesJacques"  | ""                |Arrays.asList(Mock(Comment))                | new ArrayList<>()                            | new ArrayList<>()
+        null        | "azertyuiop"      | "jd@jd.com"       |new ArrayList<>()                           | new ArrayList<>()                            | new ArrayList<>()
+        "Durand2"   | null              | "jd@jd.com"       |new ArrayList<>()                           | new ArrayList<>()                            | new ArrayList<>()
+        "Durant2"   | "JacquesJacques"  | null              |new ArrayList<>()                           | new ArrayList<>()                            | new ArrayList<>()
+        "Durand3"   | "123"             | "jd@jd.com"       |new ArrayList<>()                           | new ArrayList<>()                            | new ArrayList<>()
+        "Durant3"   | "JacquesJacques"  | "emailnonvalide"  |new ArrayList<>()                           | new ArrayList<>()                            | new ArrayList<>()
     }
 }
