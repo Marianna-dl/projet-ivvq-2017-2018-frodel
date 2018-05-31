@@ -16,10 +16,10 @@ public class QuestionController {
     private QuestionService questionService;
 
     /**
-     * @api {get} /questions/{idInterrogator}
+     * @api {get} /questions
      * @apiName findAllQuestions
      * @apiGroup Question
-     * @apiDescription find all the questions for an interrogator
+     * @apiDescription find all the questions
      *
      *
      * @apiSuccess {Iterable<Question>} the list of questions
