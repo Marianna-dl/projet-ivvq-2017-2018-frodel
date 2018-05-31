@@ -1,7 +1,7 @@
 package com.frodel.controller
 
 import com.frodel.model.Comment
-import com.frodel.model.Travel
+import com.frodel.services.InitialisationService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -16,6 +16,8 @@ class CommentControllerITest extends Specification {
 
     @Autowired
     private TestRestTemplate restTemplate;
+    @Autowired
+    private InitialisationService initialisationService;
 
     void "add a comment by calling url"(String aCommentContent) {
 
@@ -31,5 +33,16 @@ class CommentControllerITest extends Specification {
         where:
         aCommentContent | _
         "A comment" | _
+    }
+
+    def "test to find a comment with a given id calling url"() {
+        given: "a comment id"
+        Long id = initialisationService.totoComment.id
+
+        when: "find comment by id requested"
+        String body = this.restTemplate.getForObject("/comment/id/" + id, String.class);
+
+        then:"the result provides 1 comment"
+        body.contains(initialisationService.totoComment.content)
     }
 }

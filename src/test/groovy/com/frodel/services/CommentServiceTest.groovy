@@ -1,9 +1,7 @@
 package com.frodel.services
 
 import com.frodel.model.Comment
-import com.frodel.model.User
 import com.frodel.repositories.CommentRepository
-import com.frodel.repositories.UserRepository
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.repository.PagingAndSortingRepository
 import spock.lang.Specification
@@ -40,5 +38,12 @@ class CommentServiceTest extends Specification {
         1 * commentRepository.save(comment)
     }
 
+    def "test delegation of finding a comment by its id to the repository"() {
+        when: "requesting for a comment by its id"
+        commentService.findCommentById(1)
+
+        then: "the request is delegated to the commentRepository"
+        1 * commentRepository.findOne(1)
+    }
 
 }
