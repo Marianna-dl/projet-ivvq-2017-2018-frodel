@@ -22,5 +22,14 @@ public class CityService {
         return cityRepository.save(city);
     }
 
+    /**
+     * Find a city by its names
+     *
+     * @param name The name of the city to find
+     * @return The city found or null if the city wasn't found
+     */
+    public City findCityByName(String name) {
+        return cityRepository.findCityByName(name);
+    }
 
 }

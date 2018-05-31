@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,7 +29,7 @@ public class TravelService {
         travelRepository.save(travel) ;
         Article principalArticle = travel.getPrincipalArticle();
         principalArticle.setTravel(travel);
-        if(travel.getSteps().size() > 0){
+        if(!(travel.getSteps().isEmpty())){
             travel.getSteps().stream().forEach(step -> step.setTravel(travel));
         }
         User creator = travel.getCreator();
