@@ -7,6 +7,7 @@ import com.frodel.model.Travel;
 import com.frodel.services.TravelService;
 import com.frodel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controller of a travel
  */
 @RestController
+@CrossOrigin
 public class TravelController {
 
     @Autowired

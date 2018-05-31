@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * Controller of a travel
  */
 @RestController
+@CrossOrigin
 public class CommentController {
 
     @Autowired

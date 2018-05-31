@@ -4,6 +4,7 @@ import com.frodel.model.City;
 import com.frodel.model.Country;
 import com.frodel.services.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.List;
  * Controller of a country
  */
 @RestController
+@CrossOrigin
 public class CountryController {
 
     @Autowired

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
  * Created by hichem on 08/05/2018.
  */
 @RestController
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
