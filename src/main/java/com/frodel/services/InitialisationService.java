@@ -75,9 +75,9 @@ public class InitialisationService {
     private String totoUserPseudo = "toto";
 
     public void initData() {
-        initContinent();
         initCities();
         initCountries();
+        initContinent();
         initPlaces();
         initPrincipalArticles();
         initJapanSteps();
@@ -433,5 +433,9 @@ public class InitialisationService {
 
     public City getParis() {
         return paris;
+    }
+
+    public Continent getEurope() {
+        return europe;
     }
 }

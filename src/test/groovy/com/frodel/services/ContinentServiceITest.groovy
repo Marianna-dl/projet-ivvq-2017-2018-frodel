@@ -82,7 +82,7 @@ class ContinentServiceITest extends Specification{
 
     def "test find a valid continent by its name"() {
         given: "an valid continent name"
-        String continentName = "Eurasie"
+        String continentName = "Europe"
 
         when: "the continent is find"
         Continent continent = continentService.findContinentByName(continentName)

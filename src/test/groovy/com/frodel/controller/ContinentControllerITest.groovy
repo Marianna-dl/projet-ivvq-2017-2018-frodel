@@ -22,16 +22,16 @@ class ContinentControllerITest extends Specification {
 
     void "get a continent by calling url"() {
         when: "get a continent requested"
-        Continent continent = this.restTemplate.getForObject("/continent/Eurasie", Continent.class)
+        Continent continent = this.restTemplate.getForObject("/continent/Europe", Continent.class)
 
         then: "the recover continent is the same that the continent of initialisationService"
-        continent.id == initialisationService.eurasie.id
+        continent.id == initialisationService.europe.id
 
         and:
-        continent.name == initialisationService.eurasie.name
+        continent.name == initialisationService.europe.name
 
         and:
-        continent.countries.size() == initialisationService.eurasie.countries.size()
+        continent.countries.size() == initialisationService.europe.countries.size()
     }
 
 }
