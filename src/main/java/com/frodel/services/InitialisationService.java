@@ -76,8 +76,8 @@ public class InitialisationService {
 
     public void initData() {
         initContinent();
-        initCountries();
         initCities();
+        initCountries();
         initPlaces();
         initPrincipalArticles();
         initJapanSteps();
@@ -421,5 +421,17 @@ public class InitialisationService {
 
     public City getTokyo() {
         return tokyo;
+    }
+
+    public Country getFrance() {
+        return france;
+    }
+
+    public City getToulouse() {
+        return toulouse;
+    }
+
+    public City getParis() {
+        return paris;
     }
 }

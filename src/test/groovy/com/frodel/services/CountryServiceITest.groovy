@@ -1,24 +1,28 @@
 package com.frodel.services
 
+import com.frodel.Bootstrap
 import com.frodel.TravexApplication
 import com.frodel.model.City
 import com.frodel.model.Country
 import com.frodel.repositories.CountryRepository
-import org.hibernate.tool.hbm2ddl.UniqueConstraintSchemaUpdateStrategy
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
+import javax.transaction.Transactional
 import javax.validation.ConstraintViolationException
 
 @ContextConfiguration
 @SpringBootTest(classes = TravexApplication.class ,webEnvironment=SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
 class CountryServiceITest extends Specification{
 
     @Autowired
     CountryService countryService
+    @Autowired
+    Bootstrap bootstrap
 
     @Autowired
     CountryRepository countryRepository
@@ -88,5 +92,23 @@ class CountryServiceITest extends Specification{
 
         and: "the country2 doesn't have an id"
         country2.id == null
+    }
+
+    def "test find cities by country name"() {
+        given: "The instance of InitialisationService provided by the bootstrap object"
+        InitialisationService initialisationService = bootstrap.initialisationService
+
+        and: "an valid country name"
+        String countryName = "France"
+
+        when: "cities are found"
+        List<City> cities = countryService.findCitiesOfCountry(countryName)
+
+        then: "city list is not null"
+        cities != null
+
+        and: "the country has a name"
+        cities[0].id == initialisationService.toulouse.id
+        cities[1].id == initialisationService.paris.id
     }
 }
