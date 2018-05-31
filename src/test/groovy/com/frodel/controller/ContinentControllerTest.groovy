@@ -26,4 +26,14 @@ class ContinentControllerTest extends Specification {
         1 * continentService.findContinentByName(continentName)
     }
 
+    def "get a countries of a continent by calling controller"() {
+        given: "a continent name"
+        String continentName = "Europe"
+
+        when: "get countries"
+        continentController.findCountriesOfContinent(continentName)
+
+        then: "the search is delegated to the continentService"
+        1 * continentService.findCountriesOfContinent(continentName)
+    }
 }
