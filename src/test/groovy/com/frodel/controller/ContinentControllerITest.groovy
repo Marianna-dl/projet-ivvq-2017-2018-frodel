@@ -59,4 +59,24 @@ class ContinentControllerITest extends Specification {
         countries[2].cities.size() == initialisationService.espagne.cities.size()
     }
 
+    def "test to find all continent by calling url"() {
+
+        when: "find continent requested"
+        List<Continent> continents = this.restTemplate.getForObject("/continents", List.class);
+
+        then:"the result provides 2 continents"
+        continents[0].id == initialisationService.asie.id
+        and:
+        continents[0].name == initialisationService.asie.name
+        and:
+        continents[0].countries.size() == initialisationService.asie.countries.size()
+
+        and:
+        continents[1].id == initialisationService.europe.id
+        and:
+        continents[1].name == initialisationService.europe.name
+        and:
+        continents[1].countries.size() == initialisationService.europe.countries.size()
+    }
+
 }
