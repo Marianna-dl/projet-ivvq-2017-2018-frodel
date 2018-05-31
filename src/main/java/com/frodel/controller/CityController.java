@@ -30,4 +30,6 @@ public class CityController {
     public City findCityByName(@PathVariable String name) {
         return cityService.findCityByName(name);
     }
+
+    public Iterable<City> findAllCities() { return cityService.findAllCities(); }
 }
