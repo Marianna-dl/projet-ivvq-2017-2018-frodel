@@ -52,5 +52,14 @@ class UserControllerITest extends Specification{
         body.contains(initialisationService.totoUser.pseudo)
     }
 
+    def "test to find all users by calling url"() {
+
+        when: "find Users requested"
+        String body = this.restTemplate.getForObject("/users", String.class);
+
+        then:"the result provides 2 users"
+        body.contains(initialisationService.totoUser.pseudo)
+        body.contains(initialisationService.titiUser.pseudo)
+    }
 
 }

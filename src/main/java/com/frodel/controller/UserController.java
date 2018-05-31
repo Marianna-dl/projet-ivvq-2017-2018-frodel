@@ -47,4 +47,19 @@ public class UserController {
         return userService.findUserByPseudo(userPseudo);
     }
 
+
+    /**
+     * @api {get} /users/
+     * @apiName findAllUsers
+     * @apiGroup User
+     * @apiDescription find all users
+     *
+     *
+     * @apiSuccess {Iterable<User>} the list of users
+     */
+    @RequestMapping("/users")
+    public Iterable<User> findAllUsers() {
+        return userService.findAllUsers();
+    }
+
 }

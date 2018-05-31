@@ -74,4 +74,21 @@ class UserServiceITest extends Specification{
         user.pseudo == initialisationService.totoUserPseudo
     }
 
+    def "test getting all users"() {
+        given: "The instance of InitialisationService provided by the bootstrap object"
+        InitialisationService initialisationService = bootstrap.initialisationService
+
+        and: "2 users provided by the initialisation service"
+        initialisationService.totoUser
+        initialisationService.titiUser
+
+        when: "requesting all users"
+        Iterable<User> usersIter = userService.findAllUsers()
+        def users = usersIter as List<User>
+
+        then : "the users are the same given by the initialisation service"
+        users[0].pseudo == initialisationService.titiUser.pseudo
+        users[1].pseudo == initialisationService.totoUser.pseudo
+    }
+
 }

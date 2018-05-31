@@ -326,4 +326,5 @@ public class InitialisationService {
     public User getTotoUser() {
         return totoUser;
     }
+    public User getTitiUser() {return titiUser;}
 }

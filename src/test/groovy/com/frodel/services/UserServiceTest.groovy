@@ -60,4 +60,12 @@ class UserServiceTest extends Specification {
         1 * userRepository.findUserByPSeudo(user.pseudo)
     }
 
+    def "test delegation of finding all users to the repository"() {
+        when: "requesting for all users"
+        userService.findAllUsers()
+
+        then: "the request is delegated to the userRepository"
+        1 * userRepository.findAll()
+    }
+
 }

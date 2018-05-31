@@ -35,4 +35,8 @@ public class UserService {
     public User findOneUser(Long id) {
         return userRepository.findOne(id);
     }
+
+    public Iterable<User> findAllUsers() {
+        return userRepository.findAll();
+    }
 }
