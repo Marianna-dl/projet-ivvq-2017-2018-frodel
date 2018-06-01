@@ -33,7 +33,7 @@ public class QuestionService {
      * @return The Iterable<Question> found
      */
     public Iterable<Question> findAllQuestions() {
-        return (Iterable<Question>) questionRepository.findAll();
+        return questionRepository.findAll();
     }
 
     /**
@@ -43,6 +43,6 @@ public class QuestionService {
      * @return The Iterable<Question> found or null if the interrogator wasn't found
      */
     public Iterable<Question> findQuestionsByInterrogator(String pseudoInterrogator) {
-        return (Iterable<Question>) questionRepository.findQuestionsByInterrogator(pseudoInterrogator);
+        return questionRepository.findQuestionsByInterrogator(pseudoInterrogator);
     }
 }

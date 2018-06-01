@@ -5,8 +5,6 @@ import com.frodel.services.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 /**
  * Controller of a Question
  */

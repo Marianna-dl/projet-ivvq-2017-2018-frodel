@@ -33,7 +33,7 @@ public class AnswerService {
      * @return The Iterable<Answer> found
      */
     public Iterable<Answer> findAllAnswers() {
-        return (Iterable<Answer>) answerRepository.findAll();
+        return answerRepository.findAll();
     }
 
     /**
@@ -43,7 +43,7 @@ public class AnswerService {
      * @return The Iterable<Answer> found or null if the answerer wasn't found
      */
     public Iterable<Answer> findAnswersByAnswerer(String pseudoAnswerer) {
-        return (Iterable<Answer>) answerRepository.findAnswersByAnswerer(pseudoAnswerer);
+        return answerRepository.findAnswersByAnswerer(pseudoAnswerer);
     }
 
     /**
@@ -53,6 +53,6 @@ public class AnswerService {
      * @return The Iterable<Answer> found or null if no answer found
      */
     public Iterable<Answer> findAnswersByQuestionId(Long questionId) {
-        return (Iterable<Answer>) answerRepository.findAnswersByQuestionId(questionId);
+        return answerRepository.findAnswersByQuestionId(questionId);
     }
 }
