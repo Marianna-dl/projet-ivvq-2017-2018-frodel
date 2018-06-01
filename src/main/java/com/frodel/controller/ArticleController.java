@@ -16,12 +16,13 @@ public class ArticleController {
 
     /**
      * @api {get} /articles/
+     * @apiSampleRequest /articles/
      * @apiName findAllArticles
      * @apiGroup Article
      * @apiDescription find all articles
      *
      *
-     * @apiSuccess {Iterable<Article>} the list of articles
+     * @apiSuccess (Success 200) {Article[]} articles the list of articles
      */
     @RequestMapping("/articles")
     public Iterable<Article> findAllArticles() {

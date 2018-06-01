@@ -19,7 +19,12 @@ public class CityController {
     private CityService cityService;
 
     /**
-     * @api {get} /city/{name}
+     * @api {get} /city/{name}/
+     * @apiSampleRequest /city/Kyoto
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "name" : [{"Kyoto"}, {"Tokyo"}, {"Galway"}]
+     *     }
      * @apiName findCityByName
      * @apiGroup City
      * @apiDescription Find a city by its name
@@ -33,6 +38,7 @@ public class CityController {
 
     /**
      * @api {get} /cities/
+     * @apiSampleRequest /cities/
      * @apiName findAllCities
      * @apiGroup City
      * @apiDescription Find all cities

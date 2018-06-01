@@ -4,12 +4,12 @@ define({
   "description": "Documentation de l'API de l'application TravEx",
   "title": "TravEx API doc",
   "url": "https://travex.herokuapp.com",
-  "sampleUrl": false,
+  "sampleUrl": "https://travex.herokuapp.com",
   "defaultVersion": "0.0.0",
   "apidoc": "0.3.0",
   "generator": {
     "name": "apidoc",
-    "time": "2018-05-18T15:35:21.694Z",
+    "time": "2018-06-01T13:07:47.037Z",
     "url": "http://apidocjs.com",
     "version": "0.17.6"
   }

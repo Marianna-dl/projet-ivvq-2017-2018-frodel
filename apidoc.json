@@ -3,5 +3,6 @@
   "version": "0.0.0",
   "description": "Documentation de l'API de l'application TravEx",
   "title": "TravEx API doc",
-  "url" : "https://travex.herokuapp.com"
+  "url" : "https://travex.herokuapp.com",
+  "sampleUrl": "https://travex.herokuapp.com"
 }

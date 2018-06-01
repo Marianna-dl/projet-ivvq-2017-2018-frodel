@@ -16,12 +16,13 @@ public class QuestionController {
 
     /**
      * @api {get} /questions
+     * @apiSampleRequest /questions
      * @apiName findAllQuestions
      * @apiGroup Question
      * @apiDescription find all the questions
      *
      *
-     * @apiSuccess {Iterable<Question>} the list of questions
+     * @apiSuccess {Question[]} Questions the list of questions
      */
     @RequestMapping("/questions")
     public Iterable<Question> findAllQuestions()
@@ -32,12 +33,17 @@ public class QuestionController {
 
     /**
      * @api {get} /questions/pseudo/{pseudo}
+     * @apiSampleRequest /questions/pseudo/titi
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "pseudo" : [{"titi"}, {"toto"}]
+     *     }
      * @apiName findAllQuestionsByInterrogator
      * @apiGroup Question
      * @apiDescription find all the questions for an interrogator
+     * @apiParam {String} pseudoInterrogator The name of the interrogator
      *
-     *
-     * @apiSuccess {Iterable<Question>} the list of questions
+     * @apiSuccess {Question[]} Questions the list of questions
      */
     @RequestMapping("/questions/pseudo/{pseudoInterrogator}")
     public Iterable<Question> findAllQuestionsByInterrogator(@PathVariable String pseudoInterrogator)
