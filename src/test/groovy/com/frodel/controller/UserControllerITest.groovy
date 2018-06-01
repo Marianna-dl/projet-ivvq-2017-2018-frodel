@@ -46,20 +46,19 @@ class UserControllerITest extends Specification{
         String pseudo = initialisationService.totoUser.pseudo
 
         when: "find user by pseudo requested"
-        String body = this.restTemplate.getForObject("/user/userPseudo/" + pseudo, String.class);
+        User user = this.restTemplate.getForObject("/user/userPseudo/" + pseudo, User.class);
 
         then:"the result provides 1 user"
-        body.contains(initialisationService.totoUser.pseudo)
+        user.pseudo == initialisationService.totoUser.pseudo
     }
 
     def "test to find all users by calling url"() {
 
         when: "find Users requested"
-        String body = this.restTemplate.getForObject("/users", String.class);
+        Iterable<User> users = this.restTemplate.getForObject("/users", Iterable.class);
 
         then:"the result provides 2 users"
-        body.contains(initialisationService.totoUser.pseudo)
-        body.contains(initialisationService.titiUser.pseudo)
+        users.size() >= 2
     }
 
 }

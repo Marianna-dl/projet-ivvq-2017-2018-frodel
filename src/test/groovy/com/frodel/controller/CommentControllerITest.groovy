@@ -40,19 +40,18 @@ class CommentControllerITest extends Specification {
         Long id = initialisationService.totoComment.id
 
         when: "find comment by id requested"
-        String body = this.restTemplate.getForObject("/comment/id/" + id, String.class);
+        Comment comment = this.restTemplate.getForObject("/comment/id/" + id, Comment.class);
 
         then:"the result provides 1 comment"
-        body.contains(initialisationService.totoComment.content)
+        comment.content == initialisationService.totoComment.content
     }
 
     def "test to find all comments by calling url"() {
 
         when: "find comments requested"
-        String body = this.restTemplate.getForObject("/comments", String.class);
+        Iterable<Comment> comments = this.restTemplate.getForObject("/comments", Iterable.class);
 
         then:"the result provides 2 comments"
-        body.contains(initialisationService.totoComment.content)
-        body.contains(initialisationService.titiComment.content)
+        comments.size() >= 2
     }
 }

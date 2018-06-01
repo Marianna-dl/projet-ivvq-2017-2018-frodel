@@ -1,5 +1,6 @@
 package com.frodel.controller
 
+import com.frodel.model.Article
 import com.frodel.model.City
 import com.frodel.model.Continent
 import com.frodel.model.Country
@@ -31,11 +32,10 @@ class TravelControllerITest extends Specification {
     def "test to find all travels by calling url"() {
 
         when: "find travel requested"
-        String body = this.restTemplate.getForObject("/travels", String.class);
+        Iterable<Travel> travels = this.restTemplate.getForObject("/travels", Iterable.class);
 
         then:"the result provides 2 travels"
-        body.contains(initialisationService.japanTravel.name)
-        body.contains(initialisationService.irelandTravel.name)
+        travels.size() >= 2
     }
 
     def "test to find all travels with a given name calling url"() {
@@ -43,10 +43,10 @@ class TravelControllerITest extends Specification {
         String name = initialisationService.japanTravelName
 
         when: "find travel by name requested"
-        String body = this.restTemplate.getForObject("/travel/name/" + name, String.class);
+        Iterable<Travel> travels = this.restTemplate.getForObject("/travel/name/" + name, Iterable.class);
 
         then:"the result provides 1 travel"
-        body.contains(initialisationService.japanTravel.name)
+        travels.size() >= 1
     }
 
     def "test to find a travel with a given id calling url"() {
@@ -54,21 +54,20 @@ class TravelControllerITest extends Specification {
         Long id = initialisationService.japanTravel.id
 
         when: "find travel by name requested"
-        String body = this.restTemplate.getForObject("/travel/id/" + id, String.class);
+        Travel travel = this.restTemplate.getForObject("/travel/id/" + id, Travel.class);
 
         then:"the result provides 1 travel"
-        body.contains(initialisationService.japanTravel.name)
+        travel.name ==  initialisationService.japanTravel.name
     }
 
-    def "test to find all article of a travel with a given id calling url"() {
+    def "test to find all articles of a travel with a given id calling url"() {
         given: "a travel name"
         Long id = initialisationService.japanTravel.id
 
         when: "find travel by name requested"
-        String body = this.restTemplate.getForObject("/travel/articles/" + id, String.class);
+        Iterable<Article> articles = this.restTemplate.getForObject("/travel/articles/" + id, Iterable.class);
 
-        then:"the result provides the articles"
-        body.contains(initialisationService.articleJapanStep1.name)
-        body.contains(initialisationService.articleJapan.name)
+        then:"the result provides 2 articles"
+        articles.size() >= 2
     }
 }

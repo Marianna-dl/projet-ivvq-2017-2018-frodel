@@ -1,6 +1,7 @@
 package groovy.com.frodel.controller
 
 import com.frodel.TravexApplication
+import com.frodel.model.Answer
 import com.frodel.services.InitialisationService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -19,22 +20,29 @@ class AnswerControllerITest extends Specification {
     void "test to find all the answers by calling the url"() {
 
         when: "find all the answers"
-        String body = this.restTemplate.getForObject("/answers", String.class);
+        Iterable<Answer> answers = this.restTemplate.getForObject("/answers", Iterable.class);
 
         then:"the result provides 2 answers"
-        body.contains(String.valueOf(initialisationService.titiMoneyAnswer.id)) && body.contains(String.valueOf(initialisationService.totoWeatherAnswer.id))
+        answers.size() >= 2
+
+        and: "the two firsts elements are the same that the ones in initialisation service"
+        answers[0].id == initialisationService.titiMoneyAnswer.id
+        answers[1].id == initialisationService.totoWeatherAnswer.id
     }
 
     void "test to find all answers with a given pseudo calling url"() {
 
         given: "a user pseudo"
-        String pseudo = "titi"
+        String pseudo = initialisationService.titiUser.pseudo
 
         when: "find answers by pseudo requested"
-        String body = this.restTemplate.getForObject("/answers/pseudo/" + pseudo, String.class);
+        Iterable<Answer> answers = this.restTemplate.getForObject("/answers/pseudo/" + pseudo, Iterable.class);
 
         then:"the result provides 1 answer"
-        body.contains(initialisationService.titiMoneyAnswer.content)
+        answers.size() >= 1
+
+        and: "the first element is the same that the one in initialisation service"
+        answers[0].id == initialisationService.titiMoneyAnswer.id
     }
     void "test to find all answers with a given question id calling url"() {
 
@@ -42,10 +50,13 @@ class AnswerControllerITest extends Specification {
         Long questionId = 1
 
         when: "find answers by question id requested"
-        String body = this.restTemplate.getForObject("/answers/questionId/" + questionId, String.class);
+        Iterable<Answer> answers = this.restTemplate.getForObject("/answers/questionId/" + questionId, Iterable.class);
 
         then:"the result provides 1 answer"
-        body.contains(initialisationService.totoWeatherAnswer.content)
+        answers.size() >= 1
+
+        and: "the first element is the same that the one in initialisation service"
+        answers[0].id == initialisationService.totoWeatherAnswer.id
     }
 
 }
