@@ -32,4 +32,13 @@ public class CityService {
         return cityRepository.findCityByName(name);
     }
 
+
+    /**
+     * Find all cities
+     *
+     * @return All cities
+     */
+    public Iterable<City> findAllCities() {
+        return cityRepository.findAll();
+    }
 }

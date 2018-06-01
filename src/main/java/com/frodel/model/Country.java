@@ -50,4 +50,12 @@ public class Country {
     public void setCities(List<City> cities) {
         this.cities = cities;
     }
+
+    public List<City> getCities() {
+        return cities;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

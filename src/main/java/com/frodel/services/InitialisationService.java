@@ -27,6 +27,9 @@ public class InitialisationService {
     private QuestionService questionService;
 
     @Autowired
+    private AnswerService answerService;
+
+    @Autowired
     private CityService cityService;
 
     @Autowired
@@ -49,6 +52,9 @@ public class InitialisationService {
 
     private Question titiWeatherQuestion;
     private Question totoMoneyQuestion;
+
+    private Answer titiMoneyAnswer;
+    private Answer totoWeatherAnswer;
 
     private Continent europe;
     private Continent asie;
@@ -82,9 +88,9 @@ public class InitialisationService {
 
 
     public void initData() {
-        initContinent();
-        initCountries();
         initCities();
+        initCountries();
+        initContinent();
         initPlaces();
         initPrincipalArticles();
         initJapanSteps();
@@ -92,6 +98,7 @@ public class InitialisationService {
         initTravels();
         initComments();
         initQuestions();
+        initAnswers();
 
     }
 
@@ -284,6 +291,28 @@ public class InitialisationService {
         totoMoneyQuestion.setInterrogator(totoUser);
         questionService.saveQuestion(totoMoneyQuestion);
     }
+    private void initAnswers()
+    {
+        initAnswersTitiMoneyAnswer();
+        initAnswersTotoWeatherAnswer();
+    }
+    private void initAnswersTitiMoneyAnswer()
+    {
+        titiMoneyAnswer = new Answer();
+        titiMoneyAnswer.setContent("It was so expensive!!!");
+        titiMoneyAnswer.setAnswerer(titiUser);
+        titiMoneyAnswer.setQuestion(totoMoneyQuestion);
+        answerService.saveAnswer(titiMoneyAnswer);
+    }
+
+    private void initAnswersTotoWeatherAnswer()
+    {
+        totoWeatherAnswer = new Answer();
+        totoWeatherAnswer.setContent("It was Splendid!");
+        totoWeatherAnswer.setAnswerer(totoUser);
+        totoWeatherAnswer.setQuestion(titiWeatherQuestion);
+        answerService.saveAnswer(totoWeatherAnswer);
+    }
 
     public Question getTitiWeatherQuestion()
     {
@@ -295,6 +324,13 @@ public class InitialisationService {
         return totoMoneyQuestion;
     }
 
+    public Answer getTitiMoneyAnswer() {
+        return titiMoneyAnswer;
+    }
+
+    public Answer getTotoWeatherAnswer() {
+        return totoWeatherAnswer;
+    }
     private void initCityTokyo() {
         tokyo = new City();
         tokyo.setName("Tokyo");
@@ -354,6 +390,7 @@ public class InitialisationService {
         List<Country> countries = new ArrayList<>();
         countries.add(ireland);
         countries.add(france);
+        countries.add(espagne);
         europe.setCountries(countries);
         continentService.saveContinent(europe);
     }
@@ -460,5 +497,29 @@ public class InitialisationService {
 
     public City getTokyo() {
         return tokyo;
+    }
+
+    public Country getFrance() {
+        return france;
+    }
+
+    public City getToulouse() {
+        return toulouse;
+    }
+
+    public City getParis() {
+        return paris;
+    }
+
+    public Continent getEurope() {
+        return europe;
+    }
+
+    public Country getIreland() {
+        return ireland;
+    }
+
+    public Country getEspagne() {
+        return espagne;
     }
 }
