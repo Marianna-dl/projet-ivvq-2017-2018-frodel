@@ -21,13 +21,23 @@ public class CityController {
      * @apiName findCityByName
      * @apiGroup City
      * @apiDescription Find a city by its name
-     *
      * @apiParam {String} name The name of city
-     *
      * @apiSuccess {City} city The city found
      */
     @RequestMapping("/city/{name}")
     public City findCityByName(@PathVariable String name) {
         return cityService.findCityByName(name);
+    }
+
+    /**
+     * @api {get} /cities/
+     * @apiName findAllCities
+     * @apiGroup City
+     * @apiDescription Find all cities
+     * @apiSuccess {City[]} cities All cities
+     */
+    @RequestMapping("/cities")
+    public Iterable<City> findAllCities() {
+        return cityService.findAllCities();
     }
 }
