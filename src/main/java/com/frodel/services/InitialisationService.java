@@ -75,9 +75,9 @@ public class InitialisationService {
     private String totoUserPseudo = "toto";
 
     public void initData() {
-        initContinent();
         initCities();
         initCountries();
+        initContinent();
         initPlaces();
         initPrincipalArticles();
         initJapanSteps();
@@ -315,6 +315,7 @@ public class InitialisationService {
         List<Country> countries = new ArrayList<>();
         countries.add(ireland);
         countries.add(france);
+        countries.add(espagne);
         europe.setCountries(countries);
         continentService.saveContinent(europe);
     }
@@ -433,5 +434,17 @@ public class InitialisationService {
 
     public City getParis() {
         return paris;
+    }
+
+    public Continent getEurope() {
+        return europe;
+    }
+
+    public Country getIreland() {
+        return ireland;
+    }
+
+    public Country getEspagne() {
+        return espagne;
     }
 }
