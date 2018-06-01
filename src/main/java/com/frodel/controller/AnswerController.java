@@ -3,6 +3,7 @@ package com.frodel.controller;
 import com.frodel.model.Answer;
 import com.frodel.services.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controller of an Answer
  */
 @RestController
+@CrossOrigin
 public class AnswerController {
     @Autowired
     private AnswerService answerService;

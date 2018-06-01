@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
  * Controller of a Question
  */
 @RestController
+@CrossOrigin
 public class QuestionController {
     @Autowired
     private QuestionService questionService;

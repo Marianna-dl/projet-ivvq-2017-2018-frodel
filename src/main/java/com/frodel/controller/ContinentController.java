@@ -4,6 +4,7 @@ import com.frodel.model.Continent;
 import com.frodel.model.Country;
 import com.frodel.services.ContinentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by leafo on 29/05/2018.
  */
 @RestController
+@CrossOrigin
 public class ContinentController {
 
     @Autowired
