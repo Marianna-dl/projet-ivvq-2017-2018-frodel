@@ -7,6 +7,7 @@ import com.frodel.model.Travel;
 import com.frodel.services.TravelService;
 import com.frodel.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Controller of a travel
  */
 @RestController
+@CrossOrigin
 public class TravelController {
 
     @Autowired
@@ -26,12 +28,13 @@ public class TravelController {
 
     /**
      * @api {get} /travels/
+     * @apiSampleRequest /travels/
      * @apiName findAllTravels
      * @apiGroup Travel
      * @apiDescription find all travels
      *
      *
-     * @apiSuccess {Iterable<Travel>} the list of travels
+     * @apiSuccess {Travel[]} Travels the list of travels
      */
     @RequestMapping("/travels")
     public Iterable<Travel> findAllTravels() {
@@ -39,13 +42,18 @@ public class TravelController {
     }
 
     /**
-     * @api {get} /travel/name/:travelName
+     * @api {get} /travel/name/{travelName}
+     * @apiSampleRequest /travel/name/Japan
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "name" : [{"Japan"}, {"Ireland"}]
+     *     }
      * @apiName findAllTravelsByName
      * @apiGroup Travel
      * @apiDescription find all travels with a given name
      *
      * @apiParam {String} travelName The name of searched travel
-     * @apiSuccess {Iterable<Travel>} the list of travels
+     * @apiSuccess {Travel[]} Travels the list of travels
      */
     @RequestMapping("/travel/name/{travelName}")
     public Iterable<Travel> findAllTravelsByName(@PathVariable  String travelName) {
@@ -54,13 +62,18 @@ public class TravelController {
 
 
     /**
-     * @api {get} /travel/id/:idTravel
+     * @api {get} /travel/id/{idTravel}
+     * @apiSampleRequest /travel/id/1
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "id" : [{"1"}, {"2"}]
+     *     }
      * @apiName findTravelById
      * @apiGroup Travel
      * @apiDescription find a travel with a given id
      *
      * @apiParam {Long} idTravel The id of searched travel
-     * @apiSuccess {Travel} the travel
+     * @apiSuccess {Travel} Travel the travel
      */
     @RequestMapping("/travel/id/{idTravel}")
     public Travel findTravelById(@PathVariable Long idTravel) {
@@ -68,13 +81,18 @@ public class TravelController {
     }
 
     /**
-     * @api {get} /travel/articles/:idTravel
+     * @api {get} /travel/articles/{idTravel}
+     * @apiSampleRequest /travel/articles/1
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "id" : [{"1"}, {"2"}]
+     *     }
      * @apiName findAllArticles
      * @apiGroup Travel
      * @apiDescription find all articles of a travel with a given travel id
      *
      * @apiParam {Long} idTravel The id of the travel
-     * @apiSuccess {Iterable<Article>} the list of articles related to the travel
+     * @apiSuccess {Article[]} Articles the list of articles related to the travel
      */
     @RequestMapping("/travel/articles/{idTravel}")
     public Iterable<Article> findAllArticles(@PathVariable Long idTravel) {

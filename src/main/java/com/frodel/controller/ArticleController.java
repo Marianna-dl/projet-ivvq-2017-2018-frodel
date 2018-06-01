@@ -3,10 +3,12 @@ package com.frodel.controller;
 import com.frodel.model.Article;
 import com.frodel.services.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin
 public class ArticleController {
 
     @Autowired
@@ -14,12 +16,13 @@ public class ArticleController {
 
     /**
      * @api {get} /articles/
+     * @apiSampleRequest /articles/
      * @apiName findAllArticles
      * @apiGroup Article
      * @apiDescription find all articles
      *
      *
-     * @apiSuccess {Iterable<Article>} the list of articles
+     * @apiSuccess (Success 200) {Article[]} articles the list of articles
      */
     @RequestMapping("/articles")
     public Iterable<Article> findAllArticles() {

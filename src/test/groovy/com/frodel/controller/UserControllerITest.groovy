@@ -46,7 +46,7 @@ class UserControllerITest extends Specification{
         String pseudo = initialisationService.totoUser.pseudo
 
         when: "find user by pseudo requested"
-        String body = this.restTemplate.getForObject("/user/pseudo/" + pseudo, String.class);
+        String body = this.restTemplate.getForObject("/user/userPseudo/" + pseudo, String.class);
 
         then:"the result provides 1 user"
         body.contains(initialisationService.totoUser.pseudo)

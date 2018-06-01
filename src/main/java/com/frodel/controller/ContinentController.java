@@ -4,6 +4,7 @@ import com.frodel.model.Continent;
 import com.frodel.model.Country;
 import com.frodel.services.ContinentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by leafo on 29/05/2018.
  */
 @RestController
+@CrossOrigin
 public class ContinentController {
 
     @Autowired
@@ -21,6 +23,11 @@ public class ContinentController {
 
     /**
      * @api {get} /continent/{name}
+     * @apiSampleRequest /continent/Asie
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "name" : [{"Asie"}, {"Europe"}]
+     *     }
      * @apiName getContinent
      * @apiGroup Continent
      * @apiDescription Find a continent by its name
@@ -36,6 +43,11 @@ public class ContinentController {
 
     /**
      * @api {get} /countries/{name}
+     * @apiSampleRequest /countries/Asie
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "name" : [{"Asie"}, {"Europe"}]
+     *     }
      * @apiName findCountriesOfContinent
      * @apiGroup Continent
      * @apiDescription Find countries of a continent
@@ -49,11 +61,12 @@ public class ContinentController {
 
     /**
      * @api {get} /continents
+     * @apiSampleRequest /continents/
      * @apiName findAllContinents
      * @apiGroup Continent
      * @apiDescription Find all continents
      *
-     * @apiSuccess {Iterable[]} continents All continents
+     * @apiSuccess {Continent[]} continents All continents
      */
     @RequestMapping("/continents")
     public Iterable<Continent> findAllContinents() { return continentService.findAllContinents(); }

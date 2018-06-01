@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
  * Controller of a travel
  */
 @RestController
+@CrossOrigin
 public class CommentController {
 
     @Autowired
@@ -43,13 +44,18 @@ public class CommentController {
 
 
     /**
-     * @api {get} /comment/id/:idComment
+     * @api {get} /comment/id/{idComment}
+     * @apiSampleRequest /comment/id/1
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "idComment" : [{"1"}, {"2"}]
+     *     }
      * @apiName findCommentById
      * @apiGroup Comment
      * @apiDescription find a comment with a given id
      *
      * @apiParam {Long} idComment The id of searched comment
-     * @apiSuccess {Comment} the comment
+     * @apiSuccess {Comment} Comment the comment
      */
     @RequestMapping("/comment/id/{idComment}")
     public Comment findCommentById(@PathVariable Long idComment) {
@@ -58,12 +64,13 @@ public class CommentController {
 
     /**
      * @api {get} /comments/
+     * @apiSampleRequest /comments/
      * @apiName findAllComments
      * @apiGroup Comment
      * @apiDescription find all comments
      *
      *
-     * @apiSuccess {Iterable<Comment>} the list of comments
+     * @apiSuccess {Comment[]} Comments the list of comments
      */
     @RequestMapping("/comments")
     public Iterable<Comment> findAllComments() {

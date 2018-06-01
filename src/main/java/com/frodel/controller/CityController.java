@@ -3,6 +3,7 @@ package com.frodel.controller;
 import com.frodel.model.City;
 import com.frodel.services.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,13 +12,19 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by leafo on 29/05/2018.
  */
 @RestController
+@CrossOrigin
 public class CityController {
 
     @Autowired
     private CityService cityService;
 
     /**
-     * @api {get} /city/{name}
+     * @api {get} /city/{name}/
+     * @apiSampleRequest /city/Kyoto
+     * @apiParamExample {json} Request-Example:
+     *     {
+     *       "name" : [{"Kyoto"}, {"Tokyo"}, {"Galway"}]
+     *     }
      * @apiName findCityByName
      * @apiGroup City
      * @apiDescription Find a city by its name
@@ -31,6 +38,7 @@ public class CityController {
 
     /**
      * @api {get} /cities/
+     * @apiSampleRequest /cities/
      * @apiName findAllCities
      * @apiGroup City
      * @apiDescription Find all cities
