@@ -27,4 +27,13 @@ class CityControllerTest extends Specification {
         then: "the recover name is good"
         1 * cityService.findCityByName(cityName)
     }
+
+    def "test to find all cities by calling controller"() {
+
+        when: "requesting for all cities"
+        cityController.findAllCities()
+
+        then: "the request is performed"
+        1 * cityService.findAllCities()
+    }
 }

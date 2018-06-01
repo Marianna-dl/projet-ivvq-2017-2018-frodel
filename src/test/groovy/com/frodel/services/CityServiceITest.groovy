@@ -56,5 +56,15 @@ class CityServiceITest extends Specification{
         city.name == cityName
     }
 
+    def "test getting all cities"() {
+        given: "The number of cities created by the initialisation service"
+        int citiesNumber = 8
+
+        when: "requesting all cities"
+        Iterable<City> cities = cityService.findAllCities()
+
+        then : "the cities are the same given by the initialisation service"
+        cities.size() >= 8
+    }
 
 }

@@ -45,4 +45,11 @@ public class Question {
         this.interrogator = interrogator;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
 }

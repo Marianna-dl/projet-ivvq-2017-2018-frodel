@@ -26,14 +26,11 @@ public class CountryController {
      * @apiName findCountryByName
      * @apiGroup Country
      * @apiDescription find a country by its name
-     *
      * @apiParam {String} name The name of country to find
-     *
      * @apiSuccess {Country} country the country found
      */
     @RequestMapping("/country/{name}")
-    public Country findCountryByName(@PathVariable String name)
-    {
+    public Country findCountryByName(@PathVariable String name) {
         return countryService.findCountryByName(name);
     }
 
@@ -42,15 +39,24 @@ public class CountryController {
      * @apiName findCitiesOfCountry
      * @apiGroup Country
      * @apiDescription find cities of country
-     *
      * @apiParam {String} name The name of country
-     *
      * @apiSuccess {List<City>} cities Cities found for the country
      */
     @RequestMapping("/cities/{name}")
-    public List<City> findCitiesOfCountry(@PathVariable String name)
-    {
+    public List<City> findCitiesOfCountry(@PathVariable String name) {
         return countryService.findCitiesOfCountry(name);
+    }
+
+    /**
+     * @api {get} /countries/
+     * @apiName findAllCountries
+     * @apiGroup Country
+     * @apiDescription Find all countries
+     * @apiSuccess {Country[]} All countries
+     */
+    @RequestMapping("/countries")
+    public Iterable<Country> findAllCountries() {
+        return countryService.findAllCountries();
     }
 
 }
