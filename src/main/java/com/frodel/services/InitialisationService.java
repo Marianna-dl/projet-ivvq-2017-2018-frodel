@@ -86,6 +86,7 @@ public class InitialisationService {
 
     private String totoUserPseudo = "toto";
 
+
     public void initData() {
         initCities();
         initCountries();
@@ -290,7 +291,6 @@ public class InitialisationService {
         totoMoneyQuestion.setInterrogator(totoUser);
         questionService.saveQuestion(totoMoneyQuestion);
     }
-
     private void initAnswers()
     {
         initAnswersTitiMoneyAnswer();
@@ -331,7 +331,6 @@ public class InitialisationService {
     public Answer getTotoWeatherAnswer() {
         return totoWeatherAnswer;
     }
-
     private void initCityTokyo() {
         tokyo = new City();
         tokyo.setName("Tokyo");
