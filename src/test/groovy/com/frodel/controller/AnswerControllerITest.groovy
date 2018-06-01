@@ -24,6 +24,10 @@ class AnswerControllerITest extends Specification {
 
         then:"the result provides 2 answers"
         answers.size() >= 2
+
+        and: "the two firsts elements are the same that the ones in initialisation service"
+        answers[0].id == initialisationService.titiMoneyAnswer.id
+        answers[1].id == initialisationService.totoWeatherAnswer.id
     }
 
     void "test to find all answers with a given pseudo calling url"() {
@@ -36,6 +40,9 @@ class AnswerControllerITest extends Specification {
 
         then:"the result provides 1 answer"
         answers.size() >= 1
+
+        and: "the first element is the same that the one in initialisation service"
+        answers[0].id == initialisationService.titiMoneyAnswer.id
     }
     void "test to find all answers with a given question id calling url"() {
 
@@ -47,6 +54,9 @@ class AnswerControllerITest extends Specification {
 
         then:"the result provides 1 answer"
         answers.size() >= 1
+
+        and: "the first element is the same that the one in initialisation service"
+        answers[0].id == initialisationService.totoWeatherAnswer.id
     }
 
 }
