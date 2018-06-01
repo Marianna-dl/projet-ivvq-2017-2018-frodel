@@ -16,18 +16,33 @@ public class QuestionService {
     private QuestionRepository questionRepository ;
 
     /**
-
      * Save the given question
-
-     * @param question the utilisateur
-
+     * @param question the question
      * @return the saved question
-
      */
 
     public Question saveQuestion(Question question) {
 
         return questionRepository.save(question) ;
 
+    }
+
+    /**
+     * Find all the questions for an interrogator
+     *
+     * @return The Iterable<Question> found
+     */
+    public Iterable<Question> findAllQuestions() {
+        return questionRepository.findAll();
+    }
+
+    /**
+     * Find all the questions for an interrogator
+     *
+     * @param pseudoInterrogator The id of the interrogator that asked the questions
+     * @return The Iterable<Question> found or null if the interrogator wasn't found
+     */
+    public Iterable<Question> findQuestionsByInterrogator(String pseudoInterrogator) {
+        return questionRepository.findQuestionsByInterrogator(pseudoInterrogator);
     }
 }

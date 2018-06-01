@@ -37,4 +37,8 @@ public class Answer {
     public void setQuestion(Question question) {
         this.question = question;
     }
+
+    public String getContent() {
+        return content;
+    }
 }
