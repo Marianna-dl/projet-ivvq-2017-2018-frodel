@@ -1,5 +1,6 @@
 package com.frodel.controller
 
+import com.frodel.model.Article
 import com.frodel.services.ArticleService
 import com.frodel.services.InitialisationService
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,11 +21,10 @@ class ArticleControllerITest extends Specification {
     def "test to find all articles by calling url"() {
 
         when: "find articles requested"
-        String body = this.restTemplate.getForObject("/articles", String.class);
+        Iterable<Article> articles = this.restTemplate.getForObject("/articles", Iterable.class);
 
         then:"the result provides 2 articles"
-        body.contains(initialisationService.articleJapan.name)
-        body.contains(initialisationService.articleIrelande.name)
+        articles.size() >= 2
     }
 
 

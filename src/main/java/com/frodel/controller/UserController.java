@@ -48,7 +48,7 @@ public class UserController {
      * @apiParam {String} userPseudo The pseudo of searched user
      * @apiSuccess {User} User the user
      */
-    @RequestMapping("/user/pseudo/{userPseudo}")
+    @RequestMapping("/user/userPseudo/{userPseudo}")
     public User findUserByPseudo(@PathVariable  String userPseudo) {
         return userService.findUserByPseudo(userPseudo);
     }
