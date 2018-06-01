@@ -3,6 +3,7 @@ package com.frodel.controller
 import com.frodel.model.City
 import com.frodel.model.Country
 import com.frodel.services.InitialisationService
+import jdk.nashorn.internal.runtime.arrays.IteratorAction
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
@@ -53,5 +54,13 @@ class CountryControllerITest extends Specification {
 
         and:
         cities[1].name == initialisationService.paris.name
+    }
+
+    def "test to find all countries by calling url"() {
+        when: "find all countries requested"
+        Iterable<Country> countries = this.restTemplate.getForObject("/countries", Iterable.class);
+
+        then:"the result provides 4 countries"
+        countries.size() >= 4
     }
 }

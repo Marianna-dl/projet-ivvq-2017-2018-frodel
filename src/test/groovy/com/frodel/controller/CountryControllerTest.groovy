@@ -35,4 +35,13 @@ class CountryControllerTest extends Specification {
         then: "the search is delegated to the countryService"
         1 * countryService.findCitiesOfCountry(countryName)
     }
+
+    def "test to find all countries by calling controller"() {
+
+        when: "requesting for all countries"
+        countryController.findAllCountries()
+
+        then: "the request is performed"
+        1 * countryService.findAllCountries()
+    }
 }

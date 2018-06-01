@@ -5,7 +5,7 @@ import com.frodel.repositories.CountryRepository
 import org.springframework.data.repository.PagingAndSortingRepository
 import spock.lang.Specification
 
-class CountryServiceTest extends Specification{
+class CountryServiceTest extends Specification {
     CountryService countryService
     CountryRepository countryRepository
 
@@ -52,5 +52,13 @@ class CountryServiceTest extends Specification{
 
         then: "the search is delegated to the countryRepository"
         1 * countryRepository.findCountryByName(countryName)
+    }
+
+    def "test delegation of finding all countries to the repository"() {
+        when: "requesting for all countries"
+        countryService.findAllCountries()
+
+        then: "the request is delegated to the travelRepository"
+        1 * countryRepository.findAll()
     }
 }

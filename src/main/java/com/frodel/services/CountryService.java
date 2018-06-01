@@ -36,15 +36,25 @@ public class CountryService {
 
     /**
      * Find cities of country by its name
+     *
      * @param name The name of the country
      * @return Cities of country
      */
     public List<City> findCitiesOfCountry(String name) {
         List<City> cities = null;
         Country country = countryRepository.findCountryByName(name);
-        if (country != null){
+        if (country != null) {
             cities = country.getCities();
         }
         return cities;
+    }
+
+    /**
+     * Find all countries
+     *
+     * @return All countries
+     */
+    public Iterable<Country> findAllCountries() {
+        return countryRepository.findAll();
     }
 }
