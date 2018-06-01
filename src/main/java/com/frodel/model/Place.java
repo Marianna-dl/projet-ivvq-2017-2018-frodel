@@ -35,4 +35,16 @@ public class Place {
     public void setCity(City city) {
         this.city = city;
     }
+
+    public Continent getContinent() {
+        return continent;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public City getCity() {
+        return city;
+    }
 }

@@ -60,10 +60,11 @@ public class CountryController {
 
     /**
      * @api {get} /countries/
+     * @apiSampleRequest /countries/
      * @apiName findAllCountries
      * @apiGroup Country
      * @apiDescription Find all countries
-     * @apiSuccess {Country[]} All countries
+     * @apiSuccess {Country[]} Countries All countries
      */
     @RequestMapping("/countries")
     public Iterable<Country> findAllCountries() {

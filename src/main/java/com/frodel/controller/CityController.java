@@ -38,6 +38,7 @@ public class CityController {
 
     /**
      * @api {get} /cities/
+     * @apiSampleRequest /cities/
      * @apiName findAllCities
      * @apiGroup City
      * @apiDescription Find all cities

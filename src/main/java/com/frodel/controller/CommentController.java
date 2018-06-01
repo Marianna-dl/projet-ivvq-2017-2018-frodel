@@ -55,7 +55,7 @@ public class CommentController {
      * @apiDescription find a comment with a given id
      *
      * @apiParam {Long} idComment The id of searched comment
-     * @apiSuccess {Comment} the comment
+     * @apiSuccess {Comment} Comment the comment
      */
     @RequestMapping("/comment/id/{idComment}")
     public Comment findCommentById(@PathVariable Long idComment) {
@@ -70,7 +70,7 @@ public class CommentController {
      * @apiDescription find all comments
      *
      *
-     * @apiSuccess {Comment[]} the list of comments
+     * @apiSuccess {Comment[]} Comments the list of comments
      */
     @RequestMapping("/comments")
     public Iterable<Comment> findAllComments() {

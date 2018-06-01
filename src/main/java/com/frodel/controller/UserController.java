@@ -46,7 +46,7 @@ public class UserController {
      * @apiDescription find user with a given pseudo
      *
      * @apiParam {String} userPseudo The pseudo of searched user
-     * @apiSuccess {User} the user
+     * @apiSuccess {User} User the user
      */
     @RequestMapping("/user/pseudo/{userPseudo}")
     public User findUserByPseudo(@PathVariable  String userPseudo) {
@@ -62,7 +62,7 @@ public class UserController {
      * @apiDescription find all users
      *
      *
-     * @apiSuccess {User[]} the list of users
+     * @apiSuccess {User[]} User the list of users
      */
     @RequestMapping("/users")
     public Iterable<User> findAllUsers() {
