@@ -24,6 +24,12 @@ public class InitialisationService {
     private CommentService commentService;
 
     @Autowired
+    private QuestionService questionService;
+
+    @Autowired
+    private AnswerService answerService;
+
+    @Autowired
     private CityService cityService;
 
     @Autowired
@@ -43,6 +49,12 @@ public class InitialisationService {
 
     private Comment totoComment;
     private Comment titiComment;
+
+    private Question titiWeatherQuestion;
+    private Question totoMoneyQuestion;
+
+    private Answer titiMoneyAnswer;
+    private Answer totoWeatherAnswer;
 
     private Continent europe;
     private Continent asie;
@@ -84,6 +96,8 @@ public class InitialisationService {
         initUsers();
         initTravels();
         initComments();
+        initQuestions();
+        initAnswers();
 
     }
 
@@ -254,6 +268,68 @@ public class InitialisationService {
         titiComment.setMark((long) 1);
         titiComment.setContent("c'est un comment de titi");
         commentService.saveComment(titiComment);
+    }
+
+    private void initQuestions()
+    {
+        initQuestionsTitiWeatherQuestion();
+        initQuestionsTotoMoneyQuestion();
+    }
+    private void initQuestionsTitiWeatherQuestion()
+    {
+        titiWeatherQuestion = new Question();
+        titiWeatherQuestion.setContent("How was the weather ?");
+        titiWeatherQuestion.setInterrogator(titiUser);
+        questionService.saveQuestion(titiWeatherQuestion);
+    }
+
+    private void initQuestionsTotoMoneyQuestion()
+    {
+        totoMoneyQuestion = new Question();
+        totoMoneyQuestion.setContent("How much does it cost ?");
+        totoMoneyQuestion.setInterrogator(totoUser);
+        questionService.saveQuestion(totoMoneyQuestion);
+    }
+
+    private void initAnswers()
+    {
+        initAnswersTitiMoneyAnswer();
+        initAnswersTotoWeatherAnswer();
+    }
+    private void initAnswersTitiMoneyAnswer()
+    {
+        titiMoneyAnswer = new Answer();
+        titiMoneyAnswer.setContent("It was so expensive!!!");
+        titiMoneyAnswer.setAnswerer(titiUser);
+        titiMoneyAnswer.setQuestion(totoMoneyQuestion);
+        answerService.saveAnswer(titiMoneyAnswer);
+    }
+
+    private void initAnswersTotoWeatherAnswer()
+    {
+        totoWeatherAnswer = new Answer();
+        totoWeatherAnswer.setContent("It was Splendid!");
+        totoWeatherAnswer.setAnswerer(totoUser);
+        totoWeatherAnswer.setQuestion(titiWeatherQuestion);
+        answerService.saveAnswer(totoWeatherAnswer);
+    }
+
+    public Question getTitiWeatherQuestion()
+    {
+        return titiWeatherQuestion;
+    }
+
+    public Question getTotoMoneyQuestion()
+    {
+        return totoMoneyQuestion;
+    }
+
+    public Answer getTitiMoneyAnswer() {
+        return titiMoneyAnswer;
+    }
+
+    public Answer getTotoWeatherAnswer() {
+        return totoWeatherAnswer;
     }
 
     private void initCityTokyo() {
