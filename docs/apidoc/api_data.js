@@ -983,11 +983,11 @@ define({ "api": [
   },
   {
     "type": "get",
-    "url": "/user/pseudo/{userPseudo}",
+    "url": "/user/userPseudo/{userPseudo}",
     "title": "",
     "sampleRequest": [
       {
-        "url": "https://travex.herokuapp.com/user/pseudo/toto"
+        "url": "https://travex.herokuapp.com/user/userPseudo/toto"
       }
     ],
     "parameter": {

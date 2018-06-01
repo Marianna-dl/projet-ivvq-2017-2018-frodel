@@ -35,8 +35,8 @@ public class UserController {
 
 
     /**
-     * @api {get} /user/pseudo/{userPseudo}
-     * @apiSampleRequest /user/pseudo/toto
+     * @api {get} /user/userPseudo/{userPseudo}
+     * @apiSampleRequest /user/userPseudo/toto
      * @apiParamExample {json} Request-Example:
      *     {
      *       "userPseudo" : [{"toto"}, {"titi"}]
